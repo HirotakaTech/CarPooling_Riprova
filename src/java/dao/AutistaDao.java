@@ -55,7 +55,7 @@ public class AutistaDao{
         }
         return list;
     }
-    public boolean insertAutista(String email, Autista au){
+    public boolean insertAutista(Autista au){
         boolean ok = false;
         String sql = "insert into Autisti VALUES(?,?,?,?,?,?,?)";
         Connection con = null;
