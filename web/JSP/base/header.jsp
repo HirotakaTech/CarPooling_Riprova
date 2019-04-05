@@ -16,8 +16,9 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active"><a href="${pageContext.request.contextPath}/JSP/index.jsp" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="${pageContext.request.contextPath}/JSP/Recensioni.jsp" class="nav-link">Recensioni</a></li>
+                         <li class="nav-item"><a href="${pageContext.request.contextPath}/JSP/Register.jsp" class="nav-link">Registrati</a></li>
                         <li class="nav-item cta"><a href="${pageContext.request.contextPath}/JSP/Login.jsp" class="nav-link">Login</a></li>
-
+                       
                     </ul>
                 </div>
             </div>
