@@ -14,7 +14,6 @@
     <body>
         <script>
             var xhttp = new XMLHttpRequest();
-            setInterval(aggiorna,1000);
             function aggiorna() {
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
@@ -29,20 +28,28 @@
             }
         </script>
         <%@include file="/JSP/base/header.jsp" %>
-<%
-    String destinazione=request.getParameter("destinazione");
-    String data=request.getParameter("data");
-    String ora=request.getParameter("ora");
-    String prezzo=request.getParameter("prezzo");
-    session.setAttribute("destinazione", destinazione);
-    session.setAttribute("data", data);
-    session.setAttribute("ora", ora);
-    session.setAttribute("prezzo", prezzo);
-    
-    %>
+        <%
+            String destinazione = request.getParameter("destinazione");
+            String data = request.getParameter("data");
+            String ora = request.getParameter("ora");
+            String prezzo = request.getParameter("prezzo");
+            session.setAttribute("destinazione", destinazione);
+            session.setAttribute("data", data);
+            session.setAttribute("ora", ora);
+            session.setAttribute("prezzo", prezzo);
+
+        %>
         <%@include file="/JSP/base/ricerca.jsp" %>
+
         <div id="risultati">
         </div>
-        <%@include file="/JSP/base/footer.jsp" %>
+        <div class="container">
+
+            <div class="row">
+                <button type="button" style="margin-top: 100px" onclick="aggiorna()">Click Me!</button>
+
+                
+            </div>
+        </div>
     </body>
 </html>

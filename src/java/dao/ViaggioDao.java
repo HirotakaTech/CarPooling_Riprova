@@ -16,14 +16,14 @@ import java.util.Date;
  */
 public class ViaggioDao {
 
-    public ArrayList<Viaggio> getViaggi(String destinazione, String data_partenza, String ora, float costo) {
+    public ArrayList<Viaggio> getViaggi(String destinazione, String data_partenza, String ora, int costo) {
         Connection con = null;
         String sql = "select Viaggi.* from Viaggi inner join Prenotazioni"
                 + " on Viaggi.id = Prenotazioni.id_viaggio"
-                + " where citta_destinazione=" + destinazione
-                + " and data_partenza=" + data_partenza
-                + " and ora_partenza=" + ora
-                + " and costo<=" + costo
+                + " where citta_destinazione='" + destinazione
+                + "' and data_partenza='" + data_partenza
+                + "' and ora_partenza='" + ora
+                + "' and prezzo_passeggero<=" + costo
                 + " and accettazione=false";
         ArrayList<Viaggio> list = new ArrayList<>();
         try {
@@ -35,21 +35,23 @@ public class ViaggioDao {
                 aus.setId(res.getInt(1));
                 aus.setCitta_partenza(res.getString(2));
                 DateFormat dateform = new SimpleDateFormat("yyyy-MM-dd");
+                
                 aus.setData_partenza(
-                        dateform.format(res.getDate(3)));
+                        dateform.format(res.getDate(3)).toString());
                 String time = res.getTime(4).toString();
-                time = time.substring(6);
+                time = time.substring(0,5);
+      
                 aus.setOra_partenza(time);
                 aus.setCitta_destinazione(res.getString(5));
-                aus.setPrezzo(res.getFloat(5));
-                aus.setTempi_stimati(res.getFloat(6));
-                aus.setInfo_aggiuntive(res.getString(7));
-                aus.setEmail_autista(res.getString(8));
+                aus.setPrezzo(res.getFloat(6));
+                aus.setTempi_stimati(res.getString(7));
+                aus.setInfo_aggiuntive(res.getString(8));
+                aus.setEmail_autista(res.getString(9));
                 list.add(aus);
 
             }
         } catch (Exception e) {
-
+            System.out.println("Errore");
         } finally {
             Dao.closeConnection();
         }

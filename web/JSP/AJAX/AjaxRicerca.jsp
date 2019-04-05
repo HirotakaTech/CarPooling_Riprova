@@ -13,9 +13,10 @@
     String data=(String)session.getAttribute("data");
     String ora=(String)session.getAttribute("ora");
     String[] dividi=data.split("/");
-    data=dividi[2]+"/"+dividi[1]+"/"+dividi[0];
-    float prezzo= Float.parseFloat((String)session.getAttribute("prezzo"));
+    data=dividi[2]+"-"+dividi[0]+"-"+dividi[1];
+    int prezzo= Integer.parseInt((String)session.getAttribute("prezzo"));
     ArrayList<Viaggio> viaggi = dao.getViaggi(destinazione,data,ora,prezzo);
+    
     %><table>
         <tr><td>Destinazione</td>
             <td>Data</td>

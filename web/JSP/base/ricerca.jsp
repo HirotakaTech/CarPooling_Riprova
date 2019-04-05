@@ -45,14 +45,14 @@
                                                 <div class="select-wrap">
                                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                                     <select name="prezzo" id="" class="form-control" required>
-                                                        <option>?5</option>
-                                                        <option>?10</option>
-                                                        <option>?50</option>
-                                                        <option>?100</option>
-                                                        <option>?200</option>
-                                                        <option>?300</option>
-                                                        <option>?400</option>
-                                                        <option>?500</option>
+                                                        <option>5</option>
+                                                        <option>10</option>
+                                                        <option>50</option>
+                                                        <option>100</option>
+                                                        <option>200</option>
+                                                        <option>300</option>
+                                                        <option>400</option>
+                                                        <option>500</option>
                                                     </select>
                                                 </div>
                                             </div>
