@@ -31,6 +31,9 @@ public class FeedbackDao {
                 fed.setId(rs.getInt(1));
                 fed.setGiudizio(rs.getString(3));
                 fed.setVoto(rs.getFloat(2));
+                fed.setEmailMandante(rs.getString(4));
+                fed.setEmailRicevente(rs.getString(5));
+                
                 lista.add(fed);
             }
         } catch (Exception e) {
@@ -40,14 +43,11 @@ public class FeedbackDao {
 
         return lista;
     }
-    
-    public static void main(String args[]) {
+    public static void main(String[] dsfas){
         FeedbackDao dao=new FeedbackDao();
-         ArrayList<Feedback> lista=dao.findAll();
-        for(Feedback fed:lista){
-            System.out.println("ciao");
-            System.out.println(fed.getGiudizio());
+        ArrayList<Feedback> lista=dao.findAll();
+        for(Feedback ciao:lista){
+            System.out.println(ciao.getEmailMandante());
         }
-        
     }
 }

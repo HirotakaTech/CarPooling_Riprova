@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -77,4 +80,33 @@ public class UtenteDao {
         return ok;
     }
 
+    public Utente findByEmail(String email) {
+
+        Utente ute = null;
+        try {
+            Connection con = Dao.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select Utenti.* from Utenti where Utenti.email=" + email);
+            ute = new Utente();
+            while (rs.next()) {
+                ute.setEmail(rs.getString(1));
+                ute.setNome(rs.getString(2));
+                ute.setCognome(rs.getString(3));
+                ute.setData_nascita(rs.getDate(4).toString());
+                ute.setLuogo(rs.getString(5));
+                ute.setTelefono(rs.getString(6));
+                ute.setPassword(rs.getString(7));
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   
+        return ute;
+
+    }
+    
+    
 }
