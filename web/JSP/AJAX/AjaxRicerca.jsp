@@ -8,27 +8,31 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="beans.Viaggio"%>
 <%
-    String destinazione=(String)session.getAttribute("destinazione");
-    ViaggioDao dao=new ViaggioDao();
-    String data=(String)session.getAttribute("data");
-    String ora=(String)session.getAttribute("ora");
-    String[] dividi=data.split("/");
-    data=dividi[2]+"-"+dividi[0]+"-"+dividi[1];
-    int prezzo= Integer.parseInt((String)session.getAttribute("prezzo"));
-    ArrayList<Viaggio> viaggi = dao.getViaggi(destinazione,data,ora,prezzo);
-    
-    %><table>
-        <tr><td>Destinazione</td>
-            <td>Data</td>
-            <td>Ora</td>
-            <td>Prezzo</td>
-        </tr>
-    <%for(Viaggio viaggio: viaggi){%>
-    <tr><td><%=viaggio.getCitta_destinazione()%></td>
-        <td><%=viaggio.getData_partenza()%></td>
-        <td><%=viaggio.getOra_partenza()%></td>
-        <td><%=viaggio.getPrezzo()%></td>
-    </tr>
+    String destinazione = (String) session.getAttribute("destinazione");
+    ViaggioDao dao = new ViaggioDao();
+    String data = (String) session.getAttribute("data");
+    String ora = (String) session.getAttribute("ora");
+    String[] dividi = data.split("/");
+    data = dividi[2] + "-" + dividi[0] + "-" + dividi[1];
+    int prezzo = Integer.parseInt((String) session.getAttribute("prezzo"));
+    ArrayList<Viaggio> viaggi = dao.getViaggi(destinazione, data, ora, prezzo);
+
+%> 
+<div class="container" style="margin-top: 150px">
+    <div class="row">
+        <div class="col-3">Destinazione</div>
+        <div class="col-3">Data</div>
+        <div class="col-3">Ora</div>
+        <div class="col-3">Prezzo</div>
+
+    </div>
+
+    <%for (Viaggio viaggio : viaggi) {%>
+    <div class="row">
+        <div class="col-3"><%=viaggio.getCitta_destinazione()%></div>
+        <div class="col-3"><%=viaggio.getData_partenza()%></div>
+        <div class="col-3"><%=viaggio.getOra_partenza()%></div>
+        <div class="col-3"><%=viaggio.getPrezzo()%></div>
+    </div>
     <%}%>
-    </table>
-    
+</div>
