@@ -86,7 +86,7 @@ public class UtenteDao {
         try {
             Connection con = Dao.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select Utenti.* from Utenti where Utenti.email=" + email);
+            ResultSet rs = st.executeQuery("select Utenti.* from Utenti where Utenti.email='" + email+"'");
             ute = new Utente();
             while (rs.next()) {
                 ute.setEmail(rs.getString(1));

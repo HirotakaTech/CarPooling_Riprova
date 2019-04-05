@@ -76,7 +76,7 @@
                     <div class="container">
                         <div class="row justify-content-between">
                             <div class="col-md-3"><b><%Utente utente = utenteDao.findByEmail(fed.getEmailMandante());%>
-                                    <%=utente.getEmail()%></b></div>
+                                    <%=utente.getNome()%></b></div>
 
                             <div class="col-md-7"><%=fed.getVoto()%></div>
                         </div
