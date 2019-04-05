@@ -37,17 +37,17 @@
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 <!-- Caricamenti per Javascript -->
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/jquery.min.js"></script>
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/popper.min.js"></script>
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/bootstrap.min.js"></script>
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/jquery.easing.1.3.js"></script>
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/jquery.waypoints.min.js"></script>
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/jquery.stellar.min.js"></script>
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/owl.carousel.min.js"></script>
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/jquery.magnific-popup.min.js"></script>
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/aos.js"></script>
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/jquery.animateNumber.min.js"></script>
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/bootstrap-datepicker.js"></script>
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/scrollax.min.js"></script>
-<script src="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/jquery.easing.1.3.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/jquery.waypoints.min.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/jquery.stellar.min.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/jquery.magnific-popup.min.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/aos.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/jquery.animateNumber.min.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/bootstrap-datepicker.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/scrollax.min.js"></script>
+<script src="${pageContext.request.contextPath}/JSP/js/main.js"></script>
