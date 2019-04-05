@@ -12,7 +12,7 @@
     boolean logged = ut.login(email,password);
     if(!logged){
         url = "Login.jsp";
-    } else {
+    } else {ATTACKONTITAN
         url = "index.jsp";
     }
     response.sendRedirect(url);
