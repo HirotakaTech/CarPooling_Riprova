@@ -16,23 +16,38 @@ import java.util.logging.Logger;
 public class FeedbackDao {
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public ArrayList<Feedback> findAll() {
         ArrayList<Feedback> lista = new ArrayList<>();
         try {
-            Connection con= Dao.getConnection();
-            Statement st=con.createStatement();
-            ResultSet rs=st.executeQuery("select * from feedbacka,feedbackb");
-            
-        } catch(Exception e){
-            
-        }finally{
-           Dao.closeConnection();
+            Connection con = Dao.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from FeedbackP");
+            Feedback fed = new Feedback();
+            while (rs.next()) {
+                
+                fed.setId(rs.getInt(1));
+                fed.setGiudizio(rs.getString(3));
+                fed.setVoto(rs.getFloat(2));
+                lista.add(fed);
+            }
+        } catch (Exception e) {
+        } finally {
+            Dao.closeConnection();
         }
-        
+
         return lista;
     }
-
+    
+    public static void main(String args[]) {
+        FeedbackDao dao=new FeedbackDao();
+         ArrayList<Feedback> lista=dao.findAll();
+        for(Feedback fed:lista){
+            System.out.println("ciao");
+            System.out.println(fed.getGiudizio());
+        }
+        
+    }
 }
