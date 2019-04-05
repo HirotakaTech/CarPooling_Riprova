@@ -39,10 +39,11 @@
             session.setAttribute("prezzo", prezzo);
 
         %>
-        <%@include file="/JSP/base/ricerca.jsp" %>
+        
 
         <div id="risultati">
         </div>
+        <%@include file="/JSP/base/ricerca.jsp" %>
         <div class="container">
 
             <div class="row">

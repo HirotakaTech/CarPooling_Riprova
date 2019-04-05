@@ -18,7 +18,7 @@
     ArrayList<Viaggio> viaggi = dao.getViaggi(destinazione, data, ora, prezzo);
 
 %> 
-<div class="container" style="margin-top: 150px">
+<div class="container" style="margin-top: 100px !important;">
     <div class="row">
         <div class="col-3">Destinazione</div>
         <div class="col-3">Data</div>
