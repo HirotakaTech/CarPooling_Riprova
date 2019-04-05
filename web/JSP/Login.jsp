@@ -15,7 +15,7 @@
         <%@include file="/JSP/base/header.jsp" %>
         <section class="ftco-section">
             <div class="container">
-                <form action="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/ConfermaLogin.jsp" method="POST">
+                <form action="${pageContext.request.contextPath}/JSP/ConfermaLogin.jsp" method="POST">
                     <div class="col-lg align-items-end">
                         <div class="form-group">
                             <label for="#">Email</label>
