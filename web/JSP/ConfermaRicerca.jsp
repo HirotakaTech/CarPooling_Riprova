@@ -21,7 +21,7 @@
                         aggiornaRisultato();
                     }
                 };
-                xhttp.open("GET", "/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/AJAX/AjaxRicerca.jsp", true);
+                xhttp.open("GET", "${pageContext.request.contextPath}/JSP/AJAX/AjaxRicerca.jsp", true);
                 xhttp.send();
             }
             function aggiornaRisultato() {

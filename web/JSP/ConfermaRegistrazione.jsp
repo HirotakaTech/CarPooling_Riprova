@@ -1,5 +1,10 @@
 
 
+<%@page import="mail.Mail"%>
+<%@page import="beans.Utente"%>
+<%@page import="dao.UtenteDao"%>
+<%@page import="dao.PasseggeroDao"%>
+<%@page import="dao.AutistaDao"%>
 <%
     AutistaDao daoAutista = new AutistaDao();
     Passengero daoPassengero = new PasseggeroDao();

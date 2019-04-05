@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="search-wrap-1 ftco-animate p-4">
-                            <form action="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/ConfermaRicerca.jsp" method="GET" class="search-property-1">
+                            <form action="${pageContext.request.contextPath}/JSP/ConfermaRicerca.jsp" method="GET" class="search-property-1">
                                 <div class="row">
                                     <div class="col-lg align-items-end">
                                         <div class="form-group">

@@ -12,7 +12,7 @@
     </head>
     <body>
         <%@include file="/JSP/base/header.jsp" %>
-        <div class="hero-wrap js-fullheight" style="background-image: url('/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+        <div class="hero-wrap js-fullheight" style="background-image: url('${pageContext.request.contextPath}/JSP/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">

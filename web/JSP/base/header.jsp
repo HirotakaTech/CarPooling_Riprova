@@ -14,9 +14,9 @@
 
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a href="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/index.jsp" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/Recensioni.jsp" class="nav-link">Recensioni</a></li>
-                        <li class="nav-item cta"><a href="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/Login.jsp" class="nav-link">Login</a></li>
+                        <li class="nav-item active"><a href="${pageContext.request.contextPath}/JSP/index.jsp" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/JSP/Recensioni.jsp" class="nav-link">Recensioni</a></li>
+                        <li class="nav-item cta"><a href="${pageContext.request.contextPath}/JSP/Login.jsp" class="nav-link">Login</a></li>
 
                     </ul>
                 </div>

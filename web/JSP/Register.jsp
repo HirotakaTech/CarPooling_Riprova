@@ -18,7 +18,7 @@
                         aggiornaRisultato();
                     }
                 };
-                xhttp.open("GET", "/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/AJAX/AjaxRegisterAutista.jsp", true);
+                xhttp.open("GET", "${pageContext.request.contextPath}/JSP/AJAX/AjaxRegisterAutista.jsp", true);
                 xhttp.send();
             }
             function aggiornaPasseggero() {
@@ -27,7 +27,7 @@
                         aggiornaRisultato();
                     }
                 };
-                xhttp.open("GET", "/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/AJAX/AjaxRegisterPasseggero.jsp", true);
+                xhttp.open("GET", "${pageContext.request.contextPath}/JSP/AJAX/AjaxRegisterPasseggero.jsp", true);
                 xhttp.send();
             }
             function aggiornaRisultato() {
@@ -40,7 +40,7 @@
         <%@include file="/JSP/base/header.jsp" %>
         <section class="ftco-section">
             <div class="container">
-                <form action="/5IB_Bartelloni-Bellezza-NiccolaiF_CarPooling/JSP/ConfermaRegistrazione.jsp" method="POST">
+                <form action="${pageContext.request.contextPath}/JSP/ConfermaRegistrazione.jsp" method="POST">
                    <div class="row">
                         <div class="form-group">
                             <p>Autista</p>
