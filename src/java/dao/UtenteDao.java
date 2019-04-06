@@ -72,7 +72,7 @@ public class UtenteDao {
             st.setString(1, user.getEmail());
             st.setString(2, user.getNome());
             st.setString(3, user.getCognome());
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date date = formatter.parse(user.getData_nascita());
             data = formatter.format(date);
             st.setDate(4, new java.sql.Date(date.getTime()));

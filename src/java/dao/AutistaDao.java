@@ -65,7 +65,7 @@ public class AutistaDao{
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, au.getEmail());
             st.setInt(2, au.getNumero_posti());
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date date = formatter.parse(au.getData_scadenza_patente());
             String data = formatter.format(date);
             st.setDate(3, new java.sql.Date(date.getTime()));
