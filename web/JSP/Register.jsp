@@ -9,7 +9,6 @@
 <html>
     <head>
         <%@include file="/JSP/base/head.jsp" %>
-
         <script>
             var xhttp = new XMLHttpRequest();
             function aggiornaAutista() {

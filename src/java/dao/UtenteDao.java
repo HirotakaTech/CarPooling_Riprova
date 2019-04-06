@@ -2,11 +2,14 @@ package dao;
 
 import beans.Utente;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -58,22 +61,28 @@ public class UtenteDao {
     }
 
     public boolean inserisciUtente(Utente user) {
-        boolean ok = false;
+        boolean ok = true;
         String sql = "insert into Utenti VALUES(?,?,?,?,?,?,?)";
         Connection con = null;
+        String error = "";
+        String data = "";
         try {
             con = Dao.getConnection();
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, user.getEmail());
             st.setString(2, user.getNome());
             st.setString(3, user.getCognome());
-            st.setString(4, user.getData_nascita());
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = formatter.parse(user.getData_nascita());
+            data = formatter.format(date);
+            st.setDate(4, new java.sql.Date(date.getTime()));
             st.setString(5, user.getLuogo());
             st.setString(6, user.getTelefono());
             st.setString(7, user.getPassword());
-            ok = st.execute();
+            st.execute();
         } catch (Exception e) {
-
+            ok = false;
+            System.out.println(e.getMessage());
         } finally {
             Dao.closeConnection();
         }
@@ -86,7 +95,7 @@ public class UtenteDao {
         try {
             Connection con = Dao.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select Utenti.* from Utenti where Utenti.email='" + email+"'");
+            ResultSet rs = st.executeQuery("select Utenti.* from Utenti where Utenti.email='" + email + "'");
             ute = new Utente();
             while (rs.next()) {
                 ute.setEmail(rs.getString(1));
@@ -103,10 +112,9 @@ public class UtenteDao {
         } catch (SQLException ex) {
             Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-   
+
         return ute;
 
     }
-    
-    
+
 }

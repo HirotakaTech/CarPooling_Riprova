@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -56,7 +57,7 @@ public class AutistaDao{
         return list;
     }
     public boolean insertAutista(Autista au){
-        boolean ok = false;
+        boolean ok = true;
         String sql = "insert into Autisti VALUES(?,?,?,?,?,?,?)";
         Connection con = null;
         try{
@@ -64,14 +65,17 @@ public class AutistaDao{
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, au.getEmail());
             st.setInt(2, au.getNumero_posti());
-            st.setString(3, au.getData_scadenza_patente());
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = formatter.parse(au.getData_scadenza_patente());
+            String data = formatter.format(date);
+            st.setDate(3, new java.sql.Date(date.getTime()));
             st.setString(4, au.getFoto());
             st.setString(5, au.getNumero_patente());
             st.setString(6, au.getTarga_auto());
             st.setString(7, au.getModello_auto());
-            ok = st.execute();
+            st.execute();
         }catch(Exception e){
-            
+            ok = false;
         }finally{
             Dao.closeConnection();
         }
