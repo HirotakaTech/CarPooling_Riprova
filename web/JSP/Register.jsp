@@ -90,7 +90,7 @@
                             <label for="#">Data Nascita</label>
                             <div class="form-field">
                                 <div class="icon"><span class="ion-ios-calendar"></span></div>
-                                <input type="text" class="form-control checkin_date col-md-6" placeholder="inserisci data di nascita" name="data_nascita" required>
+                                <input type="date" class="form-control col-md-6" placeholder="inserisci data di nascita" name="data_nascita" required>
                             </div>
                         </div>
                     </div>

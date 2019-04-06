@@ -25,6 +25,7 @@
             }
             function aggiornaRisultato() {
                 document.getElementById("risultati").innerHTML = xhttp.responseText;
+           
             }
         </script>
         <%@include file="/JSP/base/header.jsp" %>
@@ -39,7 +40,7 @@
             session.setAttribute("prezzo", prezzo);
 
         %>
-        
+
 
         <div id="risultati">
         </div>
@@ -49,7 +50,7 @@
             <div class="row">
                 <button type="button" style="margin-top: 100px" onclick="aggiorna()">Click Me!</button>
 
-                
+
             </div>
         </div>
     </body>

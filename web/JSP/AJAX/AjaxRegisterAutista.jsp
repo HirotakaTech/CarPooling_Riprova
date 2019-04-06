@@ -19,7 +19,7 @@
         <label for="#">Data Scadenza Patente</label>
         <div class="form-field">
             <div class="icon"><span class="ion-ios-calendar"></span></div>
-            <input type="text" class="form-control col-md-6" placeholder="inserisci scadenza patente" name="data_patente" required>
+            <input type="date" class="form-control col-md-6" placeholder="inserisci scadenza patente" name="data_patente" required>
         </div>
     </div>
 </div>
