@@ -15,6 +15,7 @@
     } else {
         url = "index.jsp";
         session.setAttribute("utente", ut.findByEmail(email).getNome());
+        session.setAttribute("email", email);
     }
     response.sendRedirect(url);
     %>
