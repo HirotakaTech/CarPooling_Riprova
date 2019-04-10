@@ -6,15 +6,19 @@
 package dao;
 
 import beans.Autista;
+import beans.Utente;
 import beans.Viaggio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -80,5 +84,26 @@ public class AutistaDao{
             Dao.closeConnection();
         }
         return ok;
+    }
+    
+    public boolean isAutista(String email) {
+        boolean found = false;
+        Utente ute = null;
+        try {
+            Connection con = Dao.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select Autisti.* from Autisti where Autisti.email='" + email + "'");
+            if(rs.next()){
+                found = true;
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return found;
+
     }
 }
