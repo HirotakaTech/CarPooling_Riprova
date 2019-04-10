@@ -14,6 +14,7 @@
         url = "Login.jsp";
     } else {
         url = "index.jsp";
+        session.setAttribute("utente", ut.findByEmail(email).getNome());
     }
     response.sendRedirect(url);
     %>
