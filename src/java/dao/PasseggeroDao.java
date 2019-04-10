@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
  *
  * @author checc_000
  */
-public class PasseggeroDao{
+public class PasseggeroDao {
 
     public boolean insertPasseggero(String email, String documento) {
         boolean ok = true;
@@ -23,10 +23,10 @@ public class PasseggeroDao{
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, email);
             st.setString(2, documento);
-            ok = st.execute();
+            st.execute();
         } catch (Exception e) {
             ok = false;
-        } finally{
+        } finally {
             Dao.closeConnection();
         }
         return ok;
