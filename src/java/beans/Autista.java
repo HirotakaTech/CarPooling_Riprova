@@ -11,8 +11,8 @@ import java.util.Date;
  *
  * @author checc_000
  */
-public class Autista extends Utente{
-    
+public class Autista extends Utente {
+
     private int numero_posti;
     private String data_scadenza_patente;
     private String foto; //URL
@@ -28,9 +28,9 @@ public class Autista extends Utente{
         this.targa_auto = targa_auto;
         this.modello_auto = modello_auto;
     }
-    
-    public Autista(){
-        
+
+    public Autista() {
+
     }
 
     public int getNumero_posti() {
@@ -80,7 +80,5 @@ public class Autista extends Utente{
     public void setModello_auto(String modello_auto) {
         this.modello_auto = modello_auto;
     }
-    
-    
-    
+
 }

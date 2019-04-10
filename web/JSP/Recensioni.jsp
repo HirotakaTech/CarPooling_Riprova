@@ -34,7 +34,6 @@
             }
             UtenteDao utenteDao = new UtenteDao();
             Utente ute=utenteDao.findByEmail("bellezza.francesco@studenti-ittfedifermi.gov.it");
-            ute.getEmail();
             
         %>
         <%@include file="/JSP/base/header.jsp" %>
@@ -65,17 +64,18 @@
             </div>
         </div>
         <% for (Feedback fed : lista) {%>
+        <%Utente utente = utenteDao.findByEmail(fed.getEmailMandante());%>
         <div class="container my-container">
             <div class="row">
                 <div class="col-md-4">
                     <br>
-                    <img class="img-fluid rounded" src="https://www.abc.net.au/news/image/8314104-1x1-940x940.jpg" alt="Smiley face">
+                    <img class="img-fluid rounded" src="" alt="Smiley face">
 
                 </div>
                 <div class="col-md-8 justify-content-end">
                     <div class="container">
                         <div class="row justify-content-between">
-                            <div class="col-md-3"><b><%Utente utente = utenteDao.findByEmail(fed.getEmailMandante());%>
+                            <div class="col-md-3"><b>
                                     <%=utente.getNome()%></b></div>
 
                             <div class="col-md-7"><%=fed.getVoto()%></div>

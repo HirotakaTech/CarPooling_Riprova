@@ -1,5 +1,6 @@
 package dao;
 
+import beans.Autista;
 import beans.Feedback;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,18 +25,10 @@ public class FeedbackDao {
         try {
             Connection con = Dao.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from FeedbackP");
-            Feedback fed = new Feedback();
-            while (rs.next()) {
-                
-                fed.setId(rs.getInt(1));
-                fed.setGiudizio(rs.getString(3));
-                fed.setVoto(rs.getFloat(2));
-                fed.setEmailMandante(rs.getString(4));
-                fed.setEmailRicevente(rs.getString(5));
-                
-                lista.add(fed);
-            }
+
+            trovaFeedbackPasseggeri(st, lista);
+
+            trovaFeedackAutisti(st, lista);
         } catch (Exception e) {
         } finally {
             Dao.closeConnection();
@@ -43,11 +36,68 @@ public class FeedbackDao {
 
         return lista;
     }
-    public static void main(String[] dsfas){
-        FeedbackDao dao=new FeedbackDao();
-        ArrayList<Feedback> lista=dao.findAll();
-        for(Feedback ciao:lista){
+
+    public ArrayList<Autista> findAutisti() {
+        ArrayList<Autista> lista = new ArrayList<>();
+        try {
+            Connection con = Dao.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select Autisti.* from FeedbackA,Autisti where FeedbackA.email_autista=Autisti.email");
+            while (rs.next()) {
+                Autista au = new Autista();
+                au.setNumero_posti(rs.getInt(2));
+                au.setFoto(rs.getString("foto"));
+                //au.setData_scadenza_patente(rs.getDate("data_scadenza_patente"));
+                au.setNumero_patente(rs.getString("numero_patente"));
+                au.setTarga_auto(rs.getString("targa_auto"));
+                
+                
+
+                lista.add(fed);
+            }
+        } catch (Exception e) {
+        } finally {
+            Dao.closeConnection();
+        }
+
+    }
+
+    public static void main(String[] dsfas) {
+        FeedbackDao dao = new FeedbackDao();
+        ArrayList<Feedback> lista = dao.findAll();
+        for (Feedback ciao : lista) {
             System.out.println(ciao.getEmailMandante());
+        }
+    }
+
+    private void trovaFeedbackPasseggeri(Statement st, ArrayList<Feedback> lista) throws ClassNotFoundException, SQLException {
+
+        ResultSet rs = st.executeQuery("select * from FeedbackP");
+        while (rs.next()) {
+            Feedback fed = new Feedback();
+
+            fed.setId(rs.getInt(1));
+            fed.setGiudizio(rs.getString(3));
+            fed.setVoto(rs.getFloat(2));
+            fed.setEmailMandante(rs.getString(5));
+            fed.setEmailRicevente(rs.getString(4));
+
+            lista.add(fed);
+        }
+    }
+
+    private void trovaFeedackAutisti(Statement st, ArrayList<Feedback> lista) throws SQLException {
+        ResultSet rs = st.executeQuery("select * from FeedbackA");
+        while (rs.next()) {
+            Feedback fed = new Feedback();
+
+            fed.setId(rs.getInt(1));
+            fed.setGiudizio(rs.getString(3));
+            fed.setVoto(rs.getFloat(2));
+            fed.setEmailMandante(rs.getString(5));
+            fed.setEmailRicevente(rs.getString(4));
+
+            lista.add(fed);
         }
     }
 }
