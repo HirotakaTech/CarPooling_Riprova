@@ -47,19 +47,20 @@ public class FeedbackDao {
                 Autista au = new Autista();
                 au.setNumero_posti(rs.getInt(2));
                 au.setFoto(rs.getString("foto"));
-                //au.setData_scadenza_patente(rs.getDate("data_scadenza_patente"));
+
+                au.setData_scadenza_patente(rs.getDate("data_scadenza_patente").toString());
                 au.setNumero_patente(rs.getString("numero_patente"));
                 au.setTarga_auto(rs.getString("targa_auto"));
-                
-                
+                au.setModello_auto(rs.getString("modello"));
+                au.setEmail(rs.getString("email"));
 
-                lista.add(fed);
+                lista.add(au);
             }
         } catch (Exception e) {
         } finally {
             Dao.closeConnection();
         }
-
+        return lista;
     }
 
     public static void main(String[] dsfas) {
