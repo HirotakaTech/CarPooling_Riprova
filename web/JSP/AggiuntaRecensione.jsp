@@ -14,7 +14,7 @@
         <%@include file="/JSP/base/header.jsp" %>
         <section class="ftco-section">
             <div class="container">
-                <form action="${pageContext.request.contextPath}/JSP/ConfermaRegistrazione.jsp" method="POST">
+                <form action="${pageContext.request.contextPath}/JSP/ConfermaAddRecensione.jsp" method="POST">
                     <div class="row">
                     <div class="col-lg align-items-end">
                         <div class="form-group">
@@ -37,6 +37,19 @@
                         </div>
                     </div>
                     </div>
+                    
+                    <div class="row">
+                    <div class="col-lg align-items-end">
+                        <div class="form-group">
+                            <label for="#">Giudizio</label>
+                            <div class="form-field">
+                                <div class="icon"><span class="ion-ios-person"></span></div>
+                                <input type="text" class="form-control col-md-6" placeholder="inserisci giudizio" name="giudizio" required>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+                    
                 </form>
             </div>
         </section>
