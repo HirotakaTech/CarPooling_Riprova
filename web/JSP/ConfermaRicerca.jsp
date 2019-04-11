@@ -14,6 +14,7 @@
     <body>
         <script>
             var xhttp = new XMLHttpRequest();
+            setInterval(aggiorna,1000);
             function aggiorna() {
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
@@ -45,13 +46,6 @@
         <div id="risultati">
         </div>
         <%@include file="/JSP/base/ricerca.jsp" %>
-        <div class="container">
-
-            <div class="row">
-                <button type="button" style="margin-top: 100px" onclick="aggiorna()">Click Me!</button>
-
-
-            </div>
-        </div>
+        
     </body>
 </html>
