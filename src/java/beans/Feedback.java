@@ -8,11 +8,11 @@ public class Feedback {
 
     private int id;
     private String giudizio;
-    private float voto;
+    private int voto;
     private String emailMandante;
     private String emailRicevente;
 
-    public Feedback(int id, String giudizio, float voto) {
+    public Feedback(int id, String giudizio, int voto) {
         this.id = id;
         this.giudizio = giudizio;
         this.voto = voto;
@@ -56,11 +56,11 @@ public class Feedback {
         this.giudizio = giudizio;
     }
 
-    public float getVoto() {
+    public int getVoto() {
         return voto;
     }
 
-    public void setVoto(float voto) {
+    public void setVoto(int voto) {
         this.voto = voto;
     }
 

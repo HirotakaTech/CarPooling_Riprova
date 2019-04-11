@@ -3,10 +3,13 @@ package dao;
 import beans.Autista;
 import beans.Feedback;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,7 +56,6 @@ public class FeedbackDao {
                 au.setTarga_auto(rs.getString("targa_auto"));
                 au.setModello_auto(rs.getString("modello"));
                 au.setEmail(rs.getString("email"));
-
                 lista.add(au);
             }
         } catch (Exception e) {
@@ -61,6 +63,54 @@ public class FeedbackDao {
             Dao.closeConnection();
         }
         return lista;
+    }
+
+    public boolean insertFeedbackP(Feedback fed) {
+        boolean ok = true;
+        String sql = "insert into FeedbackP VALUES(null,?,?,?,?)";
+        Connection con = null;
+        String error = "";
+        String data = "";
+        try {
+            con = Dao.getConnection();
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, fed.getVoto());
+            st.setString(2, fed.getGiudizio());
+            st.setString(3, fed.getEmailMandante());
+            st.setString(4, fed.getEmailRicevente());
+            st.execute();
+        } catch (Exception e) {
+            ok = false;
+            System.out.println(e.getMessage());
+        } finally {
+            Dao.closeConnection();
+        }
+
+        return ok;
+    }
+
+    public boolean insertFeedbackA(Feedback fed) {
+        boolean ok = true;
+        String sql = "insert into FeedbackA VALUES(null,?,?,?,?)";
+        Connection con = null;
+        String error = "";
+        String data = "";
+        try {
+            con = Dao.getConnection();
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, fed.getVoto());
+            st.setString(2, fed.getGiudizio());
+            st.setString(3, fed.getEmailMandante());
+            st.setString(4, fed.getEmailRicevente());
+            st.execute();
+        } catch (Exception e) {
+            ok = false;
+            System.out.println(e.getMessage());
+        } finally {
+            Dao.closeConnection();
+        }
+
+        return ok;
     }
 
     public static void main(String[] dsfas) {
@@ -79,7 +129,7 @@ public class FeedbackDao {
 
             fed.setId(rs.getInt(1));
             fed.setGiudizio(rs.getString(3));
-            fed.setVoto(rs.getFloat(2));
+            fed.setVoto(rs.getInt(2));
             fed.setEmailMandante(rs.getString(5));
             fed.setEmailRicevente(rs.getString(4));
 
@@ -94,7 +144,7 @@ public class FeedbackDao {
 
             fed.setId(rs.getInt(1));
             fed.setGiudizio(rs.getString(3));
-            fed.setVoto(rs.getFloat(2));
+            fed.setVoto(rs.getInt(2));
             fed.setEmailMandante(rs.getString(5));
             fed.setEmailRicevente(rs.getString(4));
 

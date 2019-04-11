@@ -33,8 +33,6 @@
                 System.out.println(ciao.getEmailRicevente());
             }
             UtenteDao utenteDao = new UtenteDao();
-            Utente ute=utenteDao.findByEmail("bellezza.francesco@studenti-ittfedifermi.gov.it");
-            
         %>
         <%@include file="/JSP/base/header.jsp" %>
         <div class="container my-container">
