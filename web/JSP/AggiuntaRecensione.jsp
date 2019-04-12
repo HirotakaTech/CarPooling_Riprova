@@ -49,7 +49,15 @@
                         </div>
                     </div>
             </div>
-                    
+                    <div class="row">
+                    <div class="col-lg align-self-end">
+                        <div class="form-group">
+                            <div class="form-field">
+                                <input type="submit" value="Invia Recensione" class="form-control btn btn-primary">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
                 </form>
             </div>
         </section>

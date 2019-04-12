@@ -5,4 +5,5 @@
 --%>
 
 <%session.setAttribute("utente", null);%>
+<%session.setAttribute("email",null);%>
 <%response.sendRedirect("index.jsp");%>

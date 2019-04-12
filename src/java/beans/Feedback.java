@@ -18,6 +18,13 @@ public class Feedback {
         this.voto = voto;
     }
 
+    public Feedback(String giudizio, int voto, String emailMandante, String emailRicevente) {
+        this.giudizio = giudizio;
+        this.voto = voto;
+        this.emailMandante = emailMandante;
+        this.emailRicevente = emailRicevente;
+    }
+
     public String getEmailMandante() {
         return emailMandante;
     }

@@ -1,5 +1,7 @@
 
 
+<%@page import="dao.FeedbackDao"%>
+<%@page import="beans.Feedback"%>
 <%@page import="beans.Autista"%>
 <%@page import="mail.Mail"%>
 <%@page import="beans.Utente"%>
@@ -7,25 +9,27 @@
 <%@page import="dao.PasseggeroDao"%>
 <%@page import="dao.AutistaDao"%>
 <%
-    String email = (String)session.getAttribute("email");
-    if(email == null){
-        //Display error
-    } else {
+    String emailMandante = (String)session.getAttribute("email");
+    if(emailMandante == null){%>
+        <%response.sendRedirect("Login.jsp");%>
+    <%} else {
         UtenteDao daoUt = new UtenteDao();
         PasseggeroDao daoPass = new PasseggeroDao();
         AutistaDao daoAut = new AutistaDao();
-        String autista_passeggero = request.getParameter("utente");
+        FeedbackDao daoFed = new FeedbackDao();
+        String emailRicevente = request.getParameter("utente");
         int voto = Integer.parseInt(request.getParameter("voto"));
         String giudizio = request.getParameter("giudizio");
-        if(daoPass.isPasseggero(email)){
-           if(daoAut.isAutista(daoUt.findByName(autista_passeggero).getEmail())){
-                //Aggiungi recensione
+        Feedback fed = new Feedback(giudizio, voto, emailMandante, emailRicevente);
+        if(daoPass.isPasseggero(emailMandante)){
+           if(daoAut.isAutista(emailRicevente)){
+               daoFed.insertFeedbackA(fed);
             } else {
                //Non aggiungerla
            }
-        } else if(daoAut.isAutista(email)) {
-            if(daoPass.isPasseggero(daoUt.findByName(autista_passeggero).getEmail())){
-                //Aggiungi recensione
+        } else if(daoAut.isAutista(emailMandante)) {
+            if(daoPass.isPasseggero(emailRicevente)){
+               daoFed.insertFeedbackP(fed);
             } else {
                 //non aggiungerla
             }
