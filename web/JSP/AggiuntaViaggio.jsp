@@ -17,61 +17,42 @@
     <body>
         <%@include file="/JSP/base/header.jsp" %>
         <div class="col-8" style="margin:0 auto; margin-top: 100px;">
+            <center>  <h1>Aggiungi un Viaggio</h1></center>
             <form>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="inputEmail4">Città di Partenza</label>
-                        <input type="text" class="form-control" name="citta_partenza" placeholder="Città di Partenza">
+                        <input type="text" class="form-control" name="citta_partenza" placeholder="Città di Partenza" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inputPassword4">Data di partenza</label>
-                        <input type="date" class="form-control" name="data_partenza" placeholder="data">
+                        <input type="date" class="form-control" name="data_partenza" placeholder="data" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inputPassword4">Ora di Partenza</label>
-                        <input type="time" class="form-control" name="ora_partenza" placeholder="Ora">
+                        <input type="time" class="form-control" name="ora_partenza" placeholder="Ora" required> 
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-6">
+                    <div class="form-group col-4">
                         <label for="inputAddress">Citta di Destinazione</label>
-                        <input type="text" class="form-control" name="citta_destinazione" placeholder="Città di Destinazione">
+                        <input type="text" class="form-control" name="citta_destinazione" placeholder="Città di Destinazione" required>
                     </div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-4">
                         <label>Prezzo</label>
-                        <input type="numeric" class="form-control" name="prezzo" placeholder="Inserisci il prezzo">
+                        <input type="numeric" class="form-control" name="prezzo" placeholder="Inserisci il prezzo" required>
+                    </div>
+                    <div class="form-group col-4">
+                        <label>Tempi Stimati</label>
+                        <input type="time" class="form-control" name="prezzo" placeholder="Inserisci i tempi stimati" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputAddress2">Address 2</label>
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                    <label for="inputAddress2">Inforamzioni Aggiuntive</label>
+                    <textarea type="text" class="form-control" placeholder="Inserisci le informazioni aggiuntive" name="info" rows="5" required></textarea>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputCity">City</label>
-                        <input type="text" class="form-control" id="inputCity">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputState">State</label>
-                        <select id="inputState" class="form-control">
-                            <option selected>Choose...</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="inputZip">Zip</label>
-                        <input type="text" class="form-control" id="inputZip">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                        <label class="form-check-label" for="gridCheck">
-                            Check me out
-                        </label>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
+
+                <button type="submit" class="btn btn-primary">Aggiungi</button>
             </form>
 
 
