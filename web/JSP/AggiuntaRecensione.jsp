@@ -14,49 +14,37 @@
         <%@include file="/JSP/base/header.jsp" %>
         <section class="ftco-section">
             <div class="container">
+                <center><h1>Scrivi una Recensione</h1></center>
                 <form action="${pageContext.request.contextPath}/JSP/ConfermaAddRecensione.jsp" method="POST">
-                    <div class="row">
-                    <div class="col-lg align-items-end">
-                        <div class="form-group">
-                            <label for="#">Nome passeggero/autista</label>
-                            <div class="form-field">
-                                <div class="icon"><span class="ion-ios-person"></span></div>
-                                <input type="text" class="form-control col-md-6" placeholder="inserisci nome" name="utente" required>
-                            </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+
+                            <div class="icon"><span class="ion-ios-person"></span></div>
+                            <input type="text" class="form-control" placeholder="Inserisci il nome dell'utente" name="utente" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="icon "><span class="ion-ios-star"></span></div>
+                            <input type="number" class="form-control" placeholder="Inserisci il giudizio (1 - 5)" name="voto" required>
                         </div>
                     </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-lg align-items-end">
-                        <div class="form-group">
-                            <label for="#">Voto</label>
-                            <div class="form-field">
-                                <div class="icon"><span class="ion-ios-person"></span></div>
-                                <input type="number" class="form-control col-md-6" placeholder="inserisci nome" name="utente" required>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    
-                    <div class="row">
-                    <div class="col-lg align-items-end">
-                        <div class="form-group">
+
+
+                    <div class="form-row">
+
+                        <div class="form-group col-md-12">
                             <label for="#">Giudizio</label>
-                            <div class="form-field">
-                                <div class="icon"><span class="ion-ios-person"></span></div>
-                                <input type="text" class="form-control col-md-6" placeholder="inserisci giudizio" name="giudizio" required>
-                            </div>
+                            <div class="icon"><span class="ion-ios-book"></span></div>
+                            <textarea type="text" class="form-control" placeholder="Inserisci il motivo della recensione" rows="5" name="giudizio" required></textarea>
                         </div>
                     </div>
-            </div>
                     <div class="row">
-                    <div class="col-lg align-self-end">
-                        <div class="form-group">
-                            <div class="form-field">
-                                <input type="submit" value="Invia Recensione" class="form-control btn btn-primary">
+                        <div class="col-lg align-self-end">
+                            <div class="form-group">
+                                <div class="form-field">
+                                    <input type="submit" value="Invia Recensione" class="form-control btn btn-primary">
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </form>
             </div>
