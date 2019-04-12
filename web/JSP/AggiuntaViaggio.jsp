@@ -18,7 +18,7 @@
         <%@include file="/JSP/base/header.jsp" %>
         <div class="col-8" style="margin:0 auto; margin-top: 100px;">
             <center>  <h1>Aggiungi un Viaggio</h1></center>
-            <form>
+            <form action="ConfermaAggiuntaViaggio.jsp" method="POST">
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="inputEmail4">Città di Partenza</label>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group col-4">
                         <label>Tempi Stimati</label>
-                        <input type="time" class="form-control" name="prezzo" placeholder="Inserisci i tempi stimati" required>
+                        <input type="time" class="form-control" name="tempi" placeholder="Inserisci i tempi stimati" required>
                     </div>
                 </div>
                 <div class="form-group">

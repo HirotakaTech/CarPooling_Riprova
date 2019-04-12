@@ -2,6 +2,7 @@ package dao;
 
 import beans.Viaggio;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Time;
@@ -58,4 +59,26 @@ public class ViaggioDao {
         return list;
     }
 
+    public boolean insertViaggio(Viaggio viaggio){
+        String sql = "insert into Viaggi values(NULL,?,?,?,?,?,?,?,?)";
+        Connection con = null;
+        try{
+            con = Dao.getConnection();
+            PreparedStatement pr = con.prepareStatement(sql);
+            pr.setString(1, viaggio.getCitta_partenza());
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = formatter.parse(viaggio.getData_partenza());
+            pr.setDate(2, new java.sql.Date(date.getTime()));
+            //pr.setTime(3, viaggio.getCitta_partenza());
+            //pr.setString(4, );
+            //pr.setString(5, );
+            //pr.setString(6, ));
+            //pr.setString(7,);
+            
+        }catch(Exception e){
+            
+        }
+        return false;
+    }
+    
 }

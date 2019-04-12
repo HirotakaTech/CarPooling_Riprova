@@ -37,6 +37,17 @@ public class Viaggio {
         this.email_autista = email_autista;
     }
 
+    public Viaggio(String citta_partenza, String citta_destinazione, String data_partenza, String ora_partenza, float prezzo, String tempi_stimati, String info_aggiuntive, String email_autista) {
+        this.citta_partenza = citta_partenza;
+        this.citta_destinazione = citta_destinazione;
+        this.data_partenza = data_partenza;
+        this.ora_partenza = ora_partenza;
+        this.prezzo = prezzo;
+        this.tempi_stimati = tempi_stimati;
+        this.info_aggiuntive = info_aggiuntive;
+        this.email_autista = email_autista;
+    }
+
     public Viaggio() {
     }
 

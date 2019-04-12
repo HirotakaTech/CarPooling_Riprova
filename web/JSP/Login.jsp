@@ -16,6 +16,21 @@
         <section class="ftco-section">
             <div class="container">
                 <form action="${pageContext.request.contextPath}/JSP/ConfermaLogin.jsp" method="POST">
+                    <div class="row">
+                        <div class="form-group">
+                            <p>Autista</p>
+                            <div class="form-field">
+                                <span class="ion-ios-person"></span>
+                                <input type="radio" class="icon" placeholder="" name="radiobutton" value="autista">
+                            </div>
+                            <p>Passeggero</p>
+                            <div class="form-field">
+                                <span class="ion-ios-person"></span>
+                                <input type="radio" class="icon" placeholder="" name="radiobutton" value="passeggero">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                     <div class="col-lg align-items-end">
                         <div class="form-group">
                             <label for="#">Email</label>
@@ -25,6 +40,8 @@
                             </div>
                         </div>
                     </div>
+                    </div>
+                    <div class="row">
                     <div class="col-lg align-items-end">
                         <div class="form-group">
                             <label for="#">Password</label>
@@ -34,12 +51,15 @@
                             </div>
                         </div>
                     </div>
+                    </div>
+                    <div class="row">
                     <div class="col-lg align-self-end">
                         <div class="form-group">
                             <div class="form-field">
                                 <input type="submit" value="Accedi" class="form-control btn btn-primary">
                             </div>
                         </div>
+                    </div>
                     </div>
                 </form>
             </div>

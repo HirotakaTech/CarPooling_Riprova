@@ -16,24 +16,20 @@
     String telefono = request.getParameter("telefono");
     UtenteDao dao = new UtenteDao();
     Utente utente = new Utente(email, password, nome, cognome, data_nascita, luogo, telefono);
-    if (dao.findUser(email)) {
-        response.sendRedirect("Register.jsp");
+    boolean ok = false;
+    if (!dao.findUser(email)) {
+        ok = dao.inserisciUtente(utente);
     } else {
-        boolean ok = false;
-        if (ok = dao.inserisciUtente(utente)) {
-            if ("autista".equals(request.getParameter("radiobutton"))) {
-                ok = aggiungiAutista(email, request);
-            } else {
-                ok = aggiungiPasseggero(email, request);
-            }
-
-        }
-        if (ok) {
-            Mail.send("carpoolingnoreply@gmail.com", "CarPooling4EVER!", email, "Registration Complete!", "Your registration is done!");
+        if ("autista".equals(request.getParameter("radiobutton"))) {
+            ok = aggiungiAutista(email, request);
         } else {
-            response.sendRedirect("error.jsp");
+            ok = aggiungiPasseggero(email, request);
         }
-
+    }
+    if (ok) {
+        Mail.send("carpoolingnoreply@gmail.com", "CarPooling4EVER!", email, "Registration Complete!", "Your registration is done!");
+    } else {
+        response.sendRedirect("error.jsp");
     }%>
 
 <%!public boolean aggiungiPasseggero(String email, HttpServletRequest request) {
