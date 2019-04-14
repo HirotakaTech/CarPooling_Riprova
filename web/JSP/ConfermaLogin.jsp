@@ -7,6 +7,7 @@
 <%@page import="dao.PasseggeroDao"%>
 <%@page import="dao.UtenteDao"%> 
 <%
+    try{
     String email = request.getParameter("email");
     String password = request.getParameter("password");
     UtenteDao ut = new UtenteDao();
@@ -19,7 +20,7 @@
     } else {
         boolean ok = false;
         url = "index.jsp";
-        if ("autitsta".equals(request.getParameter("radiobutton"))) {
+        if (request.getParameter("radiobutton").equals("autista")) {
             ok = aut.isAutista(email);
         } else {
             ok = pass.isPasseggero(email);
@@ -28,7 +29,7 @@
         session.setAttribute("email", email);
         Boolean isAutista=true;
         if (ok) {
-                if ("autitsta".equals(request.getParameter("radiobutton"))) {
+                if (request.getParameter("radiobutton").equals("autista")) {
                     
                     session.setAttribute("isAutista", isAutista);
                 } else {
@@ -37,5 +38,6 @@
                 }
             }
         }
-
+    }catch(Exception e){
+        
     }%>
