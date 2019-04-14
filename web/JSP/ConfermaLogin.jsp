@@ -26,11 +26,14 @@
         }
         session.setAttribute("utente", ut.findByEmail(email).getNome());
         session.setAttribute("email", email);
+        Boolean isAutista=true;
         if (ok) {
                 if ("autitsta".equals(request.getParameter("radiobutton"))) {
-                    session.setAttribute("isAutista", true);
+                    
+                    session.setAttribute("isAutista", isAutista);
                 } else {
-                    session.setAttribute("isAutista", false);
+                    isAutista=false;
+                    session.setAttribute("isAutista", isAutista);
                 }
             }
         }

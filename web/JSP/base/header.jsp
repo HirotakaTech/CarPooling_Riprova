@@ -16,7 +16,15 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="${pageContext.request.contextPath}/JSP/index.jsp" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/JSP/Recensioni.jsp" class="nav-link">Recensioni</a></li>
-                    <%if (session.getAttribute("utente") == null) {%> 
+                <% try{
+                    Boolean isAutista=(Boolean) session.getAttribute("isAutista");
+                    if (isAutista != null || isAutista==true) {%>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/JSP/AggiuntaViaggio.jsp" class="nav-link">Aggiungi un viaggio</a></li>
+
+                <% }}catch(NullPointerException e){
+                    
+                }%>
+                <%if (session.getAttribute("utente") == null) {%> 
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/JSP/Register.jsp" class="nav-link">Registrati</a></li>
                 <li class="nav-item cta"><a href="${pageContext.request.contextPath}/JSP/Login.jsp" class="nav-link">Login</a></li>
                     <%} else {%> 
