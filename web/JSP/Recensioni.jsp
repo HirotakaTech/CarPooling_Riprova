@@ -33,7 +33,7 @@
                 System.out.println(ciao.getEmailRicevente());
             }
             UtenteDao utenteDao = new UtenteDao();
-            %>
+        %>
         <%@include file="/JSP/base/header.jsp" %>
 
     <center><h1 style="margin-top: 110px">Recensioni</h1></center>
@@ -90,6 +90,7 @@
         </div>
         <%}%>
 
+        <%@include file="/JSP/base/footer.jsp" %>
 
 
 

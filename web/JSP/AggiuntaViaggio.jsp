@@ -54,7 +54,9 @@
 
                 <button type="submit" class="btn btn-primary">Aggiungi</button>
             </form>
-
+        </div>
+        <br><br><br><br><br><br><br><br>F
+            <%@include file="/JSP/base/footer.jsp" %>
 
 
     </body>

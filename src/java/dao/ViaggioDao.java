@@ -36,12 +36,12 @@ public class ViaggioDao {
                 aus.setId(res.getInt(1));
                 aus.setCitta_partenza(res.getString(2));
                 DateFormat dateform = new SimpleDateFormat("yyyy-MM-dd");
-                
+
                 aus.setData_partenza(
                         dateform.format(res.getDate(3)).toString());
                 String time = res.getTime(4).toString();
-                time = time.substring(0,5);
-      
+                time = time.substring(0, 5);
+
                 aus.setOra_partenza(time);
                 aus.setCitta_destinazione(res.getString(5));
                 aus.setPrezzo(res.getFloat(6));
@@ -59,11 +59,47 @@ public class ViaggioDao {
         return list;
     }
 
-    public boolean insertViaggio(Viaggio viaggio){
+    public ArrayList<Viaggio> findByEmail(String email) {
+        ArrayList<Viaggio> lista = new ArrayList<>();
+        String sql = "select Viaggi.* from Viaggi,Utenti where Viaggi.email_autista=Utenti.email and Utenti.email='" + email+"'";
+        Connection con = null;
+        try {
+            con = Dao.getConnection();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql);
+            while (res.next()) {
+                Viaggio aus = new Viaggio();
+                aus.setId(res.getInt(1));
+                aus.setCitta_partenza(res.getString(2));
+                DateFormat dateform = new SimpleDateFormat("yyyy-MM-dd");
+
+                aus.setData_partenza(
+                        dateform.format(res.getDate(3)).toString());
+                String time = res.getTime(4).toString();
+                time = time.substring(0, 5);
+
+                aus.setOra_partenza(time);
+                aus.setCitta_destinazione(res.getString(5));
+                aus.setPrezzo(res.getFloat(6));
+                aus.setTempi_stimati(res.getString(7));
+                aus.setInfo_aggiuntive(res.getString(8));
+                aus.setEmail_autista(res.getString(9));
+                lista.add(aus);
+
+            }
+        } catch (Exception e) {
+            System.out.println("Errore");
+        } finally {
+            Dao.closeConnection();
+        }
+        return lista;
+    }
+
+    public boolean insertViaggio(Viaggio viaggio) {
         boolean ok = true;
         String sql = "insert into Viaggi values(NULL,?,?,?,?,?,?,?,?)";
         Connection con = null;
-        try{
+        try {
             con = Dao.getConnection();
             PreparedStatement pr = con.prepareStatement(sql);
             pr.setString(1, viaggio.getCitta_partenza());
@@ -82,12 +118,12 @@ public class ViaggioDao {
             pr.setString(7, viaggio.getInfo_aggiuntive());
             pr.setString(8, viaggio.getEmail_autista());
             pr.executeUpdate();
-        }catch(Exception e){
+        } catch (Exception e) {
             ok = false;
         } finally {
             Dao.closeConnection();
         }
         return ok;
     }
-    
+
 }

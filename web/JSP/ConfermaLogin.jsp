@@ -36,8 +36,12 @@
                     isAutista=false;
                     session.setAttribute("isAutista", isAutista);
                 }
-            }
+                
+                %><jsp:forward page="/JSP/index.jsp"></jsp:forward><%
+            }else{
+                %><jsp:forward page="/JSP/Login.jsp"></jsp:forward><%
+        }
         }
     }catch(Exception e){
-        
+         %><jsp:forward page="/JSP/Login.jsp"></jsp:forward><%
     }%>
