@@ -72,12 +72,12 @@ public class ViaggioDao {
             pr.setDate(2, new java.sql.Date(date.getTime()));
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             long ms = sdf.parse(viaggio.getOra_partenza()).getTime();
-            java.sql.Time t = new java.sql.Time(ms);
+            Time t = new Time(ms);
             pr.setTime(3, t);
             pr.setString(4, viaggio.getCitta_destinazione());
             pr.setFloat(5, viaggio.getPrezzo());
             long msTempi = sdf.parse(viaggio.getTempi_stimati()).getTime();
-            java.sql.Time tTempi = new java.sql.Time(msTempi);
+            Time tTempi = new Time(msTempi);
             pr.setTime(6, tTempi);
             pr.setString(7, viaggio.getInfo_aggiuntive());
             pr.setString(8, viaggio.getEmail_autista());
