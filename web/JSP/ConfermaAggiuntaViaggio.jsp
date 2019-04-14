@@ -21,4 +21,7 @@
             data_partenza, ora_partenza, prezzo, 
             tempi, info, email);
     ViaggioDao daoViag = new ViaggioDao();
+    if(daoViag.insertViaggio(viag)){
+        
+    }
 %>

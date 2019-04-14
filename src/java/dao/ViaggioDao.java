@@ -60,6 +60,7 @@ public class ViaggioDao {
     }
 
     public boolean insertViaggio(Viaggio viaggio){
+        boolean ok = true;
         String sql = "insert into Viaggi values(NULL,?,?,?,?,?,?,?,?)";
         Connection con = null;
         try{
@@ -69,16 +70,22 @@ public class ViaggioDao {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date date = formatter.parse(viaggio.getData_partenza());
             pr.setDate(2, new java.sql.Date(date.getTime()));
-            //pr.setTime(3, viaggio.getCitta_partenza());
-            //pr.setString(4, );
-            //pr.setString(5, );
-            //pr.setString(6, ));
-            //pr.setString(7,);
-            
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            long ms = sdf.parse(viaggio.getOra_partenza()).getTime();
+            java.sql.Time t = new java.sql.Time(ms);
+            pr.setTime(3, t);
+            pr.setString(4, viaggio.getCitta_destinazione());
+            pr.setFloat(5, viaggio.getPrezzo());
+            long msTempi = sdf.parse(viaggio.getTempi_stimati()).getTime();
+            java.sql.Time tTempi = new java.sql.Time(msTempi);
+            pr.setTime(6, tTempi);
+            pr.setString(7, viaggio.getInfo_aggiuntive());
+            pr.setString(8, viaggio.getEmail_autista());
+            pr.executeUpdate();
         }catch(Exception e){
-            
+            ok = false;
         }
-        return false;
+        return ok;
     }
     
 }
