@@ -21,12 +21,12 @@
                             <p>Autista</p>
                             <div class="form-field">
                                 <span class="ion-ios-person"></span>
-                                <input type="radio" class="icon" placeholder="" name="radiobutton" value="autista">
+                                <input type="radio" class="icon" placeholder="" name="radiobutton" value="autista" checked required>
                             </div>
                             <p>Passeggero</p>
                             <div class="form-field">
                                 <span class="ion-ios-person"></span>
-                                <input type="radio" class="icon" placeholder="" name="radiobutton" value="passeggero">
+                                <input type="radio" class="icon" placeholder="" name="radiobutton" value="passeggero" required>
                             </div>
                         </div>
                     </div>
