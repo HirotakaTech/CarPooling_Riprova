@@ -84,6 +84,8 @@ public class ViaggioDao {
             pr.executeUpdate();
         }catch(Exception e){
             ok = false;
+        } finally {
+            Dao.closeConnection();
         }
         return ok;
     }

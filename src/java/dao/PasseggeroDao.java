@@ -54,6 +54,8 @@ public class PasseggeroDao {
             Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            Dao.closeConnection();
         }
 
         return found;
