@@ -27,11 +27,6 @@
         session.setAttribute("utente", ut.findByEmail(email).getNome());
         session.setAttribute("email", email);
         if (ok) {
-            if (aut.isAutista(email) && !pass.isPasseggero(email)) {
-                session.setAttribute("isAutista", true);
-            } else if (!aut.isAutista(email) && pass.isPasseggero(email)) {
-                session.setAttribute("isAutista", false);
-            } else {
                 if ("autitsta".equals(request.getParameter("radiobutton"))) {
                     session.setAttribute("isAutista", true);
                 } else {
