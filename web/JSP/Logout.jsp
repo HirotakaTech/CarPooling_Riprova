@@ -6,4 +6,5 @@
 
 <%session.setAttribute("utente", null);%>
 <%session.setAttribute("email",null);%>
+<%session.setAttribute("isAutista",null);%>
 <%response.sendRedirect("index.jsp");%>
