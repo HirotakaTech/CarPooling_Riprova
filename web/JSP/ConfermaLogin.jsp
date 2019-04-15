@@ -7,40 +7,40 @@
 <%@page import="dao.PasseggeroDao"%>
 <%@page import="dao.UtenteDao"%> 
 <%
-    try{
-    String email = request.getParameter("email");
-    String password = request.getParameter("password");
-    UtenteDao ut = new UtenteDao();
-    PasseggeroDao pass = new PasseggeroDao();
-    AutistaDao aut = new AutistaDao();
-    String url = "";
-    boolean logged = ut.login(email, password);
-    if (!logged) {
-        url = "Login.jsp";
-    } else {
-        boolean ok = false;
-        url = "index.jsp";
-        if (request.getParameter("radiobutton").equals("autista")) {
-            ok = aut.isAutista(email);
+    try {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        UtenteDao ut = new UtenteDao();
+        PasseggeroDao pass = new PasseggeroDao();
+        AutistaDao aut = new AutistaDao();
+        String url = "";
+        boolean logged = ut.login(email, password);
+        if (!logged) {
+            url = "Login.jsp";
         } else {
-            ok = pass.isPasseggero(email);
-        }
-        session.setAttribute("utente", ut.findByEmail(email).getNome());
-        session.setAttribute("email", email);
-        Boolean isAutista=true;
-        if (ok) {
+            boolean ok = false;
+            url = "index.jsp";
+            if (request.getParameter("radiobutton").equals("autista")) {
+                ok = aut.isAutista(email);
+            } else {
+                ok = pass.isPasseggero(email);
+            }
+            session.setAttribute("utente", ut.findByEmail(email).getNome());
+            session.setAttribute("email", email);
+            Boolean isAutista = true;
+            if (ok) {
                 if (request.getParameter("radiobutton").equals("autista")) {
                     session.setAttribute("isAutista", isAutista);
-                } else if(request.getParameter("radiobutton").equals("passeggero")){
-                    isAutista=false;
+                } else if (request.getParameter("radiobutton").equals("passeggero")) {
+                    isAutista = false;
                     session.setAttribute("isAutista", isAutista);
                 }
-                
-                %><jsp:forward page="/JSP/index.jsp"></jsp:forward><%
-            }else{
-                %><jsp:forward page="/JSP/Login.jsp"></jsp:forward><%
+
+                response.sendRedirect("index.jsp");
+            } else {
+                response.sendRedirect("Login.jsp");
+            }
         }
-        }
-    }catch(Exception e){
-         %><jsp:forward page="/JSP/Login.jsp"></jsp:forward><%
-    }%>
+    } catch (Exception e) {
+%><jsp:forward page="/JSP/Login.jsp"></jsp:forward><%
+             }%>
