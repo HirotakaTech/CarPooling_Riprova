@@ -30,9 +30,8 @@
         Boolean isAutista=true;
         if (ok) {
                 if (request.getParameter("radiobutton").equals("autista")) {
-                    
                     session.setAttribute("isAutista", isAutista);
-                } else {
+                } else if(request.getParameter("radiobutton").equals("passeggero")){
                     isAutista=false;
                     session.setAttribute("isAutista", isAutista);
                 }
