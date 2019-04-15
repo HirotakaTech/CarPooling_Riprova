@@ -40,6 +40,61 @@ public class FeedbackDao {
         return lista;
     }
 
+    public ArrayList<Feedback> findVotiPerAutisti() {
+        ArrayList<Feedback> lista = new ArrayList<>();
+        try {
+            Connection con = Dao.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select FeedbackP.email_autista,avg(FeedbackP.voto) as Media_Voto from FeedbackP group by (FeedbackP.email_autista)");
+            while (rs.next()) {
+                Feedback fed = new Feedback();
+                fed.setVoto(rs.getInt(2));
+                fed.setEmailMandante(rs.getString(1));
+                lista.add(fed);
+            }
+        } catch (Exception e) {
+        } finally {
+            Dao.closeConnection();
+        }
+        return lista;
+    }
+
+    public ArrayList<Feedback> findVotiPerPasseggeri() {
+        ArrayList<Feedback> lista = new ArrayList<>();
+        try {
+            Connection con = Dao.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select FeedbackA.email_autista,avg(FeedbackA.voto) as Media_Voto from FeedbackA group by (FeedbackA.email_autista)");
+            while (rs.next()) {
+                Feedback fed = new Feedback();
+                fed.setVoto(rs.getInt(2));
+                fed.setEmailMandante(rs.getString(1));
+                lista.add(fed);
+            }
+        } catch (Exception e) {
+        } finally {
+            Dao.closeConnection();
+        }
+        return lista;
+    }
+
+    public ArrayList<Feedback> findByEmail(String email) {
+        ArrayList<Feedback> lista = new ArrayList<>();
+        try {
+            Connection con = Dao.getConnection();
+            Statement st = con.createStatement();
+
+            trovaFeedbackPasseggeri(st, lista);
+
+            trovaFeedackAutisti(st, lista);
+        } catch (Exception e) {
+        } finally {
+            Dao.closeConnection();
+        }
+
+        return lista;
+    }
+
     public ArrayList<Autista> findAutisti() {
         ArrayList<Autista> lista = new ArrayList<>();
         try {
@@ -118,6 +173,22 @@ public class FeedbackDao {
         ArrayList<Feedback> lista = dao.findAll();
         for (Feedback ciao : lista) {
             System.out.println(ciao.getEmailMandante());
+        }
+    }
+    
+     private void trovaFeedbackPasseggeri(Statement st, ArrayList<Feedback> lista) throws ClassNotFoundException, SQLException {
+
+        ResultSet rs = st.executeQuery("select * from FeedbackP");
+        while (rs.next()) {
+            Feedback fed = new Feedback();
+
+            fed.setId(rs.getInt(1));
+            fed.setGiudizio(rs.getString(3));
+            fed.setVoto(rs.getInt(2));
+            fed.setEmailMandante(rs.getString(5));
+            fed.setEmailRicevente(rs.getString(4));
+
+            lista.add(fed);
         }
     }
 

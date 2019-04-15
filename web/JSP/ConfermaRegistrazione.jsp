@@ -28,6 +28,7 @@
     }
     if (ok) {
         Mail.send("carpoolingnoreply@gmail.com", "CarPooling4EVER!", email, "Registration Complete!", "Your registration is done!");
+        response.sendRedirect("index.jsp");
     } else {
         response.sendRedirect("error.jsp");
     }%>
