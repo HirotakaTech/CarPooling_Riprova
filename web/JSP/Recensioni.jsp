@@ -28,10 +28,8 @@
     <body>
         <%
             FeedbackDao dao = new FeedbackDao();
-            ArrayList<Feedback> lista = dao.findAll();
-            for (Feedback ciao : lista) {
-                System.out.println(ciao.getEmailRicevente());
-            }
+            ArrayList<Feedback> lista = dao.findVotiPerAutisti();
+
             UtenteDao utenteDao = new UtenteDao();
         %>
         <%@include file="/JSP/base/header.jsp" %>
@@ -67,33 +65,51 @@
     <% for (Feedback fed : lista) {%>
     <%Utente utente = utenteDao.findByEmail(fed.getEmailMandante());%>
     <div class="container my-container">
+        <br>
         <div class="row">
-            <div class="col-md-4">
-                <br>
-                <img class="img-fluid rounded" src="" alt="Smiley face">
 
-            </div>
-            <div class="col-md-8 justify-content-end">
+            <div class="col-md-12 justify-content-end">
                 <div class="container">
                     <div class="row justify-content-between">
-                        <div class="col-md-3"><b>
-                                <%=utente.getNome()%></b></div>
+                        <div class="col-md-3"><b><%=utente.getNome()%> <%=utente.getCognome()%> </b>
+                        </div>
 
                         <div class="col-md-7"><%=fed.getVoto()%></div>
-                    </div
-                    <div class="row"><br></div>
-                    <div class="row">
-                        <div class="col"><%=fed.getGiudizio()%></div>
+                        <div class="col-md-2"><a href="${pageContext.request.contextPath}/JSP/RecensioniUtente.jsp?email=<%=fed.getEmailMandante()%>">Guarda Tutte le Recensioni</a></div>
                     </div>
                 </div>
             </div>
         </div>
-        <%}%>
+    </div>
+    <%}
+        lista = dao.findVotiPerPasseggeri();
+    %>
 
-        <%@include file="/JSP/base/footer.jsp" %>
+    <% for (Feedback fed : lista) {%>
+    <%Utente utente = utenteDao.findByEmail(fed.getEmailMandante());%>
+    <div class="container my-container">
+        <br>
+        <div class="row">
+
+            <div class="col-md-12 justify-content-end">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-md-3"><b><%=utente.getNome()%> <%=utente.getCognome()%> </b>
+                        </div>
+
+                        <div class="col-md-7"><%=fed.getVoto()%></div>
+                        <div class="col-md-2"><a href="${pageContext.request.contextPath}/JSP/RecensioniUtente.jsp?email=<%=fed.getEmailMandante()%>">Guarda Tutte le Recensioni</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%}%>
+
+    <%@include file="/JSP/base/footer.jsp" %>
 
 
 
 
-    </body>
+</body>
 </html>
