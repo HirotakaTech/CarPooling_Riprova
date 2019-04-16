@@ -34,9 +34,9 @@
         %>
         <%@include file="/JSP/base/header.jsp" %>
 
-
+        <h1 style="margin-top:100px; text-align: center;">Recensioni di <%Utente utente = utenteDao.findByEmail(request.getParameter("email"));%><%=utente.getNome()%> <%=utente.getCognome()%></h1>
         <% for (Feedback fed : lista) {%>
-        <%Utente utente = utenteDao.findByEmail(fed.getEmailMandante());%>
+        <% utente = utenteDao.findByEmail(fed.getEmailMandante());%>
         <div class="container my-container">
             <br>
 
