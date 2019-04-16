@@ -51,7 +51,7 @@ public class PrenotazioneDao {
                 + "inner join Autisti on Autisti.email=Viaggi.email_autista "
                 + "inner join Passeggeri on email_passeggero=Passeggeri.email "
                 + "where Viaggi.id =" + idViaggio + " "
-                + "and accettazione = 'TRUE' "
+                + "and accettazione = 1 "
                 + "group by Viaggi.id";
         String sqlPostiMassimi = "select numero_posti from Autisti "
                 + "inner join Viaggi on email_autista=email "
