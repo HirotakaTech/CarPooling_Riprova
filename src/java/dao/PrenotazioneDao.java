@@ -34,10 +34,11 @@ public class PrenotazioneDao {
             pr.setDate(3, java.sql.Date.valueOf(date));
             pr.setInt(4, idViaggio);
             pr.setString(5, email);
+            pr.executeUpdate();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PrenotazioneDao.class.getName()).log(Level.SEVERE, null, ex);
+            ok = false;
         } catch (SQLException ex) {
-            Logger.getLogger(PrenotazioneDao.class.getName()).log(Level.SEVERE, null, ex);
+            ok = false;
         } finally{
             Dao.closeConnection();
         }
