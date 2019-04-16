@@ -108,4 +108,22 @@ public class AutistaDao{
         return found;
 
     }
+    public String findAutista(int idViaggio){
+        String autista = null;
+        String sql = "select email_autista from Viaggi where id="+ idViaggio;
+        Connection con = null;
+        try{
+            con = Dao.getConnection();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql);
+            if(res.next()){
+                autista = res.getString("email_autista");
+            }
+        }catch(Exception e){
+            
+        } finally {
+            Dao.closeConnection();
+        }
+        return autista;
+    }
 }

@@ -1,5 +1,6 @@
 
 
+<%@page import="dao.ViaggioDao"%>
 <%@page import="dao.PrenotazioneDao"%>
 <%@page import="beans.Autista"%>
 <%@page import="mail.Mail"%>
@@ -12,11 +13,9 @@
     int idViaggio = Integer.parseInt(request.getParameter("id")); 
     PrenotazioneDao dao = new PrenotazioneDao();
     if(dao.isPostiLiberi(idViaggio)){
-        if(dao.updatePrenotazioni(numeroPostiPrenotati)){
-            //Operazione andata a buon fine!
+        if(dao.insertPrenotazioni(idViaggio, (String)session.getAttribute("email"))){
         } else {
             //Operazione fallita!
         }
     }
-        //Mail.send("carpoolingnoreply@gmail.com", "CarPooling4EVER!", email, "Registration Complete!", "Your registration is done!");
     %>
