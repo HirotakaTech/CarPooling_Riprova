@@ -15,6 +15,9 @@
     </head>
     <body>
         <%@include file="/JSP/base/header.jsp" %>
+        <%if(session.getAttribute("utente") == null){
+            response.sendRedirect("Login.jsp");
+        }%>
         <%
             boolean isAutist = false;
             boolean ok = true;

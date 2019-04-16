@@ -1,6 +1,7 @@
 package dao;
 
 import beans.Utente;
+import exceptions.EccezioneDati;
 import java.sql.Connection;
 import java.util.Date;
 import java.sql.PreparedStatement;
@@ -80,6 +81,12 @@ public class UtenteDao {
             st.setString(6, user.getTelefono());
             st.setString(7, user.getPassword());
             st.execute();
+        } catch (SQLException sx) {
+            ok = false;
+            error = sx.getSQLState();
+            if (sx.getSQLState().equals("22001")) {
+                throw new EccezioneDati("Un dato che è stato inserito risulta troppo lungo!");
+            }
         } catch (Exception e) {
             ok = false;
             System.out.println(e.getMessage());
@@ -118,6 +125,7 @@ public class UtenteDao {
         return ute;
 
     }
+
     public Utente findByName(String name) {
 
         Utente ute = null;

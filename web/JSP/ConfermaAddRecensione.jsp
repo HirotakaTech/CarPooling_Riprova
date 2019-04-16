@@ -25,13 +25,13 @@
            if(daoAut.isAutista(emailRicevente)){
                daoFed.insertFeedbackA(fed);
             } else {
-               //Non aggiungerla
+               
            }
         } else if(daoAut.isAutista(emailMandante)) {
             if(daoPass.isPasseggero(emailRicevente)){
                daoFed.insertFeedbackP(fed);
-            } else {
-                //non aggiungerla
+            } else{
+
             }
         }
     }%>

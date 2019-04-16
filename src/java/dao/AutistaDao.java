@@ -8,6 +8,7 @@ package dao;
 import beans.Autista;
 import beans.Utente;
 import beans.Viaggio;
+import exceptions.EccezioneDati;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -78,7 +79,13 @@ public class AutistaDao{
             st.setString(6, au.getTarga_auto());
             st.setString(7, au.getModello_auto());
             st.execute();
-        }catch(Exception e){
+        }catch(SQLException sx){
+            ok = false;
+            if(sx.getSQLState().equals("22001")){
+                throw new EccezioneDati("Un dato che è stato inserito risulta troppo lungo!");
+            }
+        }
+        catch(Exception e){
             ok = false;
         }finally{
             Dao.closeConnection();
@@ -98,9 +105,7 @@ public class AutistaDao{
             }
 
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
             Dao.closeConnection();
         }

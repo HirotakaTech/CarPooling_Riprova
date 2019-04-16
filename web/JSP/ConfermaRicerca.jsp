@@ -31,6 +31,9 @@
         </script>
         <%@include file="/JSP/base/header.jsp" %>
         <%
+            if(session.getAttribute("utente")==null){
+                response.sendRedirect("Login.jsp");
+            }
             String destinazione = request.getParameter("destinazione");
             String data = request.getParameter("data");
             String ora = request.getParameter("ora");

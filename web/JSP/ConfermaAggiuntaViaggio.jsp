@@ -10,6 +10,9 @@
 <%@page import="dao.AutistaDao"%>
 <%
     
+    if(session.getAttribute("utente")== null){
+        response.sendRedirect("Login.jsp");
+    }
     if ((Boolean)session.getAttribute("isAutista") != null ||
             (Boolean)session.getAttribute("isAutista") == true) {
         String citta_partenza = request.getParameter("citta_partenza");
@@ -27,5 +30,5 @@
         if (daoViag.insertViaggio(viag)) {
             response.sendRedirect("index.jsp");
         }
-    }
+    } 
 %>

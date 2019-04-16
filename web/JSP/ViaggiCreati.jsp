@@ -23,6 +23,10 @@
     </head>
     <body>
         <%
+            if(session.getAttribute("utente")==null ||
+                    (Boolean)session.getAttribute("isAutista") == false){
+                response.sendRedirect("Login.jsp");
+            }
             String email = (String) session.getAttribute("email");
             ArrayList<Viaggio> lista = null;
             ViaggioDao dao = new ViaggioDao();

@@ -30,7 +30,7 @@
         Mail.send("carpoolingnoreply@gmail.com", "CarPooling4EVER!", email, "Registration Complete!", "Your registration is done!");
         response.sendRedirect("index.jsp");
     } else {
-        response.sendRedirect("error.jsp");
+        response.sendRedirect("Register.jsp");
     }%>
 
 <%!public boolean aggiungiPasseggero(String email, HttpServletRequest request) {

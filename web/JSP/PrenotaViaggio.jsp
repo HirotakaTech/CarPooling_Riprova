@@ -9,6 +9,9 @@
 <%@page import="dao.PasseggeroDao"%>
 <%@page import="dao.AutistaDao"%>
 <%
+    if(session.getAttribute("utente")==null){
+        response.sendRedirect("Login.jsp");
+    }
     int idViaggio = Integer.parseInt(request.getParameter("id")); 
     PrenotazioneDao dao = new PrenotazioneDao();
     if(dao.isPostiLiberi(idViaggio)){
