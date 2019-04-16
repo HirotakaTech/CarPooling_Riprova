@@ -47,29 +47,29 @@ public class PrenotazioneDao {
     public boolean isPostiLiberi(int idViaggio){
         boolean ok = true;
         String sqlPostiOccupati = "select Viaggi.id, count(*) as postiOccupati from Prenotazioni "
-                + "inner join Viaggi on id_viaggio = Viaggi.id "
-                + "inner join Autisti on Autisti.email = Viaggi.email "
-                + "inner join Passeggeri on email_passeggero = Passeggeri.id "
+                + "inner join Viaggi on id_viaggio=Viaggi.id "
+                + "inner join Autisti on Autisti.email=Viaggi.email_autista "
+                + "inner join Passeggeri on email_passeggero=Passeggeri.email "
                 + "where Viaggi.id =" + idViaggio + " "
                 + "and accettazione = 'TRUE' "
                 + "group by Viaggi.id";
         String sqlPostiMassimi = "select numero_posti from Autisti "
-                + "inner join Viaggi on email_autista = email "
-                + "where id =" + idViaggio;
+                + "inner join Viaggi on email_autista=email "
+                + "where id=" + idViaggio;
         Connection con = null;
         try {
             con = Dao.getConnection();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sqlPostiOccupati);
+            int postiOccupati = 0;
+            if(res.next()){
+                postiOccupati = res.getInt("postiOccupati");
+            }
             Statement st2 = con.createStatement();
             ResultSet res2 = st.executeQuery(sqlPostiMassimi);
             int postiMassimi = 0;
             if(res2.next()){
                  postiMassimi = res2.getInt("numero_posti");
-            }
-            int postiOccupati = 0;
-            if(res.next()){
-                postiOccupati = res.getInt("postiOccupati");
             }
             if(postiOccupati >= postiMassimi){
                 ok = false;

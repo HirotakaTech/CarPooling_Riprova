@@ -36,9 +36,6 @@
                         Prenota
                     </div>
                         <div class="col-lg-1">
-                        Posti
-                    </div>
-                        <div class="col-lg-1">
                         Partenza
                     </div>
                     
@@ -72,9 +69,6 @@
                         <input type="hidden" value="<%=viag.getId()%>" name="id"/>
                         <input type="submit" value="Prenota" name="prenota"/>
                     </div>
-                        <div class="col-lg-1">
-                        <input type="number" style="width: 120%"/>
-                        </div>
                     <div class="col-lg-1">
                         <%=viag.getCitta_partenza()%>
                     </div>

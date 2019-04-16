@@ -9,7 +9,6 @@
 <%@page import="dao.PasseggeroDao"%>
 <%@page import="dao.AutistaDao"%>
 <%
-    int numeroPosti = Integer.parseInt(request.getParameter("posti"));
     int idViaggio = Integer.parseInt(request.getParameter("id")); 
     PrenotazioneDao dao = new PrenotazioneDao();
     if(dao.isPostiLiberi(idViaggio)){
