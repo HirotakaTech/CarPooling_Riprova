@@ -176,21 +176,21 @@ public class FeedbackDao {
         }
     }
     
-     private void trovaFeedbackPasseggeri(Statement st, ArrayList<Feedback> lista) throws ClassNotFoundException, SQLException {
-
-        ResultSet rs = st.executeQuery("select * from FeedbackP");
-        while (rs.next()) {
-            Feedback fed = new Feedback();
-
-            fed.setId(rs.getInt(1));
-            fed.setGiudizio(rs.getString(3));
-            fed.setVoto(rs.getInt(2));
-            fed.setEmailMandante(rs.getString(5));
-            fed.setEmailRicevente(rs.getString(4));
-
-            lista.add(fed);
-        }
-    }
+//     private void trovaFeedbackPasseggeri(Statement st, ArrayList<Feedback> lista) throws ClassNotFoundException, SQLException {
+//
+//        ResultSet rs = st.executeQuery("select * from FeedbackP");
+//        while (rs.next()) {
+//            Feedback fed = new Feedback();
+//
+//            fed.setId(rs.getInt(1));
+//            fed.setGiudizio(rs.getString(3));
+//            fed.setVoto(rs.getInt(2));
+//            fed.setEmailMandante(rs.getString(5));
+//            fed.setEmailRicevente(rs.getString(4));
+//
+//            lista.add(fed);
+//        }
+//    }
 
     private void trovaFeedbackPasseggeri(Statement st, ArrayList<Feedback> lista) throws ClassNotFoundException, SQLException {
 
