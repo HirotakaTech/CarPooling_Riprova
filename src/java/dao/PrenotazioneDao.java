@@ -29,7 +29,7 @@ public class PrenotazioneDao {
             con = Dao.getConnection();
             PreparedStatement pr = con.prepareStatement(sqlInsertPrenotazione);
             pr.setString(1, codice);
-            pr.setBoolean(2, false);
+            pr.setBoolean(2, true);
             String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
             pr.setDate(3, java.sql.Date.valueOf(date));
             pr.setInt(4, idViaggio);

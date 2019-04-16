@@ -14,9 +14,6 @@
     PrenotazioneDao dao = new PrenotazioneDao();
     if(dao.isPostiLiberi(idViaggio)){
         if(dao.insertPrenotazioni(idViaggio, (String)session.getAttribute("email"))){
-            AutistaDao daoAut = new AutistaDao();
-            String emailAutista = daoAut.findAutista(idViaggio);
-            Mail.send("carpoolingnoreply@gmail.com", "CarPooling4EVER!", emailAutista, "Prenotazione", "Confermi?");
         } else {
             //Operazione fallita!
         }
