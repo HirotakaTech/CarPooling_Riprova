@@ -30,7 +30,8 @@
 
         %>
         <%@include file="/JSP/base/header.jsp" %>
-        <div class="container" style="margin-top: 100px;">
+        <h1 style="margin-top: 100px; text-align: center">I tuoi Viaggi Attivi</h1>
+        <div class="container" style="margin-top: 100px; color: #212529; text-decoration: underline">
             <div class="row">
                 <div class="col-2">Citta di Partenza</div>
                 <div class="col-2">Data di Partenza</div>
@@ -41,8 +42,8 @@
             </div>
         </div>
         <%for (Viaggio via : lista) {%>
-        <div class="container" style="margin-top: 100px;">
-            <div class="row">
+        <div class="container" style="margin-top: 50px; background-color: #212529">
+            <div class="row" style="height: 50px">
                 <div class="col-2"><%=via.getCitta_partenza() %></div>
                 <div class="col-2"><%=via.getData_partenza() %></div>
                 <div class="col-2"><%=via.getOra_partenza() %></div>

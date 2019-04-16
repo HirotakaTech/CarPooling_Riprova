@@ -16,6 +16,9 @@
     </style>
     <body>
         <%@include file="/JSP/base/header.jsp" %>
+        <%if (session.getAttribute("utente") == null) {
+                 response.sendRedirect("Login.jsp");
+             }%>
         <div class="col-8" style="margin:0 auto; margin-top: 100px;">
             <center>  <h1>Aggiungi un Viaggio</h1></center>
             <form action="ConfermaAggiuntaViaggio.jsp" method="POST">
