@@ -12,6 +12,9 @@
     </head>
     <body>
         <%@include file="/JSP/base/header.jsp" %>
+        <%if (session.getAttribute("utente") == null) {
+                 response.sendRedirect("Login.jsp");
+             }%>
         <section class="ftco-section">
             <div class="container">
                 <center><h1>Scrivi una Recensione</h1></center>

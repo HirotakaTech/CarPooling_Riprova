@@ -4,6 +4,7 @@
     Author     : Fierino
 --%>
 
+<%@page import="mail.Mail"%>
 <%@page import="beans.Utente"%>
 <%@page import="dao.UtenteDao"%>
 <%@page import="beans.Feedback"%>
@@ -25,7 +26,7 @@
             text-align: center;
         }
     </style>
-    <body>
+    
         <%
             FeedbackDao dao = new FeedbackDao();
             ArrayList<Feedback> lista = dao.findVotiPerAutisti();
@@ -61,7 +62,7 @@
     </div>
     <%}
         lista = dao.findVotiPerPasseggeri();
-    %>
+     %>
 
     <% for (Feedback fed : lista) {%>
     <%Utente utente = utenteDao.findByEmail(fed.getEmailMandante());%>
@@ -91,5 +92,5 @@
 
 
 
-</body>
+
 </html>
