@@ -16,11 +16,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Classe che si occupa di gestire i dati relativi agli Utenti all'interno del
+ * database
  *
- * @author checc_000
+ * @author Bartelloni-Bellezza-NiccolaiF
  */
 public class UtenteDao {
 
+    /**
+     * Metodo che si occupa di controllare se l'utente è registrato e farlo di
+     * conseguenza accedere
+     *
+     * @param email Email dell'utente che fa il login
+     * @param password La password dell'utente che fa il login
+     * @return esito del login
+     */
     public boolean login(String email, String password) {
         boolean logged = false;
         String sql = "select email,password from Utenti"
@@ -42,6 +52,12 @@ public class UtenteDao {
         return logged;
     }
 
+    /**
+     * Metodo che permette di sapere se un determinato utente esiste
+     *
+     * @param email Email dell'utente da ricercare
+     * @return esisto della ricerca
+     */
     public boolean findUser(String email) {
         boolean find = false;
         String sql = "select email,password from Utenti"
@@ -62,6 +78,12 @@ public class UtenteDao {
         return find;
     }
 
+    /**
+     * Metodo che permette di inserire un Utente nel DB
+     *
+     * @param user Il bean dell'utente da inserire
+     * @return esisto dell'insert
+     */
     public boolean inserisciUtente(Utente user) {
         boolean ok = true;
         String sql = "insert into Utenti VALUES(?,?,?,?,?,?,?)";
@@ -97,7 +119,13 @@ public class UtenteDao {
         return ok;
     }
 
-    public Utente findByEmail(String email) throws ClassNotFoundException {
+    /**
+     * Metodo per trovare un Utente a partire dalla sua email
+     *
+     * @param email Email dell'utente da ricercare
+     * @return Bean dell'utente
+     */
+    public Utente findByEmail(String email) {
 
         Utente ute = null;
         try {
@@ -115,7 +143,7 @@ public class UtenteDao {
                 ute.setPassword(rs.getString(7));
             }
 
-        }  catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             throw new EccezioneDati("Impossibile trovare email. Riprovare");
         } finally {
             Dao.closeConnection();
@@ -125,6 +153,13 @@ public class UtenteDao {
 
     }
 
+    /**
+     * Metodo per trovare un Utente a partire dal suo nome
+     *
+     * @param name Nome dell'utente da ricercare
+     * @return Bean dell'utente ricercato
+     * @throws ClassNotFoundException
+     */
     public Utente findByName(String name) throws ClassNotFoundException {
 
         Utente ute = null;

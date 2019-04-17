@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import beans.Utente;
@@ -16,11 +11,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Classe che si occupa di gestire i dati relativi ai Passeggeri
  *
- * @author checc_000
+ * @author Bartelloni-Bellezza-NiccolaiF
  */
 public class PasseggeroDao {
 
+    /**
+     * Metodo che inserisce un passeggero all'interno del database a partire da
+     * l'email e il documento
+     *
+     * @param email L'email del Passeggero
+     * @param documento Il numero di Documento del Passeggero
+     * @return esito dell'insert
+     */
     public boolean insertPasseggero(String email, String documento) {
         boolean ok = true;
         String sql = "insert into Passeggeri VALUES(?,?)";
@@ -39,26 +43,29 @@ public class PasseggeroDao {
         }
         return ok;
     }
-    
-    
-    public boolean isPasseggero(String email) throws ClassNotFoundException {
+
+    /**
+     * Metodo che permette di sapere se un determinato Utente è un passeggero
+     *
+     * @param email Email dell'utente
+     * @return True se è un passeggero, False altrimenti
+     */
+    public boolean isPasseggero(String email) {
         boolean found = false;
         Utente ute = null;
         try {
             Connection con = Dao.getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select Passeggeri.* from Passeggeri where Passeggeri.email='" + email + "'");
-            if(rs.next()){
+            if (rs.next()) {
                 found = true;
             }
-        }  catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile inserire informazioni del passeggero. Riprovare");
         } finally {
             Dao.closeConnection();
         }
-
         return found;
-
     }
 
 }
