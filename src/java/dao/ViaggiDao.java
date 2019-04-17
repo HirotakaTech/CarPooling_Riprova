@@ -16,12 +16,15 @@ import java.util.Date;
 
 /**
  * Metodo che gestisce i dati relativi ai Viaggi all'interno del database
+ *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
 public class ViaggiDao {
 
     /**
      * Metodo che viene utilizzato per ottenere i viaggi a partire dai parametri
+     * questo metodo è utilizzato nella ricerca
+     *
      * @param destinazione La città di destinazione del viaggio
      * @param data_partenza La data di partenza
      * @param ora L'ora di partenza
@@ -30,13 +33,11 @@ public class ViaggiDao {
      */
     public ArrayList<Viaggio> getViaggi(String destinazione, String data_partenza, String ora, int costo) {
         Connection con = null;
-        String sql = "select Viaggi.* from Viaggi inner join Prenotazioni"
-                + " on Viaggi.id = Prenotazioni.id_viaggio"
+        System.out.println(data_partenza);
+        String sql = "select * from Viaggi"
                 + " where citta_destinazione='" + destinazione
                 + "' and data_partenza='" + data_partenza
-                + "' and ora_partenza='" + ora
-                + "' and prezzo_passeggero<=" + costo
-                + " and accettazione=false";
+                + "' and prezzo_passeggero<=" + costo;
         ArrayList<Viaggio> list = new ArrayList<>();
         try {
             con = Dao.getConnection();
@@ -63,21 +64,23 @@ public class ViaggiDao {
 
             }
         } catch (ClassNotFoundException | SQLException e) {
-            
+
             throw new EccezioneDati("Impossibile consultare l'archivio per i viaggi. Riprovare.");
         } finally {
             Dao.closeConnection();
         }
         return list;
     }
-    
+
     /**
-     * Metodo che permette di ottenere la lista dei viaggi che sono stati prenotati da un Passeggero
+     * Metodo che permette di ottenere la lista dei viaggi che sono stati
+     * prenotati da un Passeggero
+     *
      * @param email Email del Passeggero
      * @return Lista di Bean Viaggio dei viaggi che ha prenotato il Passeggero
      */
-    public ArrayList<Viaggio> findViaggiPrenotati(String email){
-         ArrayList<Viaggio> lista = new ArrayList<>();
+    public ArrayList<Viaggio> findViaggiPrenotati(String email) {
+        ArrayList<Viaggio> lista = new ArrayList<>();
         String sql = "select Viaggi.* from Viaggi,Utenti where Viaggi.email_autista=Utenti.email and Utenti.email='" + email + "'";
         Connection con = null;
         try {
@@ -111,9 +114,11 @@ public class ViaggiDao {
         }
         return lista;
     }
-    
+
     /**
-     * Metodo che permette di ottenere la lista dei viaggi a partire dall'email dell'utente
+     * Metodo che permette di ottenere la lista dei viaggi a partire dall'email
+     * dell'utente
+     *
      * @param email Email dell'utente di cui ricercare i Viaggi
      * @return Lista di Bean Viaggio dei viaggi dell'utente
      */
@@ -155,7 +160,8 @@ public class ViaggiDao {
 
     /**
      * Metodo per ottenere tutti i viaggi presenti nel database
-     * @return Lista di Bean Viaggio 
+     *
+     * @return Lista di Bean Viaggio
      */
     public ArrayList<Viaggio> findAll() {
         ArrayList<Viaggio> lista = new ArrayList<>();
@@ -195,6 +201,7 @@ public class ViaggiDao {
 
     /**
      * Metodo per l'inserimento di un viaggio all'interno del DB
+     *
      * @param viaggio Bean Viaggio da inserire
      * @return esito dell'insert
      */

@@ -4,12 +4,12 @@
     Author     : Bartelloni-Bellezza-NiccolaiF
 --%>
 
-<%@page import="dao.ViaggioDao"%>
+<%@page import="dao.ViaggiDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="beans.Viaggio"%>
 <%
     String destinazione = (String) session.getAttribute("destinazione");
-    ViaggioDao dao = new ViaggioDao();
+    ViaggiDao dao = new ViaggiDao();
     String data = (String) session.getAttribute("data");
     String ora = (String) session.getAttribute("ora");
     String[] dividi = data.split("/");
