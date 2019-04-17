@@ -6,7 +6,7 @@
 
 <%@page import="beans.Viaggio"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="dao.ViaggioDao"%>
+<%@page import="dao.ViaggiDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,7 @@
                 ok =false;
             } 
            if (!isAutist && ok ) {
-            ViaggioDao dao = new ViaggioDao();
+            ViaggiDao dao = new ViaggiDao();
                 ArrayList<Viaggio> viaggi = dao.findAll();%>
                 <form action="PrenotaViaggio.jsp" method="POST">
                 <div class="span6 offset-lg-0 offset-6" style='margin-top: 8%'>

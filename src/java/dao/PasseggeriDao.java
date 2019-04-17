@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
-public class PasseggeroDao {
+public class PasseggeriDao {
 
     /**
      * Metodo che inserisce un passeggero all'interno del database a partire da

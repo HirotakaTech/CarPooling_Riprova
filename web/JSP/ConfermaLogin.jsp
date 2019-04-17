@@ -3,16 +3,16 @@
     Created on : 1-apr-2019, 17.02.24
     Author     : checc_000
 --%>
-<%@page import="dao.AutistaDao"%>
-<%@page import="dao.PasseggeroDao"%>
-<%@page import="dao.UtenteDao"%> 
+<%@page import="dao.AutistiDao"%>
+<%@page import="dao.PasseggeriDao"%>
+<%@page import="dao.UtentiDao"%> 
 <%
     try {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        UtenteDao ut = new UtenteDao();
-        PasseggeroDao pass = new PasseggeroDao();
-        AutistaDao aut = new AutistaDao();
+        UtentiDao ut = new UtentiDao();
+        PasseggeriDao pass = new PasseggeriDao();
+        AutistiDao aut = new AutistiDao();
         String url = "";
         boolean logged = ut.login(email, password);
         if (!logged) {

@@ -1,13 +1,12 @@
 
 
-<%@page import="dao.ViaggioDao"%>
+<%@page import="dao.ViaggiDao"%>
 <%@page import="beans.Viaggio"%>
 <%@page import="beans.Autista"%>
 <%@page import="mail.Mail"%>
 <%@page import="beans.Utente"%>
-<%@page import="dao.UtenteDao"%>
-<%@page import="dao.PasseggeroDao"%>
-<%@page import="dao.AutistaDao"%>
+<%@page import="dao.UtentiDao"%>
+<%@page import="dao.PasseggeriDao"%>
 <%
     
     if(session.getAttribute("utente")== null){
@@ -26,7 +25,7 @@
         Viaggio viag = new Viaggio(citta_partenza, citta_destinazione,
                 data_partenza, ora_partenza, prezzo,
                 tempi, info, email);
-        ViaggioDao daoViag = new ViaggioDao();
+        ViaggiDao daoViag = new ViaggiDao();
         if (daoViag.insertViaggio(viag)) {
             response.sendRedirect("index.jsp");
         }

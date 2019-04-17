@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="beans.Viaggio"%>
-<%@page import="dao.ViaggioDao"%>
+<%@page import="dao.ViaggiDao"%>
 <%@page import="beans.Prenotazione"%>
 <%@page import="dao.PrenotazioneDao"%>
 <%@page import="java.util.ArrayList"%>
@@ -26,7 +26,7 @@
                 ok = false;
             }
             if (!isAutist && ok) {
-                ViaggioDao dao = new ViaggioDao();
+                ViaggiDao dao = new ViaggiDao();
                 ArrayList<Viaggio> lista = dao.findViaggiPrenotati((String) session.getAttribute("email"));
                 for (Viaggio viag : lista) {%>
         <div class="container" style="margin-top: 100px; text-align: center;">

@@ -6,7 +6,7 @@
 
 <%@page import="mail.Mail"%>
 <%@page import="beans.Utente"%>
-<%@page import="dao.UtenteDao"%>
+<%@page import="dao.UtentiDao"%>
 <%@page import="beans.Feedback"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.FeedbackDao"%>
@@ -31,7 +31,7 @@
             FeedbackDao dao = new FeedbackDao();
             ArrayList<Feedback> lista = dao.findVotiPerAutisti();
 
-            UtenteDao utenteDao = new UtenteDao();
+            UtentiDao utenteDao = new UtentiDao();
         %>
         <%@include file="/JSP/base/header.jsp" %>
 

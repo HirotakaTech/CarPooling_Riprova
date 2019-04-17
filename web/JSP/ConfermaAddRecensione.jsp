@@ -5,17 +5,17 @@
 <%@page import="beans.Autista"%>
 <%@page import="mail.Mail"%>
 <%@page import="beans.Utente"%>
-<%@page import="dao.UtenteDao"%>
-<%@page import="dao.PasseggeroDao"%>
-<%@page import="dao.AutistaDao"%>
+<%@page import="dao.UtentiDao"%>
+<%@page import="dao.PasseggeriDao"%>
+<%@page import="dao.AutistiDao"%>
 <%
     String emailMandante = (String)session.getAttribute("email");
     if(emailMandante == null){%>
         <%response.sendRedirect("Login.jsp");%>
     <%} else {
-        UtenteDao daoUt = new UtenteDao();
-        PasseggeroDao daoPass = new PasseggeroDao();
-        AutistaDao daoAut = new AutistaDao();
+        UtentiDao daoUt = new UtentiDao();
+        PasseggeriDao daoPass = new PasseggeriDao();
+        AutistiDao daoAut = new AutistiDao();
         FeedbackDao daoFed = new FeedbackDao();
         String emailRicevente = request.getParameter("utente");
         int voto = Integer.parseInt(request.getParameter("voto"));

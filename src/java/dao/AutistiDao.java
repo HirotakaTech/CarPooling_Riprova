@@ -19,7 +19,7 @@ import java.util.Date;
  *
  * @author Bartelloni-Bellezza-Niccolai F
  */
-public class AutistaDao {
+public class AutistiDao {
     /**
      * Metodo che consente, dato un determinato viaggio, di ottenere l'autista.
      * @param viaggio viaggio compiuto da un autista

@@ -14,7 +14,7 @@
 <%@page import="beans.Utente"%>
 <%@page import="beans.Viaggio"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="dao.ViaggioDao"%>
+<%@page import="dao.ViaggiDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -29,7 +29,7 @@
             }
             String email = (String) session.getAttribute("email");
             ArrayList<Viaggio> lista = null;
-            ViaggioDao dao = new ViaggioDao();
+            ViaggiDao dao = new ViaggiDao();
             lista = dao.findByEmail(email);
 
         %>

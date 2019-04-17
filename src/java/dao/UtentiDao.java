@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
-public class UtenteDao {
+public class UtentiDao {
 
     /**
      * Metodo che si occupa di controllare se l'utente è registrato e farlo di

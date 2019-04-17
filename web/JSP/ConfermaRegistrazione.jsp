@@ -4,8 +4,8 @@
 <%@page import="mail.Mail"%>
 <%@page import="beans.Utente"%>
 <%@page import="dao.UtenteDao"%>
-<%@page import="dao.PasseggeroDao"%>
-<%@page import="dao.AutistaDao"%>
+<%@page import="dao.PasseggeriDao"%>
+<%@page import="dao.AutistiDao"%>
 <%
     String email = request.getParameter("email");
     String password = request.getParameter("password");
@@ -35,14 +35,14 @@
 
 <%!public boolean aggiungiPasseggero(String email, HttpServletRequest request) {
 
-        PasseggeroDao daoPasseggero = new PasseggeroDao();
+        PasseggeriDao daoPasseggero = new PasseggeriDao();
         String documento = request.getParameter("documento");
         return (daoPasseggero.insertPasseggero(email, documento));
     }%>
 
 <%!public boolean aggiungiAutista(String email, HttpServletRequest request) {
 
-        AutistaDao daoAutista = new AutistaDao();
+        AutistiDao daoAutista = new AutistiDao();
         int numero_posti = Integer.parseInt(request.getParameter("posti"));
         String data_scadenza_patente = request.getParameter("data_patente");
         String foto = request.getParameter("foto"); //URL

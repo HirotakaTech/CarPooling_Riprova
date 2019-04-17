@@ -18,7 +18,7 @@ import java.util.Date;
  * Metodo che gestisce i dati relativi ai Viaggi all'interno del database
  * @author Bartelloni-Bellezza-NiccolaiF
  */
-public class ViaggioDao {
+public class ViaggiDao {
 
     /**
      * Metodo che viene utilizzato per ottenere i viaggi a partire dai parametri
