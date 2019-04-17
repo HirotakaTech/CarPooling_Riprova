@@ -41,8 +41,14 @@ public class PrenotazioneDao {
             pr.setInt(4, idViaggio);
             pr.setString(5, email);
             pr.executeUpdate();
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             ok = false;
+            if (ex.getSQLState().equals("23000")) {
+                throw new EccezioneDati("Hai già prenotato per questo viaggio!");
+            } else {
+                throw new EccezioneDati("Impossibile inserire informazioni della prenotazione. Riprovare.");
+            }
+        } catch (ClassNotFoundException ex) {
             throw new EccezioneDati("Impossibile inserire informazioni della prenotazione. Riprovare.");
         } finally {
             Dao.closeConnection();

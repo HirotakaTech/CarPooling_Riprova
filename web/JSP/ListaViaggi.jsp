@@ -29,7 +29,6 @@
            if (!isAutist && ok ) {
             ViaggiDao dao = new ViaggiDao();
                 ArrayList<Viaggio> viaggi = dao.findAll();%>
-                <form action="PrenotaViaggio.jsp" method="POST">
                 <div class="span6 offset-lg-0 offset-6" style='margin-top: 8%'>
                     <div class="container">
                 <div class="table col-md-12">
@@ -69,8 +68,11 @@
                 <div class="row">
                     
                     <div class="col-lg-1">
+                        
+                        <form action="PrenotaViaggio.jsp" method="POST">
                         <input type="hidden" value="<%=viag.getId()%>" name="id"/>
                         <input type="submit" value="Prenota" name="prenota"/>
+                        </form>
                     </div>
                     <div class="col-lg-1">
                         <%=viag.getCitta_partenza()%>
@@ -103,7 +105,6 @@
             <%}%>
             
 </div>
-                </form>
             </div>
     </body>
 </html>

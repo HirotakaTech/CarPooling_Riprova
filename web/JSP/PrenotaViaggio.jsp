@@ -14,6 +14,7 @@
     PrenotazioneDao dao = new PrenotazioneDao();
     if(dao.isPostiLiberi(idViaggio)){
         if(dao.insertPrenotazioni(idViaggio, (String)session.getAttribute("email"))){
+            response.sendRedirect("index.jsp");
         } else {
             //Operazione fallita!
         }
