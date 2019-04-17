@@ -8,21 +8,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author Bartelloni-Bellezza-NiccolaiF
+ * @author Bartelloni-Bellezza-Niccolai F.
  */
 public class FeedbackDao {
 
     /**
-     *
-     * @return
+     * Metodo che consente di ottenere tutte le valutazioni effettuate.
+     * @return lista di valutazioni dei vari utenti
      */
     public ArrayList<Feedback> findAll() {
         ArrayList<Feedback> lista = new ArrayList<>();
@@ -41,7 +37,10 @@ public class FeedbackDao {
 
         return lista;
     }
-
+    /**
+     * Metodo che consente agli autisti di visualizzare il voto medio per passeggero.
+     * @return lista di valutazioni degli autisti con le rispettive medie
+     */
     public ArrayList<Feedback> findVotiPerAutisti() {
         ArrayList<Feedback> lista = new ArrayList<>();
         try {
@@ -55,13 +54,16 @@ public class FeedbackDao {
                 lista.add(fed);
             }
         } catch (ClassNotFoundException | SQLException e) {
-            throw new EccezioneDati("Impossibile trovare i feedback dell'autista connesso.");
+            throw new EccezioneDati("Impossibile trovare i voti dei passeggeri.");
         } finally {
             Dao.closeConnection();
         }
         return lista;
     }
-
+    /**
+     * Metodo che consente di ottenere le valutazioni degli autisti, visualizzandone le loro medie.
+     * @return lista di valutazioni medie per autista
+     */
     public ArrayList<Feedback> findVotiPerPasseggeri() {
         ArrayList<Feedback> lista = new ArrayList<>();
         try {
@@ -75,31 +77,35 @@ public class FeedbackDao {
                 lista.add(fed);
             }
         } catch (ClassNotFoundException | SQLException e) {
-            throw new EccezioneDati("Impossibile trovare i voti per i passeggeri");
+            throw new EccezioneDati("Impossibile trovare i voti degli autisti.");
         } finally {
             Dao.closeConnection();
         }
         return lista;
     }
-
+    /**
+     * Metodo che consente di ottenere le valutazioni rivolte ad una persona.
+     * @param email email della persona di cui si vuole visualizzare le valutazioni
+     * @return lista di valutazioni di un determinato utente
+     */
     public ArrayList<Feedback> findByEmail(String email) {
         ArrayList<Feedback> lista = new ArrayList<>();
         try {
             Connection con = Dao.getConnection();
             Statement st = con.createStatement();
-
-            trovaFeedbackPasseggeri(st, lista);
-
-            trovaFeedackAutisti(st, lista);
+            lista = trovaFeedbackByEmail(st,email);
         } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile trovare l'email nei voti registrati.");
-        } finally {
+        } finally{
             Dao.closeConnection();
         }
 
         return lista;
     }
-
+    /**
+     * Metodo che consente gli autisti nei feedback.
+     * @return una lista di autisti presenti nei feedback degli autisti
+     */
     public ArrayList<Autista> findAutisti() {
         ArrayList<Autista> lista = new ArrayList<>();
         try {
@@ -125,7 +131,11 @@ public class FeedbackDao {
         }
         return lista;
     }
-
+    /**
+     * Metodo che consente di inserire un feedback del passeggero.
+     * @param fed valutazione dell'autista nei confronti del passeggero
+     * @return true se l'inserimento va a buon fine, false altrimenti
+     */
     public boolean insertFeedbackP(Feedback fed) {
         boolean ok = true;
         String sql = "insert into FeedbackP VALUES(null,?,?,?,?)";
@@ -149,7 +159,11 @@ public class FeedbackDao {
 
         return ok;
     }
-
+    /**
+     * Metodo che inserisce i feedback degli autisti.
+     * @param fed valutazione dell'autista fatta da un passeggero
+     * @return true se valutazione viene inserita correttamente, false altrimenti
+     */
     public boolean insertFeedbackA(Feedback fed) {
         boolean ok = true;
         String sql = "insert into FeedbackA VALUES(null,?,?,?,?)";
@@ -173,14 +187,11 @@ public class FeedbackDao {
 
         return ok;
     }
-
-    public static void main(String[] dsfas) {
-        FeedbackDao dao = new FeedbackDao();
-        ArrayList<Feedback> lista = dao.findAll();
-        for (Feedback ciao : lista) {
-            System.out.println(ciao.getEmailMandante());
-        }
-    }
+/**
+ * Metodo che consente di trovare i feedback dei passeggeri.
+ * @param st statement mediante il quale si esegue la query per selezionare le valutazioni dei passeggeri
+ * @param lista lista di valutazioni dei passeggeri
+ */
     private void trovaFeedbackPasseggeri(Statement st, ArrayList<Feedback> lista)  {
 
         try {
@@ -201,6 +212,11 @@ public class FeedbackDao {
         }
     }
 
+/**
+ * Metodo che consente di trovare i feedback degli autisti.
+ * @param st statement mediante il quale si esegue la query per selezionare le valutazioni degli autisti
+ * @param lista lista di valutazioni degli autisti
+ */
     private void trovaFeedackAutisti(Statement st, ArrayList<Feedback> lista) {
         try {
             ResultSet rs = st.executeQuery("select * from FeedbackA");
@@ -218,5 +234,30 @@ public class FeedbackDao {
         } catch (SQLException ex) {
             throw new EccezioneDati("Impossibile trovare valutazioni autisti.");
         }
+    }
+    /**
+     * Metodo che consente di trovare i feedback ricevuti da un utente.
+     * @param st statement che ci consente di eseguire le query per ottenere i feedback
+     * @param email email dell'utente di cui vogliamo conoscere i feedback
+     * @return lista di feedback dell'utente
+     * @throws SQLException viene lanciata se è presente un errore relativo al linguaggio sql
+     * @throws ClassNotFoundException viene lanciata se non viene trovato il driver per utilizzare le jdbc
+     */
+    private ArrayList<Feedback> trovaFeedbackByEmail(Statement st,
+            String email) throws SQLException, ClassNotFoundException {
+        ArrayList<Feedback> list = new ArrayList<>();
+        ResultSet res = st.executeQuery("select * from FeedbackA where email_autista='" + email +"'");
+        while(res.next()){
+            list.add(new Feedback(res.getString("giudizio"), res.getInt("voto"),
+                    res.getString("email_passeggero"), res.getString("email_autista")));
+        }
+        
+        res = st.executeQuery("select * from FeedbackP where email_passeggero='" + email +"'");
+        while(res.next()){
+            list.add(new Feedback(res.getString("giudizio"), res.getInt("voto"),
+                    res.getString("email_autista"), res.getString("email_passeggero")));
+        }
+        
+       return list;
     }
 }

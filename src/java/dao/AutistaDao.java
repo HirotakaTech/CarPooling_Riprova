@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import beans.Autista;
@@ -19,15 +14,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Bartelloni-Bellezza-Niccolai F
  */
 public class AutistaDao {
-
+    /**
+     * Metodo che consente, dato un determinato viaggio, di ottenere l'autista.
+     * @param viaggio viaggio compiuto da un autista
+     * @return lista di autisti associati ad un viaggio
+     */
     public ArrayList<Autista> getAutista(Viaggio viaggio) {
         Connection con = null;
         String sql = "select Autisti.* from Autisti inner join Viaggi"
@@ -62,7 +59,11 @@ public class AutistaDao {
         }
         return list;
     }
-
+    /**
+     * Metodo che consente di inserire nel database un autista.
+     * @param au autista da inserire nel database
+     * @return true se la procedura ha esito positivo, false altrimenti
+     */
     public boolean insertAutista(Autista au) {
         boolean ok = true;
         String sql = "insert into Autisti VALUES(?,?,?,?,?,?,?)";
@@ -94,7 +95,11 @@ public class AutistaDao {
         }
         return ok;
     }
-
+    /**
+     * Metodo che controlla se un determinato utente è un autista.
+     * @param email email dell'utente
+     * @return true se l'utente risulta un autista, false altrimenti
+     */
     public boolean isAutista(String email) {
         boolean found = false;
         Utente ute = null;
@@ -114,7 +119,11 @@ public class AutistaDao {
         return found;
 
     }
-
+    /**
+     * Metodo che ritorna l'email di un autista, dato l'id del viaggio a cui è associato.
+     * @param idViaggio id del viaggio
+     * @return email dell'autista
+     */
     public String findAutista(int idViaggio) {
         String autista = null;
         String sql = "select email_autista from Viaggi where id=" + idViaggio;
