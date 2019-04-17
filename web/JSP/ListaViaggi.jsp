@@ -28,7 +28,7 @@
             } 
            if (!isAutist && ok ) {
             ViaggioDao dao = new ViaggioDao();
-                ArrayList<Viaggio> viaggi = dao.visualizzaViaggi();%>
+                ArrayList<Viaggio> viaggi = dao.findAll();%>
                 <form action="PrenotaViaggio.jsp" method="POST">
                 <div class="span6 offset-lg-0 offset-6" style='margin-top: 8%'>
                     <div class="container">

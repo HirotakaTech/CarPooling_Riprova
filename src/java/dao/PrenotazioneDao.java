@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import exceptions.EccezioneDati;
@@ -17,10 +12,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Classe che si occupa di gestire i dati relativi alle Prenotazioni all'interno
+ * del database
  *
- * @author checc_000
+ * @author Bartelloni-Bellezza-NiccolaiF
  */
 public class PrenotazioneDao {
+
+    /**
+     * Metodo per l'inserimento delle Prenotazioni all'interno del DB
+     *
+     * @param idViaggio Id del viaggio che si prenota
+     * @param email Email del Passeggero che prenota
+     * @return esito dell'insert
+     */
     public boolean insertPrenotazioni(int idViaggio, String email) {
         boolean ok = true;
         String sqlInsertPrenotazione = "insert into Prenotazioni VALUES(?,?,?,?,?)";
@@ -37,14 +42,21 @@ public class PrenotazioneDao {
             pr.setString(5, email);
             pr.executeUpdate();
         } catch (ClassNotFoundException | SQLException ex) {
-            ok = false;          
+            ok = false;
             throw new EccezioneDati("Impossibile inserire informazioni della prenotazione. Riprovare.");
-        } finally{
+        } finally {
             Dao.closeConnection();
         }
         return ok;
     }
-    public boolean isPostiLiberi(int idViaggio){
+
+    /**
+     * Metodo che permette di conoscere se il Viaggio ha posti liberi
+     *
+     * @param idViaggio Id del Viaggio che si vuole controllare
+     * @return se il Viaggio è libero oppure no
+     */
+    public boolean isPostiLiberi(int idViaggio) {
         boolean ok = true;
         String sqlPostiOccupati = "select Viaggi.id, count(*) as postiOccupati from Prenotazioni "
                 + "inner join Viaggi on id_viaggio=Viaggi.id "
@@ -62,41 +74,49 @@ public class PrenotazioneDao {
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sqlPostiOccupati);
             int postiOccupati = 0;
-            if(res.next()){
+            if (res.next()) {
                 postiOccupati = res.getInt("postiOccupati");
             }
             Statement st2 = con.createStatement();
             ResultSet res2 = st.executeQuery(sqlPostiMassimi);
             int postiMassimi = 0;
-            if(res2.next()){
-                 postiMassimi = res2.getInt("numero_posti");
+            if (res2.next()) {
+                postiMassimi = res2.getInt("numero_posti");
             }
-            if(postiOccupati >= postiMassimi){
+            if (postiOccupati >= postiMassimi) {
                 ok = false;
-            } 
-    }catch(ClassNotFoundException | SQLException e){
-        ok = false;
-        throw new EccezioneDati("Impossibile inserire verificare la disponibilità della prenotazione. Riprovare.");
-    } finally{
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            ok = false;
+            throw new EccezioneDati("Impossibile inserire verificare la disponibilità della prenotazione. Riprovare.");
+        } finally {
             Dao.closeConnection();
         }
         return ok;
-}
+    }
 
+    /**
+     * Metodo che permette di generare il codice della prenotazione attraverso
+     * una funzione hash(MD5) a partire dall'email e l'id
+     *
+     * @param idViaggio Id del Viaggio della prenotazione
+     * @param email Email del Passeggero che prenota
+     * @return il codice generato con la funzione hash
+     */
     private String generaCodice(int idViaggio, String email) {
         String id = Integer.toString(idViaggio);
         String inputCodice = email + id;
         String sqlCodice = "SELECT MD5('+" + inputCodice + "') as codice";
         String result = null;
         Connection con = null;
-        try{
+        try {
             con = Dao.getConnection();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sqlCodice);
-            if(res.next()){
+            if (res.next()) {
                 result = res.getString("codice");
             }
-        }catch(ClassNotFoundException | SQLException e){
+        } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile generare il codice della prenotazione.");
         } finally {
             Dao.closeConnection();
