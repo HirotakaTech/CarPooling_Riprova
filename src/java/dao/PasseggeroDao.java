@@ -6,6 +6,7 @@
 package dao;
 
 import beans.Utente;
+import exceptions.EccezioneDati;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,8 +31,9 @@ public class PasseggeroDao {
             st.setString(1, email);
             st.setString(2, documento);
             st.execute();
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             ok = false;
+            throw new EccezioneDati("Impossibile inserire informazioni del passeggero. Riprovare");
         } finally {
             Dao.closeConnection();
         }
@@ -39,7 +41,7 @@ public class PasseggeroDao {
     }
     
     
-    public boolean isPasseggero(String email) {
+    public boolean isPasseggero(String email) throws ClassNotFoundException {
         boolean found = false;
         Utente ute = null;
         try {
@@ -49,11 +51,8 @@ public class PasseggeroDao {
             if(rs.next()){
                 found = true;
             }
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }  catch (SQLException ex) {
+            throw new EccezioneDati("Impossibile inserire informazioni del passeggero. Riprovare");
         } finally {
             Dao.closeConnection();
         }

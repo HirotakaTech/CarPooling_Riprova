@@ -1,12 +1,15 @@
 package dao;
 
 import beans.Viaggio;
+import exceptions.EccezioneDati;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,8 +54,9 @@ public class ViaggioDao {
                 list.add(aus);
 
             }
-        } catch (Exception e) {
-            System.out.println("Errore");
+        } catch (ClassNotFoundException | SQLException e) {
+            
+            throw new EccezioneDati("Impossibile consultare l'archivio per i viaggi. Riprovare.");
         } finally {
             Dao.closeConnection();
         }
@@ -87,8 +91,8 @@ public class ViaggioDao {
                 lista.add(aus);
 
             }
-        } catch (Exception e) {
-            System.out.println("Errore");
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new EccezioneDati("Impossibile trovare i viaggi. Riprovare.");
         } finally {
             Dao.closeConnection();
         }
@@ -123,8 +127,8 @@ public class ViaggioDao {
                 lista.add(aus);
 
             }
-        } catch (Exception e) {
-            System.out.println("Errore");
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new EccezioneDati("Impossibile visualizzare i viaggi. Riprovare.");
         } finally {
             Dao.closeConnection();
         }
@@ -154,8 +158,9 @@ public class ViaggioDao {
             pr.setString(7, viaggio.getInfo_aggiuntive());
             pr.setString(8, viaggio.getEmail_autista());
             pr.executeUpdate();
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException | ParseException e) {
             ok = false;
+            throw new EccezioneDati("Impossibile inserire informazioni del viaggio. Riprovare.");
         } finally {
             Dao.closeConnection();
         }

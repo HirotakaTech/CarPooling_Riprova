@@ -1,5 +1,6 @@
 package dao;
 
+import exceptions.EccezioneDati;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -31,8 +32,9 @@ public class Dao {
         try {
             con.close();
             con=null;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             ok = false;
+            throw new EccezioneDati("Problema di chiusura della comunicazione del database.");
         }
         }
         return ok;

@@ -3,5 +3,5 @@
 <center><p>Il server ha riscontrato un problema con la pagina. Se il problema persiste prova a riavviare.</p></center>
 <br>
 <br>
-<h3>Eccezione:</h3>
+<h3>Errore:</h3>
 <%=exception.getMessage()%>

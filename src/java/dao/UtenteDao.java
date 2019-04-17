@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,8 +34,8 @@ public class UtenteDao {
             if (res.next()) {
                 logged = true;
             }
-        } catch (Exception e) {
-
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new EccezioneDati("Impossibile accedere. Riprovare.");
         } finally {
             Dao.closeConnection();
         }
@@ -53,8 +54,8 @@ public class UtenteDao {
             if (res.next()) {
                 find = true;
             }
-        } catch (Exception e) {
-
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new EccezioneDati("Impossibile controllare se utente esiste. Riprovare.");
         } finally {
             Dao.closeConnection();
         }
@@ -87,16 +88,16 @@ public class UtenteDao {
             if (sx.getSQLState().equals("22001")) {
                 throw new EccezioneDati("Un dato che è stato inserito risulta troppo lungo!");
             }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | ParseException e) {
             ok = false;
-            System.out.println(e.getMessage());
+            throw new EccezioneDati("Impossibile inserire informazioni dell'utente. Riprovare.");
         } finally {
             Dao.closeConnection();
         }
         return ok;
     }
 
-    public Utente findByEmail(String email) {
+    public Utente findByEmail(String email) throws ClassNotFoundException {
 
         Utente ute = null;
         try {
@@ -114,10 +115,8 @@ public class UtenteDao {
                 ute.setPassword(rs.getString(7));
             }
 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }  catch (ClassNotFoundException | SQLException ex) {
+            throw new EccezioneDati("Impossibile trovare email. Riprovare");
         } finally {
             Dao.closeConnection();
         }
@@ -126,7 +125,7 @@ public class UtenteDao {
 
     }
 
-    public Utente findByName(String name) {
+    public Utente findByName(String name) throws ClassNotFoundException {
 
         Utente ute = null;
         try {
@@ -144,10 +143,8 @@ public class UtenteDao {
                 ute.setPassword(rs.getString(7));
             }
 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(UtenteDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new EccezioneDati("Impossibile trovare nome dell'utente nell'archivio.");
         } finally {
             Dao.closeConnection();
         }

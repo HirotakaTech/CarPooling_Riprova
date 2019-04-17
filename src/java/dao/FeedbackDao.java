@@ -2,6 +2,7 @@ package dao;
 
 import beans.Autista;
 import beans.Feedback;
+import exceptions.EccezioneDati;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,7 +33,8 @@ public class FeedbackDao {
             trovaFeedbackPasseggeri(st, lista);
 
             trovaFeedackAutisti(st, lista);
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new EccezioneDati("Impossibile visualizzare i feedback.");
         } finally {
             Dao.closeConnection();
         }
@@ -52,7 +54,8 @@ public class FeedbackDao {
                 fed.setEmailMandante(rs.getString(1));
                 lista.add(fed);
             }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new EccezioneDati("Impossibile trovare i feedback dell'autista connesso.");
         } finally {
             Dao.closeConnection();
         }
@@ -71,7 +74,8 @@ public class FeedbackDao {
                 fed.setEmailMandante(rs.getString(1));
                 lista.add(fed);
             }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new EccezioneDati("Impossibile trovare i voti per i passeggeri");
         } finally {
             Dao.closeConnection();
         }
@@ -87,7 +91,8 @@ public class FeedbackDao {
             trovaFeedbackPasseggeri(st, lista);
 
             trovaFeedackAutisti(st, lista);
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new EccezioneDati("Impossibile trovare l'email nei voti registrati.");
         } finally {
             Dao.closeConnection();
         }
@@ -113,7 +118,8 @@ public class FeedbackDao {
                 au.setEmail(rs.getString("email"));
                 lista.add(au);
             }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new EccezioneDati("Impossibile trovare autista.");
         } finally {
             Dao.closeConnection();
         }
@@ -134,9 +140,9 @@ public class FeedbackDao {
             st.setString(3, fed.getEmailMandante());
             st.setString(4, fed.getEmailRicevente());
             st.execute();
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             ok = false;
-            System.out.println(e.getMessage());
+            throw new EccezioneDati("Impossibile inserire valutazione.");
         } finally {
             Dao.closeConnection();
         }
@@ -158,9 +164,9 @@ public class FeedbackDao {
             st.setString(3, fed.getEmailMandante());
             st.setString(4, fed.getEmailRicevente());
             st.execute();
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             ok = false;
-            System.out.println(e.getMessage());
+            throw new EccezioneDati("Impossibile inserire valutazione");
         } finally {
             Dao.closeConnection();
         }
@@ -175,51 +181,42 @@ public class FeedbackDao {
             System.out.println(ciao.getEmailMandante());
         }
     }
-    
-//     private void trovaFeedbackPasseggeri(Statement st, ArrayList<Feedback> lista) throws ClassNotFoundException, SQLException {
-//
-//        ResultSet rs = st.executeQuery("select * from FeedbackP");
-//        while (rs.next()) {
-//            Feedback fed = new Feedback();
-//
-//            fed.setId(rs.getInt(1));
-//            fed.setGiudizio(rs.getString(3));
-//            fed.setVoto(rs.getInt(2));
-//            fed.setEmailMandante(rs.getString(5));
-//            fed.setEmailRicevente(rs.getString(4));
-//
-//            lista.add(fed);
-//        }
-//    }
+    private void trovaFeedbackPasseggeri(Statement st, ArrayList<Feedback> lista)  {
 
-    private void trovaFeedbackPasseggeri(Statement st, ArrayList<Feedback> lista) throws ClassNotFoundException, SQLException {
-
-        ResultSet rs = st.executeQuery("select * from FeedbackP");
-        while (rs.next()) {
-            Feedback fed = new Feedback();
-
-            fed.setId(rs.getInt(1));
-            fed.setGiudizio(rs.getString(3));
-            fed.setVoto(rs.getInt(2));
-            fed.setEmailMandante(rs.getString(5));
-            fed.setEmailRicevente(rs.getString(4));
-
-            lista.add(fed);
+        try {
+            ResultSet rs = st.executeQuery("select * from FeedbackP");
+            while (rs.next()) {
+                Feedback fed = new Feedback();
+                
+                fed.setId(rs.getInt(1));
+                fed.setGiudizio(rs.getString(3));
+                fed.setVoto(rs.getInt(2));
+                fed.setEmailMandante(rs.getString(5));
+                fed.setEmailRicevente(rs.getString(4));
+                
+                lista.add(fed);
+            }
+        } catch (SQLException ex) {
+            throw new EccezioneDati("Impossibile trovare valutazioni dei passeggeri.");
         }
     }
 
-    private void trovaFeedackAutisti(Statement st, ArrayList<Feedback> lista) throws SQLException {
-        ResultSet rs = st.executeQuery("select * from FeedbackA");
-        while (rs.next()) {
-            Feedback fed = new Feedback();
-
-            fed.setId(rs.getInt(1));
-            fed.setGiudizio(rs.getString(3));
-            fed.setVoto(rs.getInt(2));
-            fed.setEmailMandante(rs.getString(5));
-            fed.setEmailRicevente(rs.getString(4));
-
-            lista.add(fed);
+    private void trovaFeedackAutisti(Statement st, ArrayList<Feedback> lista) {
+        try {
+            ResultSet rs = st.executeQuery("select * from FeedbackA");
+            while (rs.next()) {
+                Feedback fed = new Feedback();
+                
+                fed.setId(rs.getInt(1));
+                fed.setGiudizio(rs.getString(3));
+                fed.setVoto(rs.getInt(2));
+                fed.setEmailMandante(rs.getString(5));
+                fed.setEmailRicevente(rs.getString(4));
+                
+                lista.add(fed);
+            }
+        } catch (SQLException ex) {
+            throw new EccezioneDati("Impossibile trovare valutazioni autisti.");
         }
     }
 }

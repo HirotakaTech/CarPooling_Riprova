@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,23 +26,23 @@ import java.util.logging.Logger;
  *
  * @author Bartelloni-Bellezza-Niccolai F
  */
-public class AutistaDao{
-    
-    public ArrayList<Autista> getAutista(Viaggio viaggio){
+public class AutistaDao {
+
+    public ArrayList<Autista> getAutista(Viaggio viaggio) {
         Connection con = null;
         String sql = "select Autisti.* from Autisti inner join Viaggi"
                 + " on Autisti.email = Viaggi.email"
-           + " inner join Prenotazioni on Prenotazioni.id_viaggio = Viaggi.id"
+                + " inner join Prenotazioni on Prenotazioni.id_viaggio = Viaggi.id"
                 + " where citta_partenza =" + viaggio.getCitta_partenza()
-                 + " and citta_destinazione=" + viaggio.getCitta_destinazione()
+                + " and citta_destinazione=" + viaggio.getCitta_destinazione()
                 + " and data_partenza =" + viaggio.getData_partenza()
                 + " and accettazione = false";
         ArrayList<Autista> list = new ArrayList<>();
-        try{
+        try {
             con = Dao.getConnection();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sql);
-            while(res.next()){
+            while (res.next()) {
                 Autista au = new Autista();
                 au.setEmail(res.getString(1));
                 au.setNumero_posti(res.getInt(2));
@@ -54,18 +55,19 @@ public class AutistaDao{
                 au.setModello_auto(res.getString(7));
                 list.add(au);
             }
-        }catch(Exception e){
-            
-        }finally{
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new EccezioneDati("Impossibile ricavare autisti.");
+        } finally {
             Dao.closeConnection();
         }
         return list;
     }
-    public boolean insertAutista(Autista au){
+
+    public boolean insertAutista(Autista au) {
         boolean ok = true;
         String sql = "insert into Autisti VALUES(?,?,?,?,?,?,?)";
         Connection con = null;
-        try{
+        try {
             con = Dao.getConnection();
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, au.getEmail());
@@ -79,20 +81,20 @@ public class AutistaDao{
             st.setString(6, au.getTarga_auto());
             st.setString(7, au.getModello_auto());
             st.execute();
-        }catch(SQLException sx){
+        } catch (SQLException sx) {
             ok = false;
-            if(sx.getSQLState().equals("22001")){
+            if (sx.getSQLState().equals("22001")) {
                 throw new EccezioneDati("Un dato che è stato inserito risulta troppo lungo!");
             }
-        }
-        catch(Exception e){
+        } catch (ClassNotFoundException | ParseException e) {
             ok = false;
-        }finally{
+            throw new EccezioneDati("Inserimento dell'autista fallito.");
+        } finally {
             Dao.closeConnection();
         }
         return ok;
     }
-    
+
     public boolean isAutista(String email) {
         boolean found = false;
         Utente ute = null;
@@ -100,32 +102,32 @@ public class AutistaDao{
             Connection con = Dao.getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select Autisti.* from Autisti where Autisti.email='" + email + "'");
-            if(rs.next()){
+            if (rs.next()) {
                 found = true;
-            }
-
-        } catch (ClassNotFoundException ex) {
-        } catch (SQLException ex) {
-        } finally{
+            } 
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new EccezioneDati("Impossibile verificare identità dell'utente connesso.");
+        } finally {
             Dao.closeConnection();
         }
 
         return found;
 
     }
-    public String findAutista(int idViaggio){
+
+    public String findAutista(int idViaggio) {
         String autista = null;
-        String sql = "select email_autista from Viaggi where id="+ idViaggio;
+        String sql = "select email_autista from Viaggi where id=" + idViaggio;
         Connection con = null;
-        try{
+        try {
             con = Dao.getConnection();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sql);
-            if(res.next()){
+            if (res.next()) {
                 autista = res.getString("email_autista");
             }
-        }catch(Exception e){
-            
+        } catch (Exception e) {
+                throw new EccezioneDati("Impossibile trovare autista nell'archivio.");
         } finally {
             Dao.closeConnection();
         }

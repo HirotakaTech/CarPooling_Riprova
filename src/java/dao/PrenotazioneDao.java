@@ -5,6 +5,7 @@
  */
 package dao;
 
+import exceptions.EccezioneDati;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
  * @author checc_000
  */
 public class PrenotazioneDao {
-    public boolean insertPrenotazioni(int idViaggio, String email){
+    public boolean insertPrenotazioni(int idViaggio, String email) {
         boolean ok = true;
         String sqlInsertPrenotazione = "insert into Prenotazioni VALUES(?,?,?,?,?)";
         String codice = generaCodice(idViaggio, email);
@@ -35,10 +36,9 @@ public class PrenotazioneDao {
             pr.setInt(4, idViaggio);
             pr.setString(5, email);
             pr.executeUpdate();
-        } catch (ClassNotFoundException ex) {
-            ok = false;
-        } catch (SQLException ex) {
-            ok = false;
+        } catch (ClassNotFoundException | SQLException ex) {
+            ok = false;          
+            throw new EccezioneDati("Impossibile inserire informazioni della prenotazione. Riprovare.");
         } finally{
             Dao.closeConnection();
         }
@@ -74,8 +74,9 @@ public class PrenotazioneDao {
             if(postiOccupati >= postiMassimi){
                 ok = false;
             } 
-    }catch(Exception e){
+    }catch(ClassNotFoundException | SQLException e){
         ok = false;
+        throw new EccezioneDati("Impossibile inserire verificare la disponibilità della prenotazione. Riprovare.");
     } finally{
             Dao.closeConnection();
         }
@@ -95,8 +96,8 @@ public class PrenotazioneDao {
             if(res.next()){
                 result = res.getString("codice");
             }
-        }catch(Exception e){
-            
+        }catch(ClassNotFoundException | SQLException e){
+            throw new EccezioneDati("Impossibile generare il codice della prenotazione.");
         } finally {
             Dao.closeConnection();
         }
