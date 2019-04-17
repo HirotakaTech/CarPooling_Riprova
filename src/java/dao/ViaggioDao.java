@@ -62,10 +62,46 @@ public class ViaggioDao {
         }
         return list;
     }
+    
+    public ArrayList<Viaggio> findViaggiPrenotati(String email){
+         ArrayList<Viaggio> lista = new ArrayList<>();
+        String sql = "select Viaggi.* from Viaggi,Utenti where Viaggi.email_autista=Utenti.email and Utenti.email='" + email + "'";
+        Connection con = null;
+        try {
+            con = Dao.getConnection();
+            Statement st = con.createStatement();
+            ResultSet res = st.executeQuery(sql);
+            while (res.next()) {
+                Viaggio aus = new Viaggio();
+                aus.setId(res.getInt(1));
+                aus.setCitta_partenza(res.getString(2));
+                DateFormat dateform = new SimpleDateFormat("yyyy-MM-dd");
 
+                aus.setData_partenza(
+                        dateform.format(res.getDate(3)).toString());
+                String time = res.getTime(4).toString();
+                time = time.substring(0, 5);
+
+                aus.setOra_partenza(time);
+                aus.setCitta_destinazione(res.getString(5));
+                aus.setPrezzo(res.getFloat(6));
+                aus.setTempi_stimati(res.getString(7));
+                aus.setInfo_aggiuntive(res.getString(8));
+                aus.setEmail_autista(res.getString(9));
+                lista.add(aus);
+
+            }
+        } catch (Exception e) {
+            System.out.println("Errore");
+        } finally {
+            Dao.closeConnection();
+        }
+        return lista;
+    }
+    
     public ArrayList<Viaggio> findByEmail(String email) {
         ArrayList<Viaggio> lista = new ArrayList<>();
-        String sql = "select Viaggi.* from Viaggi,Utenti where Viaggi.email_autista=Utenti.email and Utenti.email='" + email + "'";
+        String sql = "select Viaggi.* from Prenotazioni,Viaggi where Viaggi.id=Prenotazioni.id_Viaggio and Prenotazioni.email_passeggero='" + email + "'";
         Connection con = null;
         try {
             con = Dao.getConnection();
