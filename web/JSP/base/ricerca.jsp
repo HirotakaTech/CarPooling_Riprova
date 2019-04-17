@@ -29,15 +29,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg align-items-end">
-                                        <div class="form-group">
-                                            <label for="#">Ora</label>
-                                            <div class="form-field">
-                                                <div class="icon"><span class="ion-ios-calendar"></span></div>
-                                                <input type="time" class="form-control" placeholder="Ora" name="ora" required>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                     <div class="col-lg align-items-end">
                                         <div class="form-group">
                                             <label for="#">Limite Prezzo</label>
