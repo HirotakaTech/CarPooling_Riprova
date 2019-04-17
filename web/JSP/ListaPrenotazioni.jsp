@@ -29,9 +29,36 @@
                 ViaggiDao dao = new ViaggiDao();
                 ArrayList<Viaggio> lista = dao.findViaggiPrenotati((String) session.getAttribute("email"));
                 for (Viaggio viag : lista) {%>
-        <div class="container" style="margin-top: 100px; text-align: center;">
+                              <div class="span6 offset-lg-0 offset-6" style='margin-top: 8%'>
+                    <div class="container">
+                <div class="table col-md-12">
+                    
+                    <div class="row">
+                    <div class="col-md-1">
+                        Partenza
+                    </div>
+                    <div class="col-md-2">
+                        Data
+                    </div>
+                    <div class="col-md-2">
+                        Ora
+                    </div>
+                    <div class="col-md-2">
+                        Arrivo
+                    </div>
+                    <div class="col-md-1">
+                        Prezzo(€)
+                    </div>
+                    <div class="col-md-2">
+                        Durata
+                    </div>
+                    <div class="col-md-2">
+                        Info
+                    </div>
+                           
+                    </div>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <%=viag.getCitta_partenza()%>
                 </div>
 
@@ -44,7 +71,7 @@
                 <div class="col-md-2">
                     <%=viag.getCitta_destinazione()%>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <%=viag.getPrezzo()%>
                 </div>
                 <div class="col-md-2">
