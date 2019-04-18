@@ -1,14 +1,7 @@
 <%-- 
     Document   : ViaggiCreati
     Created on : 14-apr-2019, 19.34.33
-    Author : hirotaka
-  citta_partenza     
-| data_partenza     
-| ora_partenza       
-| citta_destinazione 
-| prezzo_passeggero 
-| tempi_stimati     
-| info_aggiuntive  
+    Author : Bartelloni-Bellezza-NiccolaiF
 --%>
 
 <%@page import="beans.Utente"%>

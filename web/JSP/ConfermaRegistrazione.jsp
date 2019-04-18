@@ -3,7 +3,7 @@
 <%@page import="beans.Autista"%>
 <%@page import="mail.Mail"%>
 <%@page import="beans.Utente"%>
-<%@page import="dao.UtenteDao"%>
+<%@page import="dao.UtentiDao"%>
 <%@page import="dao.PasseggeriDao"%>
 <%@page import="dao.AutistiDao"%>
 <%
@@ -14,7 +14,7 @@
     String data_nascita = request.getParameter("data_nascita");
     String luogo = request.getParameter("luogo");
     String telefono = request.getParameter("telefono");
-    UtenteDao dao = new UtenteDao();
+    UtentiDao dao = new UtentiDao();
     Utente utente = new Utente(email, password, nome, cognome, data_nascita, luogo, telefono);
     boolean ok = false;
     if (!dao.findUser(email)) {

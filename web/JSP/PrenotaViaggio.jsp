@@ -1,7 +1,7 @@
 
 
 <%@page import="dao.ViaggiDao"%>
-<%@page import="dao.PrenotazioneDao"%>
+<%@page import="dao.PrenotazioniDao"%>
 <%@page import="beans.Autista"%>
 <%@page import="mail.Mail"%>
 <%@page import="beans.Utente"%>
@@ -16,7 +16,7 @@
         response.sendRedirect("Login.jsp");
     }
     int idViaggio = Integer.parseInt(request.getParameter("id"));
-    PrenotazioneDao dao = new PrenotazioneDao();
+    PrenotazioniDao dao = new PrenotazioniDao();
     if (dao.isPostiLiberi(idViaggio)) {
         if (dao.insertPrenotazioni(idViaggio, (String) session.getAttribute("email"))) {
             response.sendRedirect("index.jsp");

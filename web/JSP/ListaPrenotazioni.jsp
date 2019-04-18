@@ -1,7 +1,7 @@
 <%-- 
     Document   : ListaPrenotazioni
     Created on : 16-apr-2019, 22.04.12
-    Author     : hirotaka
+    Author     : Bartelloni-Bellezza-NiccolaiF
 --%>
 
 <%@page import="beans.Viaggio"%>

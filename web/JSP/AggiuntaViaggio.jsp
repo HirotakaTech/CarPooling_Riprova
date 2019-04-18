@@ -1,7 +1,7 @@
 <%-- 
     Document   : Recensioni
     Created on : Mar 25, 2019, 10:18:12 PM
-    Author     : Fierino
+    Author     : Bartelloni-Bellezza-NiccolaiF
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

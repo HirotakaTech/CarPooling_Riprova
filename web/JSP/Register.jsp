@@ -1,7 +1,7 @@
 <%-- 
     Document   : Login.jsp
     Created on : 1-apr-2019, 16.19.07
-    Author     : checc_000
+    Author     : Bartelloni-Bellezza-NiccolaiF
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

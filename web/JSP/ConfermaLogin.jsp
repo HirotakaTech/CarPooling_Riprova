@@ -1,7 +1,7 @@
 <%-- 
     Document   : ConfermaLogin
     Created on : 1-apr-2019, 17.02.24
-    Author     : checc_000
+    Author     : Bartelloni-Bellezza-NiccolaiF
 --%>
 <%@page import="dao.AutistiDao"%>
 <%@page import="dao.PasseggeriDao"%>

@@ -1,7 +1,7 @@
 <%-- 
     Document   : Logout
     Created on : 10-apr-2019, 11.04.31
-    Author     : utente
+    Author     : Bartelloni-Bellezza-NiccolaiF
 --%>
 
 <%session.setAttribute("utente", null);%>
