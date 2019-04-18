@@ -35,7 +35,7 @@ public class PrenotazioneDao extends Dao{
             con = getConnection();
             PreparedStatement pr = con.prepareStatement(sqlInsertPrenotazione);
             pr.setString(1, codice);
-            pr.setBoolean(2, true);
+            pr.setBoolean(2, false);
             String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
             pr.setDate(3, java.sql.Date.valueOf(date));
             pr.setInt(4, idViaggio);
