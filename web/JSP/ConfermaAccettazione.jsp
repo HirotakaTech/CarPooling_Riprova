@@ -15,7 +15,7 @@
         if(dao.accettaPrenotazione(codice)){
             response.sendRedirect("AccettazionePrenotazioni.jsp"); %>
     <%} else {%>
-    <h1>Qualcosa ï¿½ andato storto! C'ï¿½ stato un errore...</h1>
+    <h1>Qualcosa è andato storto! C'è stato un errore...</h1>
         <br><a href="${pageContext.request.contextPath}/JSP/ListaViaggi.jsp">Visualizza tutti i viaggi</a>
         <br><a href="${pageContext.request.contextPath}/JSP/index.jsp">Home</a>
     <%}%>
