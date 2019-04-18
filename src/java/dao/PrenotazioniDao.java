@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
-public class PrenotazioneDao extends Dao{
+public class PrenotazioniDao extends Dao{
 
     /**
      * Metodo per l'inserimento delle Prenotazioni all'interno del DB
