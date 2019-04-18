@@ -10,14 +10,12 @@
     if(session.getAttribute("utente")==null){
         response.sendRedirect("Login.jsp");
     }
-    int idViaggio = Integer.parseInt(request.getParameter("id")); 
+    String codice = request.getParameter("codice"); 
     PrenotazioneDao dao = new PrenotazioneDao();
-    if(dao.isPostiLiberi(idViaggio)){
-        if(dao.insertPrenotazioni(idViaggio, (String)session.getAttribute("email"))){
-            response.sendRedirect("index.jsp");
-        } %>
+        if(dao.accettaPrenotazione(codice)){
+            response.sendRedirect("AccettazionePrenotazioni.jsp"); %>
     <%} else {%>
-    <h1>Tutti i posti per quel viaggio sono stati già prenotati!</h1>
+    <h1>Qualcosa è andato storto! C'è stato un errore...</h1>
         <br><a href="${pageContext.request.contextPath}/JSP/ListaViaggi.jsp">Visualizza tutti i viaggi</a>
         <br><a href="${pageContext.request.contextPath}/JSP/index.jsp">Home</a>
     <%}%>

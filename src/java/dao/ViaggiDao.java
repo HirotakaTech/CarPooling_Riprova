@@ -50,7 +50,8 @@ public class ViaggiDao extends Dao{
 
                 aus.setData_partenza(
                         dateform.format(res.getDate(3)).toString());
-                String time = res.getTime(4).toString();
+                SimpleDateFormat form = new SimpleDateFormat("HH:mm");
+                String time = form.format(res.getTime(4));
                 time = time.substring(0, 5);
 
                 aus.setOra_partenza(time);

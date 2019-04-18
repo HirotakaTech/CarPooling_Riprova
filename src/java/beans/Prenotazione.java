@@ -1,7 +1,5 @@
 package beans;
 
-import java.util.Date;
-
 /**
  *
  * @author Bartelloni-Bellezza-Niccolai F.
@@ -11,6 +9,8 @@ public class Prenotazione {
     private boolean accettazione;
     private String codice;
     private String data;
+    private Viaggio viaggio;
+    private String email_passeggero;
     /**
      * Metodo costruttore per la creazione della prenotazione.
      * @param accettazione booleano che indica se la prenotazione è stata accettata dall'autista o meno
@@ -69,6 +69,34 @@ public class Prenotazione {
      */
     public void setData(String data) {
         this.data = data;
+    }
+    /**
+     * Metodo getter per i viaggi.
+     * @return viaggio
+     */
+    public Viaggio getViaggio() {
+        return viaggio;
+    }
+    /**
+     * Metodo setter per i viaggio.
+     * @param viaggio viaggio della prenotazione
+     */
+    public void setViaggio(Viaggio viaggio) {
+        this.viaggio = viaggio;
+    }
+    /**
+     * Metodo getter per l'email del passeggero.
+     * @return email del passeggero
+     */
+    public String getEmail_passeggero() {
+        return email_passeggero;
+    }
+    /**
+     * Metodo per settare l'email del passeggero.
+     * @param email_passeggero email del passeggero che ha prenotato un viaggio
+     */
+    public void setEmail_passeggero(String email_passeggero) {
+        this.email_passeggero = email_passeggero;
     }
     
 }
