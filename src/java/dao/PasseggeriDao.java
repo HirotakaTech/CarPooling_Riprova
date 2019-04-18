@@ -7,15 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Classe che si occupa di gestire i dati relativi ai Passeggeri
  *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
-public class PasseggeriDao {
+public class PasseggeriDao extends Dao{
 
     /**
      * Metodo che inserisce un passeggero all'interno del database a partire da
@@ -30,7 +28,7 @@ public class PasseggeriDao {
         String sql = "insert into Passeggeri VALUES(?,?)";
         Connection con = null;
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, email);
             st.setString(2, documento);
@@ -39,7 +37,7 @@ public class PasseggeriDao {
             ok = false;
             throw new EccezioneDati("Impossibile inserire informazioni del passeggero. Riprovare");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return ok;
     }
@@ -53,8 +51,9 @@ public class PasseggeriDao {
     public boolean isPasseggero(String email) {
         boolean found = false;
         Utente ute = null;
+        Connection con = null;
         try {
-            Connection con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select Passeggeri.* from Passeggeri where Passeggeri.email='" + email + "'");
             if (rs.next()) {
@@ -63,7 +62,7 @@ public class PasseggeriDao {
         } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile inserire informazioni del passeggero. Riprovare");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return found;
     }

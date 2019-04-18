@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
-public class PrenotazioneDao {
+public class PrenotazioneDao extends Dao{
 
     /**
      * Metodo per l'inserimento delle Prenotazioni all'interno del DB
@@ -32,7 +32,7 @@ public class PrenotazioneDao {
         String codice = generaCodice(idViaggio, email);
         Connection con = null;
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             PreparedStatement pr = con.prepareStatement(sqlInsertPrenotazione);
             pr.setString(1, codice);
             pr.setBoolean(2, true);
@@ -51,7 +51,7 @@ public class PrenotazioneDao {
         } catch (ClassNotFoundException ex) {
             throw new EccezioneDati("Impossibile inserire informazioni della prenotazione. Riprovare.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return ok;
     }
@@ -76,7 +76,7 @@ public class PrenotazioneDao {
                 + "where id=" + idViaggio;
         Connection con = null;
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sqlPostiOccupati);
             int postiOccupati = 0;
@@ -96,7 +96,7 @@ public class PrenotazioneDao {
             ok = false;
             throw new EccezioneDati("Impossibile inserire verificare la disponibilità della prenotazione. Riprovare.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return ok;
     }
@@ -116,7 +116,7 @@ public class PrenotazioneDao {
         String result = null;
         Connection con = null;
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sqlCodice);
             if (res.next()) {
@@ -125,7 +125,7 @@ public class PrenotazioneDao {
         } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile generare il codice della prenotazione.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return result;
     }

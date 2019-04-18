@@ -19,7 +19,7 @@ import java.util.Date;
  *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
-public class ViaggiDao {
+public class ViaggiDao extends Dao{
 
     /**
      * Metodo che viene utilizzato per ottenere i viaggi a partire dai parametri
@@ -33,14 +33,13 @@ public class ViaggiDao {
      */
     public ArrayList<Viaggio> getViaggi(String destinazione, String data_partenza, String ora, int costo) {
         Connection con = null;
-        System.out.println(data_partenza);
         String sql = "select * from Viaggi"
                 + " where citta_destinazione='" + destinazione
                 + "' and data_partenza='" + data_partenza
                 + "' and prezzo_passeggero<=" + costo;
         ArrayList<Viaggio> list = new ArrayList<>();
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sql);
             while (res.next()) {
@@ -67,7 +66,7 @@ public class ViaggiDao {
 
             throw new EccezioneDati("Impossibile consultare l'archivio per i viaggi. Riprovare.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return list;
     }
@@ -84,7 +83,7 @@ public class ViaggiDao {
         String sql = "select Viaggi.* from Viaggi,Utenti where Viaggi.email_autista=Utenti.email and Utenti.email='" + email + "'";
         Connection con = null;
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sql);
             while (res.next()) {
@@ -110,7 +109,7 @@ public class ViaggiDao {
         } catch (Exception e) {
             System.out.println("Errore");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return lista;
     }
@@ -127,7 +126,7 @@ public class ViaggiDao {
         String sql = "select Viaggi.* from Prenotazioni,Viaggi where Viaggi.id=Prenotazioni.id_Viaggio and Prenotazioni.email_passeggero='" + email + "'";
         Connection con = null;
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sql);
             while (res.next()) {
@@ -153,7 +152,7 @@ public class ViaggiDao {
         } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile trovare i viaggi. Riprovare.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return lista;
     }
@@ -168,7 +167,7 @@ public class ViaggiDao {
         String sql = "select Viaggi.* from Viaggi";
         Connection con = null;
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sql);
             while (res.next()) {
@@ -194,7 +193,7 @@ public class ViaggiDao {
         } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile visualizzare i viaggi. Riprovare.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return lista;
     }
@@ -210,7 +209,7 @@ public class ViaggiDao {
         String sql = "insert into Viaggi values(NULL,?,?,?,?,?,?,?,?)";
         Connection con = null;
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             PreparedStatement pr = con.prepareStatement(sql);
             pr.setString(1, viaggio.getCitta_partenza());
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -232,7 +231,7 @@ public class ViaggiDao {
             ok = false;
             throw new EccezioneDati("Impossibile inserire informazioni del viaggio. Riprovare.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return ok;
     }

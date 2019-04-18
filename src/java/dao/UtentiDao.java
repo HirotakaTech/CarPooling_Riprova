@@ -10,10 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Classe che si occupa di gestire i dati relativi agli Utenti all'interno del
@@ -21,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
-public class UtentiDao {
+public class UtentiDao extends Dao{
 
     /**
      * Metodo che si occupa di controllare se l'utente è registrato e farlo di
@@ -38,7 +34,7 @@ public class UtentiDao {
                 + " and password='" + password + "'";
         Connection con = null;
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sql);
             if (res.next()) {
@@ -47,7 +43,7 @@ public class UtentiDao {
         } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile accedere. Riprovare.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return logged;
     }
@@ -64,7 +60,7 @@ public class UtentiDao {
                 + " where email='" + email + "'";
         Connection con = null;
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet res = st.executeQuery(sql);
             if (res.next()) {
@@ -73,7 +69,7 @@ public class UtentiDao {
         } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile controllare se utente esiste. Riprovare.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return find;
     }
@@ -91,7 +87,7 @@ public class UtentiDao {
         String error = "";
         String data = "";
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, user.getEmail());
             st.setString(2, user.getNome());
@@ -114,7 +110,7 @@ public class UtentiDao {
             ok = false;
             throw new EccezioneDati("Impossibile inserire informazioni dell'utente. Riprovare.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return ok;
     }
@@ -128,8 +124,9 @@ public class UtentiDao {
     public Utente findByEmail(String email) {
 
         Utente ute = null;
+        Connection con = null;
         try {
-            Connection con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select Utenti.* from Utenti where Utenti.email='" + email + "'");
             ute = new Utente();
@@ -146,7 +143,7 @@ public class UtentiDao {
         } catch (ClassNotFoundException | SQLException ex) {
             throw new EccezioneDati("Impossibile trovare email. Riprovare");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
 
         return ute;
@@ -163,8 +160,9 @@ public class UtentiDao {
     public Utente findByName(String name) throws ClassNotFoundException {
 
         Utente ute = null;
+        Connection con = null;
         try {
-            Connection con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select Utenti.* from Utenti where Utenti.nome='" + name + "'");
             ute = new Utente();
@@ -181,7 +179,7 @@ public class UtentiDao {
         } catch (ClassNotFoundException | SQLException ex) {
             throw new EccezioneDati("Impossibile trovare nome dell'utente nell'archivio.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
 
         return ute;

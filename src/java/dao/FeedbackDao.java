@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Bartelloni-Bellezza-Niccolai F.
  */
-public class FeedbackDao {
+public class FeedbackDao extends Dao{
 
     /**
      * Metodo che consente di ottenere tutte le valutazioni effettuate.
@@ -22,8 +22,9 @@ public class FeedbackDao {
      */
     public ArrayList<Feedback> findAll() {
         ArrayList<Feedback> lista = new ArrayList<>();
+        Connection con = null;
         try {
-            Connection con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
 
             trovaFeedbackPasseggeri(st, lista);
@@ -32,7 +33,7 @@ public class FeedbackDao {
         } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile visualizzare i feedback.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
 
         return lista;
@@ -43,8 +44,9 @@ public class FeedbackDao {
      */
     public ArrayList<Feedback> findVotiPerAutisti() {
         ArrayList<Feedback> lista = new ArrayList<>();
+        Connection con = null;
         try {
-            Connection con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select FeedbackP.email_autista,avg(FeedbackP.voto) as Media_Voto from FeedbackP group by (FeedbackP.email_autista)");
             while (rs.next()) {
@@ -56,7 +58,7 @@ public class FeedbackDao {
         } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile trovare i voti dei passeggeri.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return lista;
     }
@@ -66,8 +68,9 @@ public class FeedbackDao {
      */
     public ArrayList<Feedback> findVotiPerPasseggeri() {
         ArrayList<Feedback> lista = new ArrayList<>();
+        Connection con = null;
         try {
-            Connection con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select FeedbackA.email_autista,avg(FeedbackA.voto) as Media_Voto from FeedbackA group by (FeedbackA.email_autista)");
             while (rs.next()) {
@@ -79,7 +82,7 @@ public class FeedbackDao {
         } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile trovare i voti degli autisti.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return lista;
     }
@@ -90,14 +93,15 @@ public class FeedbackDao {
      */
     public ArrayList<Feedback> findByEmail(String email) {
         ArrayList<Feedback> lista = new ArrayList<>();
+        Connection con = null;
         try {
-            Connection con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             lista = trovaFeedbackByEmail(st,email);
         } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile trovare l'email nei voti registrati.");
         } finally{
-            Dao.closeConnection();
+            closeConnection(con);
         }
 
         return lista;
@@ -108,8 +112,9 @@ public class FeedbackDao {
      */
     public ArrayList<Autista> findAutisti() {
         ArrayList<Autista> lista = new ArrayList<>();
+        Connection con = null;
         try {
-            Connection con = Dao.getConnection();
+            con = getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select Autisti.* from FeedbackA,Autisti where FeedbackA.email_autista=Autisti.email");
             while (rs.next()) {
@@ -127,7 +132,7 @@ public class FeedbackDao {
         } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile trovare autista.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
         return lista;
     }
@@ -143,7 +148,7 @@ public class FeedbackDao {
         String error = "";
         String data = "";
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             PreparedStatement st = con.prepareStatement(sql);
             st.setInt(1, fed.getVoto());
             st.setString(2, fed.getGiudizio());
@@ -154,7 +159,7 @@ public class FeedbackDao {
             ok = false;
             throw new EccezioneDati("Impossibile inserire valutazione.");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
 
         return ok;
@@ -171,7 +176,7 @@ public class FeedbackDao {
         String error = "";
         String data = "";
         try {
-            con = Dao.getConnection();
+            con = getConnection();
             PreparedStatement st = con.prepareStatement(sql);
             st.setInt(1, fed.getVoto());
             st.setString(2, fed.getGiudizio());
@@ -182,7 +187,7 @@ public class FeedbackDao {
             ok = false;
             throw new EccezioneDati("Impossibile inserire valutazione");
         } finally {
-            Dao.closeConnection();
+            closeConnection(con);
         }
 
         return ok;
