@@ -7,15 +7,15 @@
 <%@page import="beans.Utente"%>
 <%@page import="dao.AutistiDao"%>
 <%
-    if (session.getAttribute("utente") == null) {
+    if(session.getAttribute("utente")==null){
         response.sendRedirect("Login.jsp");
     }
-        String codice = request.getParameter("codice");
-        PrenotazioneDao dao = new PrenotazioneDao();
-        if (dao.accettaPrenotazione(codice)) {
+    String codice = request.getParameter("codice"); 
+    PrenotazioneDao dao = new PrenotazioneDao();
+        if(dao.accettaPrenotazione(codice)){
             response.sendRedirect("AccettazionePrenotazioni.jsp"); %>
-<%} else {%>
-<h1>Qualcosa è andato storto! C'è stato un errore...</h1>
-<br><a href="${pageContext.request.contextPath}/JSP/AccettazionePrenotazione.jsp">Torna indietro</a>
-<br><a href="${pageContext.request.contextPath}/JSP/index.jsp">Home</a>
-<%}%>
+    <%} else {%>
+    <h1>Qualcosa ï¿½ andato storto! C'ï¿½ stato un errore...</h1>
+        <br><a href="${pageContext.request.contextPath}/JSP/ListaViaggi.jsp">Visualizza tutti i viaggi</a>
+        <br><a href="${pageContext.request.contextPath}/JSP/index.jsp">Home</a>
+    <%}%>
