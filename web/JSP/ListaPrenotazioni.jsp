@@ -28,65 +28,35 @@
             if (!isAutist && ok) {
                 ViaggiDao dao = new ViaggiDao();
                 ArrayList<Viaggio> lista = dao.findViaggiPrenotati((String) session.getAttribute("email"));
-                for (Viaggio viag : lista) {%>
-                              <div class="span6 offset-lg-0 offset-6" style='margin-top: 8%'>
-                    <div class="container">
-                <div class="table col-md-12">
-                    
-                    <div class="row">
-                    <div class="col-md-1">
-                        Partenza
-                    </div>
-                    <div class="col-md-2">
-                        Data
-                    </div>
-                    <div class="col-md-2">
-                        Ora
-                    </div>
-                    <div class="col-md-2">
-                        Arrivo
-                    </div>
-                    <div class="col-md-1">
-                        Prezzo(€)
-                    </div>
-                    <div class="col-md-2">
-                        Durata
-                    </div>
-                    <div class="col-md-2">
-                        Info
-                    </div>
-                           
-                    </div>
+        %><h1 style="margin-top: 100px;text-align: center">Le tue Prenotazioni</h1>
+        <div class="container" style="margin-top: 20px;text-decoration: underline">
             <div class="row">
-                <div class="col-md-1">
-                    <%=viag.getCitta_partenza()%>
-                </div>
-
-                <div class="col-md-2">
-                    <%=viag.getData_partenza()%>
-                </div>
-                <div class="col-md-2">
-                    <%=viag.getOra_partenza()%>
-                </div>
-                <div class="col-md-2">
-                    <%=viag.getCitta_destinazione()%>
-                </div>
-                <div class="col-md-1">
-                    <%=viag.getPrezzo()%>
-                </div>
-                <div class="col-md-2">
-                    <%=viag.getTempi_stimati()%>
-                </div>
-                <div class="col-md-2">
-                    <a href="" title="<%=viag.getInfo_aggiuntive()%>">...</a>
-                </div>
-
+                <div class="col-2">Citta di Partenza</div>
+                <div class="col-2">Data di Partenza</div>
+                <div class="col-2">Ora di Partenza</div>
+                <div class="col-2">Citta di Destinazione</div>
+                <div class="col-2">Prezzo Passeggero</div>
+                <div class="col-2">Tempi Stimati</div>
             </div>
-            <%}%>
         </div>
-
+        <%
+            for (Viaggio via : lista) {%>
+        <div class="container" style="margin-top: 50px; background-color: #212529">
+            <div class="row" style="height: 50px">
+                <div class="col-2"><%=via.getCitta_partenza()%></div>
+                <div class="col-2"><%=via.getData_partenza()%></div>
+                <div class="col-2"><%=via.getOra_partenza()%></div>
+                <div class="col-2"><%=via.getCitta_destinazione()%></div>
+                <div class="col-2"><%=via.getPrezzo()%></div>
+                <div class="col-2"><%=via.getTempi_stimati()%></div>
+            </div>
+        </div>
         <%}%>
+    </div>
 
+    <%}%>
+    <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
+    <%@include file="/JSP/base/footer.jsp" %>
 
-    </body>
+</body>
 </html>

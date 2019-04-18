@@ -22,7 +22,9 @@
                             if (isAutista != null && isAutista == true) {%>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/JSP/AggiuntaViaggio.jsp" class="nav-link">Aggiungi un viaggio</a></li>
 
-                <% }
+                <% }else if(isAutista==false){
+                   %> <li class="nav-item active"><a href="${pageContext.request.contextPath}/JSP/ListaViaggi.jsp" class="nav-link">Prenota</a></li><%
+                }
                     } catch (NullPointerException e) {
 
                     }%>
@@ -39,7 +41,6 @@
                         <li class="nav-item"><a href="${pageContext.request.contextPath}/JSP/ViaggiCreati.jsp" class="nav-link"><div class="p-3 mb-2 bg-light text-dark">I miei Viaggi</div></a></li>
                         <li class="nav-item"><a href="${pageContext.request.contextPath}/JSP/AccettazionePrenotazioni.jsp" class="nav-link"><div class="p-3 mb-2 bg-light text-dark">Accettazione</div></a></li>
                         <%} else if(isAutista != null && isAutista == false){%>
-                                            <li class="nav-item"><a href="${pageContext.request.contextPath}/JSP/ListaViaggi.jsp" class="nav-link"><div class="p-3 mb-2 bg-light text-dark">Prenota</div></a></li>
                                             <li class="nav-item"><a href="${pageContext.request.contextPath}/JSP/ListaPrenotazioni.jsp" class="nav-link"><div class="p-3 mb-2 bg-light text-dark">Le mie prenotazioni</div></a></li>
 <%}}catch(NullPointerException e){}%>
                         <li class="nav-item"><a href="${pageContext.request.contextPath}/JSP/Logout.jsp" class="nav-link"><div class="p-3 mb-2 bg-light text-dark">Logout</div></a></li>

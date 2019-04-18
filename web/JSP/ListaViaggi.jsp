@@ -15,96 +15,99 @@
     </head>
     <body>
         <%@include file="/JSP/base/header.jsp" %>
-        <%if(session.getAttribute("utente") == null){
-            response.sendRedirect("Login.jsp");
-        }%>
+        <%if (session.getAttribute("utente") == null) {
+                response.sendRedirect("Login.jsp");
+            }%>
         <%
             boolean isAutist = false;
             boolean ok = true;
-            try{
-            isAutist = (Boolean) session.getAttribute("isAutista");
-            }catch(Exception e){
-                ok =false;
-            } 
-           if (!isAutist && ok ) {
-            ViaggiDao dao = new ViaggiDao();
+            try {
+                isAutist = (Boolean) session.getAttribute("isAutista");
+            } catch (Exception e) {
+                ok = false;
+            }
+            if (!isAutist && ok) {
+                ViaggiDao dao = new ViaggiDao();
                 ArrayList<Viaggio> viaggi = dao.findAll();%>
-                <div class="span6 offset-lg-0 offset-6" style='margin-top: 8%'>
-                    <div class="container">
+                <h1 style="text-align: center;margin-top: 100px">Lista dei Viaggi</h1>
+        <div class="span6 offset-lg-0 offset-6" style='margin-top: 20px'>
+            <div class="container">
                 <div class="table col-md-12">
-                    
-                    <div class="row">
+
+                    <div class="row" style="margin-bottom: 20px;color: black;font-size: 15pt">
                         <div class="col-lg-1">
-                        Prenota
-                    </div>
-                        <div class="col-lg-1">
-                        Partenza
-                    </div>
-                    
-                    <div class="col-lg-2">
-                        Data
-                    </div>
-                    <div class="col-lg-1">
-                        Ora
-                    </div>
-                    <div class="col-lg-1">
-                        Arrivo
-                    </div>
-                    <div class="col-lg-1">
-                       Prezzo(€)
-                    </div>
-                    <div class="col-lg-1">
-                        Durata
-                    </div>
-                    <div class="col-lg-1">
-                        Info
-                    </div>
-                    <div class="col-lg-1">
-                        Autista
-                    </div>
-                        
-                    </div>
-                <%for(Viaggio viag: viaggi){%>
-                <div class="row">
-                    
-                    <div class="col-lg-1">
-                        
-                        <form action="PrenotaViaggio.jsp" method="POST">
-                        <input type="hidden" value="<%=viag.getId()%>" name="id"/>
-                        <input type="submit" value="Prenota" name="prenota"/>
-                        </form>
-                    </div>
-                    <div class="col-lg-1">
-                        <%=viag.getCitta_partenza()%>
-                    </div>
-                    
-                    <div class="col-lg-2">
-                        <%=viag.getData_partenza()%>
-                    </div>
-                    <div class="col-lg-1">
-                        <%=viag.getOra_partenza()%>
-                    </div>
-                    <div class="col-lg-1">
-                        <%=viag.getCitta_destinazione()%>
-                    </div>
-                    <div class="col-lg-1">
-                        <%=viag.getPrezzo()%>
-                    </div>
-                    <div class="col-lg-1">
-                        <%=viag.getTempi_stimati()%>
-                    </div>
-                    <div class="col-lg-1">
-                        <a href="" title="<%=viag.getInfo_aggiuntive()%>">...</a>
-                    </div>
-                    <div class="col-lg-1">
-                        <%=viag.getEmail_autista()%>
-                    </div>
+                            Prenota
                         </div>
-                <%}%>
+                        <div class="col-lg-1">
+                            Partenza
+                        </div>
+
+                        <div class="col-lg-2">
+                            Data
+                        </div>
+                        <div class="col-lg-1">
+                            Ora
+                        </div>
+                        <div class="col-lg-1">
+                            Arrivo
+                        </div>
+                        <div class="col-lg-1">
+                            Prezzo(€)
+                        </div>
+                        <div class="col-lg-1">
+                            Durata
+                        </div>
+                        <div class="col-lg-1">
+                            Info
+                        </div>
+                        <div class="col-lg-1">
+                            Autista
+                        </div>
+
+                    </div>
+                    <%for (Viaggio viag : viaggi) {%>
+                    <div class="row" style="background-color: #212529;">
+
+                        <div class="col-lg-1">
+
+                            <form action="PrenotaViaggio.jsp" method="POST">
+                                <input type="hidden" value="<%=viag.getId()%>" name="id"/>
+                                <input type="submit" value="Prenota" name="prenota"/>
+                            </form>
+                        </div>
+                        <div class="col-lg-1">
+                            <%=viag.getCitta_partenza()%>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <%=viag.getData_partenza()%>
+                        </div>
+                        <div class="col-lg-1">
+                            <%=viag.getOra_partenza()%>
+                        </div>
+                        <div class="col-lg-1">
+                            <%=viag.getCitta_destinazione()%>
+                        </div>
+                        <div class="col-lg-1">
+                            <%=viag.getPrezzo()%>
+                        </div>
+                        <div class="col-lg-1">
+                            <%=viag.getTempi_stimati()%>
+                        </div>
+                        <div class="col-lg-1">
+                            <a href="" title="<%=viag.getInfo_aggiuntive()%>">...</a>
+                        </div>
+                        <div class="col-lg-1">
+                            <%=viag.getEmail_autista()%>
+                        </div>
+                    </div>
+                    <%}%>
                 </div>
-            <%}%>
-            
-</div>
+                <%}%>
+
             </div>
+        </div>
+        <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
+        <%@include file="/JSP/base/footer.jsp" %>
     </body>
 </html>

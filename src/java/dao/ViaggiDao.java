@@ -165,7 +165,7 @@ public class ViaggiDao extends Dao{
      */
     public ArrayList<Viaggio> findAll() {
         ArrayList<Viaggio> lista = new ArrayList<>();
-        String sql = "select Viaggi.* from Viaggi";
+        String sql = "select Viaggi.* from Viaggi order by data_partenza";
         Connection con = null;
         try {
             con = getConnection();

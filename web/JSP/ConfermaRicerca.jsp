@@ -14,7 +14,7 @@
     <body>
         <script>
             var xhttp = new XMLHttpRequest();
-            setInterval(aggiorna,1000);
+            setInterval(aggiorna, 1000);
             function aggiorna() {
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
@@ -26,12 +26,12 @@
             }
             function aggiornaRisultato() {
                 document.getElementById("risultati").innerHTML = xhttp.responseText;
-           
+
             }
         </script>
         <%@include file="/JSP/base/header.jsp" %>
         <%
-            if(session.getAttribute("utente")==null){
+            if (session.getAttribute("utente") == null) {
                 response.sendRedirect("Login.jsp");
             }
             String destinazione = request.getParameter("destinazione");
@@ -45,10 +45,14 @@
 
         %>
 
-
+        <div style="margin-top:200px">
+            <%@include file="/JSP/base/ricerca.jsp" %>
+        </div>
         <div id="risultati">
         </div>
-        <%@include file="/JSP/base/ricerca.jsp" %>
-        
+
+        <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
+        <%@include file="/JSP/base/footer.jsp" %>
+
     </body>
 </html>
