@@ -19,7 +19,7 @@ import java.util.Date;
  *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
-public class ViaggiDao extends Dao{
+public class ViaggiDao extends Dao {
 
     /**
      * Metodo che viene utilizzato per ottenere i viaggi a partire dai parametri

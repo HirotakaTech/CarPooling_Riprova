@@ -13,35 +13,42 @@ import java.util.ResourceBundle;
 public class Dao {
 
     /**
-     * Metodo che consente di instaurare una connessione con il database del CarPooling.
-     * @return connessione generata col database 
-     * @throws ClassNotFoundException viene lanciata quando i driver jdbc non sono stati caricati correttamente
-     * @throws SQLException avviene quando è presente un errore nella connessione con il database
+     * Metodo che consente di instaurare una connessione con il database del
+     * CarPooling.
+     *
+     * @return connessione generata col database
+     * @throws ClassNotFoundException viene lanciata quando i driver jdbc non
+     * sono stati caricati correttamente
+     * @throws SQLException avviene quando è presente un errore nella
+     * connessione con il database
      */
     public Connection getConnection() throws ClassNotFoundException, SQLException {
-            Connection con = null;
-            Class.forName("com.mysql.jdbc.Driver");
-            ResourceBundle bun = ResourceBundle.getBundle("parametri");
-            String url = bun.getString("URL");
-            String user = bun.getString("USER");
-            String passwd = bun.getString("PASSWD");
-            con = DriverManager.getConnection(url, user, passwd);
-        
+        Connection con = null;
+        Class.forName("com.mysql.jdbc.Driver");
+        ResourceBundle bun = ResourceBundle.getBundle("parametri");
+        String url = bun.getString("URL");
+        String user = bun.getString("USER");
+        String passwd = bun.getString("PASSWD");
+        con = DriverManager.getConnection(url, user, passwd);
+
         return con;
     }
+
     /**
      * Metodo volto alla chiusura della connessione col database.
-     * @return true se viene chiusa la connessione con successo, false altrimenti
+     *
+     * @return true se viene chiusa la connessione con successo, false
+     * altrimenti
      */
     public static boolean closeConnection(Connection con) {
         boolean ok = true;
-        if(con!=null){
-        try {
-            con.close();
-        } catch (SQLException e) {
-            ok = false;
-            throw new EccezioneDati("Problema di chiusura della comunicazione del database.");
-        }
+        if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                ok = false;
+                throw new EccezioneDati("Problema di chiusura della comunicazione del database.");
+            }
         }
         return ok;
     }

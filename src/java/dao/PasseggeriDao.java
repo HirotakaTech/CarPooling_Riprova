@@ -13,7 +13,7 @@ import java.sql.Statement;
  *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
-public class PasseggeriDao extends Dao{
+public class PasseggeriDao extends Dao {
 
     /**
      * Metodo che inserisce un passeggero all'interno del database a partire da

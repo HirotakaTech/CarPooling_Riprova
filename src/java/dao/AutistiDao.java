@@ -19,9 +19,11 @@ import java.util.Date;
  *
  * @author Bartelloni-Bellezza-Niccolai F
  */
-public class AutistiDao extends Dao{
+public class AutistiDao extends Dao {
+
     /**
      * Metodo che consente, dato un determinato viaggio, di ottenere l'autista.
+     *
      * @param viaggio viaggio compiuto da un autista
      * @return lista di autisti associati ad un viaggio
      */
@@ -59,8 +61,10 @@ public class AutistiDao extends Dao{
         }
         return list;
     }
+
     /**
      * Metodo che consente di inserire nel database un autista.
+     *
      * @param au autista da inserire nel database
      * @return true se la procedura ha esito positivo, false altrimenti
      */
@@ -95,22 +99,24 @@ public class AutistiDao extends Dao{
         }
         return ok;
     }
+
     /**
      * Metodo che controlla se un determinato utente è un autista.
+     *
      * @param email email dell'utente
      * @return true se l'utente risulta un autista, false altrimenti
      */
     public boolean isAutista(String email) {
         boolean found = false;
         Utente ute = null;
-        Connection con= null;
+        Connection con = null;
         try {
             con = getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select Autisti.* from Autisti where Autisti.email='" + email + "'");
             if (rs.next()) {
                 found = true;
-            } 
+            }
         } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Impossibile verificare identità dell'utente connesso.");
         } finally {
@@ -120,8 +126,11 @@ public class AutistiDao extends Dao{
         return found;
 
     }
+
     /**
-     * Metodo che ritorna l'email di un autista, dato l'id del viaggio a cui è associato.
+     * Metodo che ritorna l'email di un autista, dato l'id del viaggio a cui è
+     * associato.
+     *
      * @param idViaggio id del viaggio
      * @return email dell'autista
      */
@@ -137,7 +146,7 @@ public class AutistiDao extends Dao{
                 autista = res.getString("email_autista");
             }
         } catch (Exception e) {
-                throw new EccezioneDati("Impossibile trovare autista nell'archivio.");
+            throw new EccezioneDati("Impossibile trovare autista nell'archivio.");
         } finally {
             closeConnection(con);
         }
