@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <div class="icon "><span class="ion-ios-star"></span></div>
-                            <input type="number" class="form-control" placeholder="Inserisci il giudizio (1 - 5)" name="voto" required>
+                            <input type="number" class="form-control" placeholder="Inserisci il giudizio (1 - 5)" name="voto" min="1" max="5" required>
                         </div>
                     </div>
 
