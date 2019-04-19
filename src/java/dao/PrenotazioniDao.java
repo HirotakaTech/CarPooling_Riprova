@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
-public class PrenotazioniDao extends Dao{
+public class PrenotazioniDao extends Dao {
 
     /**
      * Metodo per l'inserimento delle Prenotazioni all'interno del DB
@@ -134,24 +134,27 @@ public class PrenotazioniDao extends Dao{
         }
         return result;
     }
+
     /**
      * Metodo per trovare tutte le prenotazioni effettuate su un autista.
-     * @param accettazione true se si vogliono ottenere le prenotazioni accettate, false altrimenti
+     *
+     * @param accettazione true se si vogliono ottenere le prenotazioni
+     * accettate, false altrimenti
      * @param email email dell'autista
      * @return prenotazioni dell'autista
      */
-    public ArrayList<Prenotazione> findAll(boolean accettazione, String email){
+    public ArrayList<Prenotazione> findAll(boolean accettazione, String email) {
         String sql = "select * from Prenotazioni inner join Viaggi on id_viaggio=id "
                 + "where accettazione=? and email_autista=?";
         Connection con = null;
         ArrayList<Prenotazione> prenotazioni = new ArrayList<>();
-        try{
+        try {
             con = getConnection();
             PreparedStatement p = con.prepareStatement(sql);
             p.setBoolean(1, accettazione);
             p.setString(2, email);
             ResultSet res = p.executeQuery();
-            while(res.next()){
+            while (res.next()) {
                 String email_passeggero = res.getString("email_passeggero");
                 SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
                 String data = form.format(res.getDate(3));
@@ -162,17 +165,20 @@ public class PrenotazioniDao extends Dao{
                 prenotazione.setViaggio(viag);
                 prenotazioni.add(prenotazione);
             }
-        }catch(ClassNotFoundException | SQLException e){
+        } catch (ClassNotFoundException | SQLException e) {
             throw new EccezioneDati("Si è verificato un problema: impossibile visualizzare le prenotazioni.");
         }
         return prenotazioni;
     }
+
     /**
      * Metodo per ottenere il viaggio relativo alla prenotazione.
+     *
      * @param res oggetto contenente le informazioni del viaggio
      * @param form form per formattare le date
      * @return viaggio relativo alla prenotazione
-     * @throws SQLException lanciata se ci sono errori nell'ottenere i risultati dall'oggetto res
+     * @throws SQLException lanciata se ci sono errori nell'ottenere i risultati
+     * dall'oggetto res
      */
     private Viaggio ottieniViaggio(ResultSet res, SimpleDateFormat form) throws SQLException {
         SimpleDateFormat oraForm = new SimpleDateFormat("HH:mm");
@@ -181,35 +187,38 @@ public class PrenotazioniDao extends Dao{
         viag.setCitta_partenza(res.getString("citta_partenza"));
         viag.setData_partenza(form.format(res.getDate("data_partenza")));
         String timePartenza = oraForm.format(res.getTime("ora_partenza"));
-        timePartenza = timePartenza.substring(0,5);
+        timePartenza = timePartenza.substring(0, 5);
         viag.setOra_partenza(timePartenza);
         viag.setCitta_destinazione(res.getString("citta_destinazione"));
         viag.setPrezzo(res.getFloat("prezzo_passeggero"));
         String tempiStimati = oraForm.format(res.getTime("tempi_stimati"));
-        tempiStimati = tempiStimati.substring(0,5);
+        tempiStimati = tempiStimati.substring(0, 5);
         viag.setTempi_stimati(tempiStimati);
         viag.setInfo_aggiuntive(res.getString("info_aggiuntive"));
         return viag;
     }
+
     /**
-     * Metodo che permette all'autista di accettare la prenotazione di un passeggero.
+     * Metodo che permette all'autista di accettare la prenotazione di un
+     * passeggero.
+     *
      * @param codice codice della prenotazione
      * @return true se l'operazione ha esito positivo, false altrimenti
      */
-    public boolean accettaPrenotazione(String codice){
+    public boolean accettaPrenotazione(String codice) {
         boolean ok = true;
-        String sql ="update Prenotazioni set accettazione=1 where codice=?";
+        String sql = "update Prenotazioni set accettazione=1 where codice=?";
         Connection con = null;
         int rows = 0;
-        try{
+        try {
             con = getConnection();
             PreparedStatement p = con.prepareStatement(sql);
             p.setString(1, codice);
             rows = p.executeUpdate();
-        }catch(ClassNotFoundException | SQLException e){
-            ok = false;   
+        } catch (ClassNotFoundException | SQLException e) {
+            ok = false;
         }
-        if(rows == 0 || rows == -1){
+        if (rows == 0 || rows == -1) {
             ok = false;
         }
         return ok;

@@ -12,6 +12,14 @@ import javax.mail.internet.MimeMessage;
 
 public class Mail {
     //Username: carpoolingnoreply@gmail.com passw:CarPooling4EVER!
+    /**
+     * Metodo statico che si occupa di mandare una mail all'utente specificato
+     * @param from email del mandante
+     * @param password password del mandante
+     * @param to email del destinatario
+     * @param sub oggetto della email
+     * @param msg messaggio della email
+     */
     public static void send(String from, String password, String to, String sub, String msg) {
         //Get properties object    
         Properties props = new Properties();

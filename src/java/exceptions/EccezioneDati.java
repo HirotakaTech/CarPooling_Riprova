@@ -1,18 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package exceptions;
 
 /**
- *
- * @author checc_000
+ * Classe che rappresenta un'eccezione che lancia il programma
+ * @author Bartelloni-Bellezza-NiccolaiF
  */
-public class EccezioneDati extends RuntimeException{
+public class EccezioneDati extends RuntimeException {
 
+    /**
+     * Costruttore della classe
+     * @param string Messaggio di errore
+     */
     public EccezioneDati(String string) {
         super(string);
     }
-    
+
 }

@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
  *
  * @author Bartelloni-Bellezza-NiccolaiF
  */
-public class UtentiDao extends Dao{
+public class UtentiDao extends Dao {
 
     /**
      * Metodo che si occupa di controllare se l'utente è registrato e farlo di
