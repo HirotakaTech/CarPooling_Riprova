@@ -61,13 +61,13 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="#">Nome</label>
-                            <input type="text" class="form-control " placeholder="inserisci nome" name="nome" required>
+                            <input type="text" class="form-control " placeholder="inserisci nome" name="nome" minlength="3" maxlength="35" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="#">Cognome</label>
-                            <input type="text" class="form-control" placeholder="inserisci cognome" name="cognome" required>
+                            <input type="text" class="form-control" placeholder="inserisci cognome" name="cognome" minlength="3" maxlength="35" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="#">Data Nascita</label>
@@ -77,13 +77,13 @@
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="#">Password</label>
-                            <input type="password" class="form-control" placeholder="inserisci password" name="password" required>
+                            <input type="password" class="form-control" placeholder="inserisci password" name="password" minlength="8" maxlength="16" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="#">Luogo di Nascita</label>
-                            <input type="text" class="form-control" placeholder="inserisci luogo" name="luogo" required>
+                            <input type="text" class="form-control" placeholder="inserisci luogo" name="luogo" minlength="5" maxlength="40" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="#">Telefono (senza prefisso)</label>
@@ -91,8 +91,6 @@
                         </div>
                     </div>
                     <div id="elementiSpecifici"></div>
-
-
                     <div class="col-lg align-self-end">
                         <div class="form-group">
                             <div class="form-field">

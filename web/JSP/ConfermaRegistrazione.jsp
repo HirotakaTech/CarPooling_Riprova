@@ -1,5 +1,3 @@
-
-
 <%@page import="beans.Autista"%>
 <%@page import="mail.Mail"%>
 <%@page import="beans.Utente"%>
