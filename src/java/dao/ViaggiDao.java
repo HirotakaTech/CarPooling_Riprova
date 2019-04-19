@@ -80,7 +80,9 @@ public class ViaggiDao extends Dao {
      */
     public ArrayList<Viaggio> findViaggiPrenotati(String email) {
         ArrayList<Viaggio> lista = new ArrayList<>();
-        String sql = "select Viaggi.* from Viaggi,Utenti where Viaggi.email_autista=Utenti.email and Utenti.email='" + email + "'";
+        String sql = "select Viaggi.* from Viaggi,Utenti,Prenotazioni where Viaggi.email_autista=Utenti.email and Prenotazioni.id_viaggio=Viaggi.id"
+                + " and Prenotazioni.email_passeggero='" + email + "'"
+                + " and accettazione=1";
         Connection con = null;
         try {
             con = getConnection();
@@ -88,20 +90,20 @@ public class ViaggiDao extends Dao {
             ResultSet res = st.executeQuery(sql);
             while (res.next()) {
                 Viaggio aus = new Viaggio();
-                aus.setId(res.getInt(1));
-                aus.setCitta_partenza(res.getString(2));
+                aus.setId(res.getInt("id"));
+                aus.setCitta_partenza(res.getString("citta_partenza"));
                 DateFormat dateform = new SimpleDateFormat("yyyy-MM-dd");
                 DateFormat form = new SimpleDateFormat("HH:mm");
                 aus.setData_partenza(
-                        dateform.format(res.getDate(3)).toString());
-                String time = form.format(res.getTime(4).toString());
+                        dateform.format(res.getDate("data_partenza")).toString());
+                String time = form.format(res.getTime("ora_partenza").getTime());
 
                 aus.setOra_partenza(time);
-                aus.setCitta_destinazione(res.getString(5));
-                aus.setPrezzo(res.getFloat(6));
-                aus.setTempi_stimati(form.format(res.getTime(7)));
-                aus.setInfo_aggiuntive(res.getString(8));
-                aus.setEmail_autista(res.getString(9));
+                aus.setCitta_destinazione(res.getString("citta_destinazione"));
+                aus.setPrezzo(res.getFloat("prezzo_passeggero"));
+                aus.setTempi_stimati(form.format(res.getTime("tempi_stimati")));
+                aus.setInfo_aggiuntive(res.getString("info_aggiuntive"));
+                aus.setEmail_autista(res.getString("email_autista"));
                 lista.add(aus);
 
             }

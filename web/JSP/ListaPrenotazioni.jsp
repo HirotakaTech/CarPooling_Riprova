@@ -4,6 +4,7 @@
     Author     : Bartelloni-Bellezza-NiccolaiF
 --%>
 
+<%@page import="dao.PrenotazioniDao"%>
 <%@page import="beans.Viaggio"%>
 <%@page import="dao.ViaggiDao"%>
 <%@page import="beans.Prenotazione"%>
