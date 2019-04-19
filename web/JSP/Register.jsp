@@ -71,7 +71,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="#">Data Nascita</label>
-                            <input type="date" class="form-control" id="nascita" placeholder="inserisci data di nascita" name="data_nascita" min="2001-01-01" required>
+                            <input type="date" class="form-control" id="nascita" placeholder="inserisci data di nascita" name="data_nascita" max="2001-01-01" required>
                         </div>
                     </div>
                     <div class="form-row">
