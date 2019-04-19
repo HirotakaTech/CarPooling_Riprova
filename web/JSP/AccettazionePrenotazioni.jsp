@@ -38,8 +38,7 @@
         <div class="span6 offset-lg-0 offset-6" style='margin-top: 8%'>
             <div class="container">
                 <div class="table col-md-12">
-
-                    <div class="row">
+                    <div class="row" style="margin-bottom: 20px;color: black;font-size: 15pt">
                         <div class="col-md-1">
                             Accetta
                         </div>
