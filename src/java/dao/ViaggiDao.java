@@ -52,12 +52,11 @@ public class ViaggiDao extends Dao {
                         dateform.format(res.getDate(3)).toString());
                 SimpleDateFormat form = new SimpleDateFormat("HH:mm");
                 String time = form.format(res.getTime(4));
-                time = time.substring(0, 5);
 
                 aus.setOra_partenza(time);
                 aus.setCitta_destinazione(res.getString(5));
                 aus.setPrezzo(res.getFloat(6));
-                aus.setTempi_stimati(res.getString(7));
+                aus.setTempi_stimati(form.format(res.getTime(7)));
                 aus.setInfo_aggiuntive(res.getString(8));
                 aus.setEmail_autista(res.getString(9));
                 list.add(aus);
@@ -92,16 +91,15 @@ public class ViaggiDao extends Dao {
                 aus.setId(res.getInt(1));
                 aus.setCitta_partenza(res.getString(2));
                 DateFormat dateform = new SimpleDateFormat("yyyy-MM-dd");
-
+                DateFormat form = new SimpleDateFormat("HH:mm");
                 aus.setData_partenza(
                         dateform.format(res.getDate(3)).toString());
-                String time = res.getTime(4).toString();
-                time = time.substring(0, 5);
+                String time = form.format(res.getTime(4).toString());
 
                 aus.setOra_partenza(time);
                 aus.setCitta_destinazione(res.getString(5));
                 aus.setPrezzo(res.getFloat(6));
-                aus.setTempi_stimati(res.getString(7));
+                aus.setTempi_stimati(form.format(res.getTime(7)));
                 aus.setInfo_aggiuntive(res.getString(8));
                 aus.setEmail_autista(res.getString(9));
                 lista.add(aus);
@@ -135,16 +133,16 @@ public class ViaggiDao extends Dao {
                 aus.setId(res.getInt(1));
                 aus.setCitta_partenza(res.getString(2));
                 DateFormat dateform = new SimpleDateFormat("yyyy-MM-dd");
-
+                DateFormat form = new SimpleDateFormat("HH:mm");
                 aus.setData_partenza(
                         dateform.format(res.getDate(3)).toString());
-                String time = res.getTime(4).toString();
-                time = time.substring(0, 5);
+                String time = form.format(res.getTime(4).toString());
+                
 
                 aus.setOra_partenza(time);
                 aus.setCitta_destinazione(res.getString(5));
                 aus.setPrezzo(res.getFloat(6));
-                aus.setTempi_stimati(res.getString(7));
+                aus.setTempi_stimati(form.format(res.getTime(7)));
                 aus.setInfo_aggiuntive(res.getString(8));
                 aus.setEmail_autista(res.getString(9));
                 lista.add(aus);
@@ -176,16 +174,16 @@ public class ViaggiDao extends Dao {
                 aus.setId(res.getInt(1));
                 aus.setCitta_partenza(res.getString(2));
                 DateFormat dateform = new SimpleDateFormat("yyyy-MM-dd");
-
+                DateFormat form = new SimpleDateFormat("HH:mm");
                 aus.setData_partenza(
                         dateform.format(res.getDate(3)).toString());
-                String time = res.getTime(4).toString();
-                time = time.substring(0, 5);
+                String time = form.format(res.getTime(4));
+                
 
                 aus.setOra_partenza(time);
                 aus.setCitta_destinazione(res.getString(5));
                 aus.setPrezzo(res.getFloat(6));
-                aus.setTempi_stimati(res.getString(7));
+                aus.setTempi_stimati(form.format(res.getTime(7)));
                 aus.setInfo_aggiuntive(res.getString(8));
                 aus.setEmail_autista(res.getString(9));
                 lista.add(aus);
