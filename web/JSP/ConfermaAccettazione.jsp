@@ -1,7 +1,7 @@
 
 
 <%@page import="dao.ViaggiDao"%>
-<%@page import="dao.PrenotazioneDao"%>
+<%@page import="dao.PrenotazioniDao"%>
 <%@page import="beans.Autista"%>
 <%@page import="mail.Mail"%>
 <%@page import="beans.Utente"%>
@@ -11,7 +11,7 @@
         response.sendRedirect("Login.jsp");
     }
     String codice = request.getParameter("codice"); 
-    PrenotazioneDao dao = new PrenotazioneDao();
+    PrenotazioniDao dao = new PrenotazioniDao();
         if(dao.accettaPrenotazione(codice)){
             response.sendRedirect("AccettazionePrenotazioni.jsp"); %>
     <%} else {%>
