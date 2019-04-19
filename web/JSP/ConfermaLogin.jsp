@@ -3,12 +3,11 @@
     Created on : 1-apr-2019, 17.02.24
     Author     : Bartelloni-Bellezza-NiccolaiF
 --%>
+<%@page import="exceptions.EccezioneDati"%>
 <%@page import="dao.AutistiDao"%>
 <%@page import="dao.PasseggeriDao"%>
 <%@page import="dao.UtentiDao"%> 
-<%
-    try {
-        String email = request.getParameter("email");
+<%String email = request.getParameter("email");
         String password = request.getParameter("password");
         UtentiDao ut = new UtentiDao();
         PasseggeriDao pass = new PasseggeriDao();
@@ -16,7 +15,7 @@
         String url = "";
         boolean logged = ut.login(email, password);
         if (!logged) {
-            url = "Login.jsp";
+            response.sendRedirect("Login.jsp?error=errore");
         } else {
             boolean ok = false;
             url = "index.jsp";
@@ -35,12 +34,9 @@
                     isAutista = false;
                     session.setAttribute("isAutista", isAutista);
                 }
-
                 response.sendRedirect("index.jsp");
-            } else {
-                response.sendRedirect("Login.jsp");
+            } 
             }
-        }
-    } catch (Exception e) {
-%><jsp:forward page="/JSP/Login.jsp"></jsp:forward><%
-             }%>
+        %>
+
+</html>

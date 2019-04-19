@@ -9,12 +9,10 @@
 <html>
     <head>
         <%@include file="/JSP/base/head.jsp" %>
-
     </head>
     <body>
         <%@include file="/JSP/base/header.jsp" %>
         <section class="ftco-section">
-
             <h1 style="text-align: center">Esegui l'accesso</h1>
             <form action="${pageContext.request.contextPath}/JSP/ConfermaLogin.jsp" method="POST">
                 <div class="container">
@@ -47,6 +45,12 @@
                             <input type="submit" value="Accedi" class="form-control btn btn-primary">
                         </div>
                     </div>
+                    <%if(request.getParameter("error")!=null){%>
+<div class="alert alert-danger alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Attenzione!</strong> Email o password errate!
+</div>
+<%}%>
                 </div>
             </form>
         </section>
