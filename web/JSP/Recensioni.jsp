@@ -26,14 +26,14 @@
             text-align: center;
         }
     </style>
-    
-        <%
-            FeedbackDao dao = new FeedbackDao();
-            ArrayList<Feedback> lista = dao.findVotiPerAutisti();
 
-            UtentiDao utenteDao = new UtentiDao();
-        %>
-        <%@include file="/JSP/base/header.jsp" %>
+    <%
+        FeedbackDao dao = new FeedbackDao();
+        ArrayList<Feedback> lista = dao.findVotiPerAutisti();
+
+        UtentiDao utenteDao = new UtentiDao();
+    %>
+    <%@include file="/JSP/base/header.jsp" %>
 
     <center><h1 style="margin-top: 110px">Recensioni dei Nostri Utenti</h1></center>
     <br>
@@ -62,7 +62,7 @@
     </div>
     <%}
         lista = dao.findVotiPerPasseggeri();
-     %>
+    %>
 
     <% for (Feedback fed : lista) {%>
     <%Utente utente = utenteDao.findByEmail(fed.getEmailMandante());%>
@@ -86,7 +86,7 @@
         </div>
     </div>
     <%}%>
-
+    <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
     <%@include file="/JSP/base/footer.jsp" %>
 
 

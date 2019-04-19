@@ -124,7 +124,7 @@ public class ViaggiDao extends Dao {
      */
     public ArrayList<Viaggio> findByEmail(String email) {
         ArrayList<Viaggio> lista = new ArrayList<>();
-        String sql = "select Viaggi.* from Prenotazioni,Viaggi where Viaggi.id=Prenotazioni.id_Viaggio and Prenotazioni.email_passeggero='" + email + "'";
+        String sql = "select Viaggi.* from Viaggi where Viaggi.email_autista='" + email + "'";
         Connection con = null;
         try {
             con = getConnection();

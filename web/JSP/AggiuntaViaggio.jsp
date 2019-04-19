@@ -43,7 +43,7 @@
                     </div>
                     <div class="form-group col-4">
                         <label>Prezzo</label>
-                        <input type="numeric" class="form-control" name="prezzo" placeholder="Inserisci il prezzo" required>
+                        <input type="number" class="form-control" name="prezzo" placeholder="Inserisci il prezzo" min="1" max="500" required>
                     </div>
                     <div class="form-group col-4">
                         <label>Tempi Stimati</label>
