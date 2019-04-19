@@ -17,8 +17,13 @@
     UtentiDao dao = new UtentiDao();
     Utente utente = new Utente(email, password, nome, cognome, data_nascita, luogo, telefono);
     boolean ok = false;
-    if (!dao.findUser(email)) {
+    if (!dao.isUser(email)) {
         ok = dao.inserisciUtente(utente);
+        if ("autista".equals(request.getParameter("radiobutton"))) {
+            ok = aggiungiAutista(email, request);
+        } else {
+            ok = aggiungiPasseggero(email, request);
+        }
     } else {
         if ("autista".equals(request.getParameter("radiobutton"))) {
             ok = aggiungiAutista(email, request);

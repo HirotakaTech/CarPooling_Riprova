@@ -54,7 +54,7 @@ public class UtentiDao extends Dao{
      * @param email Email dell'utente da ricercare
      * @return esisto della ricerca
      */
-    public boolean findUser(String email) {
+    public boolean isUser(String email) {
         boolean find = false;
         String sql = "select email,password from Utenti"
                 + " where email='" + email + "'";

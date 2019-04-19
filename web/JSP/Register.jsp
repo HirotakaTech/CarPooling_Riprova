@@ -57,7 +57,7 @@
                         <div class="form-group col-md-6">
                             <label for="#">Email</label>
                             <div class="icon"><span class="ion-ios-email"></span></div>
-                            <input type="text" class="form-control" placeholder="inserisci mail" name="email" required>
+                            <input type="email" class="form-control" placeholder="inserisci mail" name="email" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="#">Nome</label>
@@ -82,12 +82,12 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="#">Luogo</label>
+                            <label for="#">Luogo di Nascita</label>
                             <input type="text" class="form-control" placeholder="inserisci luogo" name="luogo" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="#">Telefono</label>
-                            <input type="text" class="form-control" placeholder="inserisci numero di telefono" name="telefono" required>
+                            <label for="#">Telefono (senza prefisso)</label>
+                            <input type="tel" class="form-control" pattern="[0-9]{10}" placeholder="inserisci numero di telefono" name="telefono" required>
                         </div>
                     </div>
                     <div id="elementiSpecifici"></div>
