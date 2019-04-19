@@ -14,10 +14,10 @@
     <body>
         <%@include file="/JSP/base/header.jsp" %>
         <section class="ftco-section">
-            <div class="container">
-                <h1 style="text-align: center">Esegui l'accesso</h1>
-                <form action="${pageContext.request.contextPath}/JSP/ConfermaLogin.jsp" method="POST">
 
+            <h1 style="text-align: center">Esegui l'accesso</h1>
+            <form action="${pageContext.request.contextPath}/JSP/ConfermaLogin.jsp" method="POST">
+                <div class="container">
                     <div class="form-row justify-content-between">
 
                         <div class="form-group col-md-6">
@@ -35,7 +35,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <div class="icon"><span class="ion-ios-log-in"></span></div>
-                            <input type="text" class="form-control" placeholder="Email" name="email" required>
+                            <input type="email" class="form-control" placeholder="Email" name="email" required>
                         </div>
                         <div class="form-group col-md-6">
                             <div class="icon"><span class="ion-ios-log-in"></span></div>
@@ -47,11 +47,9 @@
                             <input type="submit" value="Accedi" class="form-control btn btn-primary">
                         </div>
                     </div>
-            </div>
-        </form>
-    </div>
-</section>
-</div>
-<%@include file="/JSP/base/footer.jsp" %>
-</body>
+                </div>
+            </form>
+        </section>
+        <%@include file="/JSP/base/footer.jsp" %>
+    </body>
 </html>
