@@ -24,10 +24,12 @@
         if(daoPass.isPasseggero(emailMandante)){
            if(daoAut.isAutista(emailRicevente)){
                daoFed.insertFeedbackA(fed);
+               response.sendRedirect("Recensioni.jsp");
             }
         } else if(daoAut.isAutista(emailMandante)) {
             if(daoPass.isPasseggero(emailRicevente)){
                daoFed.insertFeedbackP(fed);
+               response.sendRedirect("Recensioni.jsp");
             }
         }
     }%>
