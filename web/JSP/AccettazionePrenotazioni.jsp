@@ -43,7 +43,7 @@
                         <div class="col-md-1">
                             Accetta
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             Partenza
                         </div>
 
@@ -53,7 +53,7 @@
                         <div class="col-md-1">
                             Ora
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             Arrivo
                         </div>
                         <div class="col-md-1">
@@ -81,7 +81,7 @@
                             </form>
                         </div>
                         <%Viaggio viag = prenotazione.getViaggio();%>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <%=viag.getCitta_partenza()%>
                         </div>
 
@@ -91,7 +91,7 @@
                         <div class="col-md-1">
                             <%=viag.getOra_partenza()%>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <%=viag.getCitta_destinazione()%>
                         </div>
                         <div class="col-md-1">
@@ -104,7 +104,7 @@
                             <a href="" title="<%=viag.getInfo_aggiuntive()%>">...</a>
                         </div>
                         <div class="col-md-1">
-                            <%=prenotazione.getEmail_passeggero()%>
+                            <a href="" title="<%=prenotazione.getEmail_passeggero()%>">...</a>
                         </div>
                     </div>
                     <%}%>
