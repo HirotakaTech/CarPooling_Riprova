@@ -7,7 +7,6 @@
 <%@page import="beans.Viaggio"%>
 <%@page import="dao.ViaggiDao"%>
 <%@page import="beans.Prenotazione"%>
-<%@page import="dao.PrenotazioneDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
