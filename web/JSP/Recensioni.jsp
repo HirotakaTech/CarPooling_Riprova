@@ -35,12 +35,12 @@
     %>
     <%@include file="/JSP/base/header.jsp" %>
 
-    <center><h1 style="margin-top: 110px">Recensioni dei Nostri Utenti</h1></center>
+    <center><h1 style="margin-top: 110px">Media delle Recensioni dei Nostri Utenti</h1></center>
     <br>
     <center><button class="btn btn-primary"><a href="${pageContext.request.contextPath}/JSP/AggiuntaRecensione.jsp" style="text-decoration: none;color: white">Aggiungi una recensione</a></button></center>
 
     <% for (Feedback fed : lista) {%>
-    <%Utente utente = utenteDao.findByEmail(fed.getEmailMandante());%>
+    <%Utente utente = utenteDao.findByEmail(fed.getEmailRicevente());%>
     <div class="container my-container">
         <br>
         <div class="row">
@@ -65,7 +65,7 @@
     %>
 
     <% for (Feedback fed : lista) {%>
-    <%Utente utente = utenteDao.findByEmail(fed.getEmailMandante());%>
+    <%Utente utente = utenteDao.findByEmail(fed.getEmailRicevente());%>
     <div class="container my-container">
         <br>
         <div class="row">
@@ -79,7 +79,7 @@
                         <div class="col-md-7"><%for (int i = 0; i < fed.getVoto(); i++) {
                             %>🌟<%}
                             %></div>
-                        <div class="col-md-2"><a href="${pageContext.request.contextPath}/JSP/RecensioniUtente.jsp?email=<%=fed.getEmailMandante()%>">Guarda Tutte le Recensioni</a></div>
+                        <div class="col-md-2"><a href="${pageContext.request.contextPath}/JSP/RecensioniUtente.jsp?email=<%=fed.getEmailRicevente()%>">Guarda Tutte le Recensioni</a></div>
                     </div>
                 </div>
             </div>

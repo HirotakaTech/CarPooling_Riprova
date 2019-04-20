@@ -28,7 +28,7 @@
             if (!isAutist && ok) {
                 ViaggiDao dao = new ViaggiDao();
                 ArrayList<Viaggio> lista = dao.findViaggiPrenotati((String) session.getAttribute("email"));
-        %><h1 style="margin-top: 100px;text-align: center">Le tue Prenotazioni</h1>
+        %><h1 style="margin-top: 100px;text-align: center">Le tue Prenotazioni Accettate</h1>
         <div class="container" style="margin-top: 20px;text-decoration: underline">
             <div class="row">
                 <div class="col-2">Citta di Partenza</div>

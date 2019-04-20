@@ -52,7 +52,7 @@ public class FeedbackDao extends Dao {
         try {
             con = getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select FeedbackP.email_autista,avg(FeedbackP.voto) as Media_Voto from FeedbackP group by (FeedbackP.email_autista)");
+            ResultSet rs = st.executeQuery("select FeedbackP.email_passeggero,avg(FeedbackP.voto) as Media_Voto from FeedbackP group by (FeedbackP.email_passeggero)");
             while (rs.next()) {
                 Feedback fed = new Feedback();
                 fed.setVoto(rs.getInt(2));
@@ -69,7 +69,7 @@ public class FeedbackDao extends Dao {
 
     /**
      * Metodo che consente di ottenere le valutazioni degli autisti,
-     * visualizzandone le loro medie.
+     * visualizzandone le medie.
      *
      * @return lista di valutazioni medie per autista
      */
@@ -79,11 +79,12 @@ public class FeedbackDao extends Dao {
         try {
             con = getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select FeedbackA.email_autista,avg(FeedbackA.voto) as Media_Voto from FeedbackA group by (FeedbackA.email_autista)");
+            ResultSet rs = st.executeQuery("select FeedbackA.email_passeggero,avg(FeedbackA.voto) as Media_Voto from FeedbackA group by (FeedbackA.email_passeggero)");
             while (rs.next()) {
                 Feedback fed = new Feedback();
                 fed.setVoto(rs.getInt(2));
-                fed.setEmailMandante(rs.getString(1));
+                fed.setEmailRicevente(rs.getString(1));
+                
                 lista.add(fed);
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -278,13 +279,13 @@ public class FeedbackDao extends Dao {
     private ArrayList<Feedback> trovaFeedbackByEmail(Statement st,
             String email) throws SQLException, ClassNotFoundException {
         ArrayList<Feedback> list = new ArrayList<>();
-        ResultSet res = st.executeQuery("select * from FeedbackA where email_autista='" + email + "'");
+        ResultSet res = st.executeQuery("select * from FeedbackA where email_passeggero='" + email + "'");
         while (res.next()) {
             list.add(new Feedback(res.getString("giudizio"), res.getInt("voto"),
                     res.getString("email_passeggero"), res.getString("email_autista")));
         }
 
-        res = st.executeQuery("select * from FeedbackP where email_passeggero='" + email + "'");
+        res = st.executeQuery("select * from FeedbackP where email_autista='" + email + "'");
         while (res.next()) {
             list.add(new Feedback(res.getString("giudizio"), res.getInt("voto"),
                     res.getString("email_autista"), res.getString("email_passeggero")));
